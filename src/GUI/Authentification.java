@@ -47,6 +47,7 @@ public class Authentification extends javax.swing.JFrame {
         backgroundLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Covoiturage || Back Office");
         setMinimumSize(new java.awt.Dimension(600, 600));
         setResizable(false);
         getContentPane().setLayout(null);
