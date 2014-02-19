@@ -12,6 +12,8 @@ import Entity.Banissement;
 import java.math.BigInteger;
 import java.security.*;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import utils.Exceptions.ProblemeTechniqueException;
 /**
  *
@@ -77,5 +79,13 @@ public class AuthentificationMetier {
         
         Session.getInstance().setMessage("Vous êtes banni jusqu'au "+ ban.getDateFin() + ".\nLa cause: "+ban.getCause());
         return true;
+    }
+    
+    public boolean loginExistant(String login) throws ProblemeTechniqueException{
+        
+        if (AuthentificationDAO.getInstance().getByLogin(login) == null)
+            return false;
+        else 
+            return true;
     }
 }

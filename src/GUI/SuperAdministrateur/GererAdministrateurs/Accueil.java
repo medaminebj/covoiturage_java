@@ -4,17 +4,34 @@
  */
 package GUI.SuperAdministrateur.GererAdministrateurs;
 
+import Entity.Administrateur;
+import Entity.Session;
+import Entity.Authentification;
+import java.sql.Date;
+import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import metier.AdministrateurMetier;
+import metier.AuthentificationMetier;
+import utils.Exceptions.ProblemeTechniqueException;
+
 /**
  *
  * @author Amine
  */
 public class Accueil extends javax.swing.JFrame {
-
+ private AdministrateurMetier administrateurMetier;
+ private AuthentificationMetier authentificationMetier;
     /**
      * Creates new form Accueil
      */
     public Accueil() {
         initComponents();
+        administrateurMetier = new AdministrateurMetier();
+        authentificationMetier = new  AuthentificationMetier();
     }
 
     /**
@@ -26,8 +43,29 @@ public class Accueil extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        datagrid = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        Tableau = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        NomText = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        AdresseText = new javax.swing.JTextField();
+        LoginText = new javax.swing.JTextField();
+        PrenomText = new javax.swing.JTextField();
+        numTelText = new javax.swing.JTextField();
+        PasswordText = new javax.swing.JTextField();
+        DateText = new javax.swing.JTextField();
+        sexeCMB = new javax.swing.JComboBox();
+        InsererButton = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Gérer les administrateurs");
@@ -39,44 +77,374 @@ public class Accueil extends javax.swing.JFrame {
             }
         });
 
-        datagrid.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
-            },
-            new String [] {
-                "Nom", "Prénom", "Sexe", "Date de naissance" ,"Adresse", "telephone"
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/ajouter.png"))); // NOI18N
+        jButton1.setText("Ajouter");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
             }
-        ));
-        jScrollPane1.setViewportView(datagrid);
+        });
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/modifier.png"))); // NOI18N
+        jButton2.setText("Modifier");
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/supprimer.png"))); // NOI18N
+        jButton3.setText("Suprrimer");
+        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton3MouseClicked(evt);
+            }
+        });
+
+        Tableau.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        Tableau.setModel(new utils.components.jtable.tableModelGerrerAdmins());
+        Tableau.setToolTipText("");
+        Tableau.setColumnSelectionAllowed(true);
+        Tableau.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TableauMouseClicked(evt);
+            }
+        });
+        Tableau.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                TableauKeyPressed(evt);
+            }
+        });
+        jScrollPane2.setViewportView(Tableau);
+        Tableau.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+
+        jLabel1.setText("Nom");
+
+        NomText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NomTextActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("Prénom");
+
+        jLabel3.setText("Numéro de téléphone");
+
+        jLabel4.setText("Date de néssance");
+
+        jLabel5.setText("Login");
+
+        jLabel6.setText("Mot de passe");
+
+        jLabel7.setText("Sexe");
+
+        jLabel8.setText("Adresse");
+
+        PasswordText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PasswordTextActionPerformed(evt);
+            }
+        });
+
+        DateText.setText("         JJ/MM/YYYY");
+
+        sexeCMB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "M", "F" }));
+
+        InsererButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/Inserer.png"))); // NOI18N
+        InsererButton.setText("Enregistrer");
+        InsererButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                InsererButtonMouseClicked(evt);
+            }
+        });
+        InsererButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                InsererButtonActionPerformed(evt);
+            }
+        });
+
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/Retour.png"))); // NOI18N
+        jButton4.setText("Retour ");
+        jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton4MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 832, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 906, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel5))
+                        .addGap(43, 43, 43)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(NomText, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
+                            .addComponent(AdresseText)
+                            .addComponent(LoginText))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel2))
+                        .addGap(31, 31, 31)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(PrenomText, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(numTelText, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(26, 26, 26)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel4))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(DateText, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(sexeCMB, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(PasswordText, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(InsererButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(28, 28, 28)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(281, Short.MAX_VALUE))
+                .addGap(58, 58, 58)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(77, 77, 77)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel1)
+                                .addComponent(NomText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel2)
+                                .addComponent(jLabel4)
+                                .addComponent(PrenomText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(DateText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(34, 34, 34)
+                        .addComponent(InsererButton, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel7)
+                        .addComponent(jLabel8)
+                        .addComponent(jLabel3)
+                        .addComponent(AdresseText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(numTelText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(sexeCMB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(20, 20, 20)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel6)
+                    .addComponent(LoginText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(PasswordText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(2, 2, 2)
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33)
+                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(146, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        // TODO add your handling code here:
+    
+    
+    private boolean VerifierTextFiledVide()
+    {
+         if (NomText.getText().equals("") || PrenomText.getText().equals("") || AdresseText.getText().equals("") || numTelText.getText().equals("") || DateText.getText().equals("") || LoginText.getText().equals("") || PasswordText.getText().equals(""))
+         {
+            return false ; 
+         }
+         else return true ; 
+    }
+    
+    private void disableAllTextFiled()
+    {
+        NomText.disable();
+        PrenomText.disable();
+        AdresseText.disable();
+        numTelText.disable();
+        DateText.disable();
+        sexeCMB.disable();
+        LoginText.disable();
+        PasswordText.disable();
         
+        
+        
+    }
+    
+    private void enableAllTextFiled()
+    {
+        NomText.enable();
+        PrenomText.enable();
+        AdresseText.enable();
+        numTelText.enable();
+        DateText.enable();
+        sexeCMB.enable();
+        LoginText.enable();
+        PasswordText.enable();
+        
+        
+        
+    }
+    
+       
+    private void ViderAllTextFiled()
+    {
+        NomText.setText("");
+        PrenomText.setText("");
+        AdresseText.setText("");
+        numTelText.setText("");
+        DateText.setText("");
+        sexeCMB.enable();
+        LoginText.setText("");
+        PasswordText.setText("");
+        
+        
+        
+    }
+    
+    private void AffecteValuesTextFiled(String Nom,String prenom , String Adresse , String numTel , String login , String password)
+    {
+        NomText.setText(Nom);
+        PrenomText.setText(prenom);
+        AdresseText.setText(Adresse);
+        numTelText.setText(numTel);
+        sexeCMB.selectWithKeyChar('F');
+        LoginText.setText(login);
+        PasswordText.setText(password);
+   
+    }
+    private void recuperationAllSelectedLane(int col , int ligne)
+    {
+           AffecteValuesTextFiled((String)Tableau.getValueAt(ligne, 0),(String)Tableau.getValueAt(ligne, 1),(String)Tableau.getValueAt(ligne, 3),(String)Tableau.getValueAt(ligne, 4),(String)Tableau.getValueAt(ligne, 6),(String)Tableau.getValueAt(ligne, 7));
+    }
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+
+        disableAllTextFiled();
     }//GEN-LAST:event_formWindowOpened
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+      
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void TableauKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TableauKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TableauKeyPressed
+
+    private void NomTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NomTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_NomTextActionPerformed
+
+    private void PasswordTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PasswordTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_PasswordTextActionPerformed
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        ViderAllTextFiled();
+        enableAllTextFiled();
+    }//GEN-LAST:event_jButton1MouseClicked
+
+    private void TableauMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableauMouseClicked
+        disableAllTextFiled();
+        int ligne = Tableau.getSelectedColumn();
+        int col = Tableau.getSelectedRow();
+        recuperationAllSelectedLane(ligne,col);
+        
+    }//GEN-LAST:event_TableauMouseClicked
+
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+       
+        enableAllTextFiled();
+        
+    }//GEN-LAST:event_jButton2MouseClicked
+
+    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+        
+       boolean TestVerificationText =  VerifierTextFiledVide();
+       boolean verificationDeleteAdmin = false  ;
+       boolean verificationDeleteAuthentification = false ; 
+       if (TestVerificationText==false)
+       {
+            int dialogResult = JOptionPane.showConfirmDialog(null, "Les champs sont vides vous ne pouvez pas supprimer", "Erreur", JOptionPane.ERROR_MESSAGE);
+        
+         
+       }
+       else
+       {
+           try {
+                  Authentification auth = DAO.AuthentificationDAO.getInstance().getByLogin(LoginText.getText());
+                  
+                  if (DAO.AdministrateurDAO.getInstance().delete((Entity.Administrateur)auth.getCompte()))
+                  {
+                     int dialogResult = JOptionPane.showConfirmDialog(null, "Supression avec succé", "Succé", JOptionPane.ERROR_MESSAGE);
+                  }
+                  } catch (ProblemeTechniqueException ex) {
+               Logger.getLogger(Accueil.class.getName()).log(Level.SEVERE, null, ex);
+           }
+       }
+        
+    }//GEN-LAST:event_jButton3MouseClicked
+
+    private void InsererButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_InsererButtonMouseClicked
+        
+             
+         /*if (administrateurMetier.InsererAdmin(NomText.getText(),PrenomText.getText(),AdresseText.getText(),numTelText.getText(), sexeCMB.getSelectedItem().toString().charAt(0)))
+         {
+             int dialogResult = JOptionPane.showConfirmDialog(null, "Admin inserrer avec succé", "Succé", JOptionPane.ERROR_MESSAGE);
+         }
+         else 
+         {
+             int dialogResult = JOptionPane.showConfirmDialog(null, "Admin n'as pas été inserrer", "Erreur", JOptionPane.ERROR_MESSAGE);
+         }*/
+     
+    }//GEN-LAST:event_InsererButtonMouseClicked
+
+    private void InsererButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InsererButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_InsererButtonActionPerformed
+
+    private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
+        
+        GUI.Administrateur.Accueil acc = new GUI.SuperAdministrateur.Accueil();
+        acc.setVisible(true);
+        this.dispose();
+        
+    }//GEN-LAST:event_jButton4MouseClicked
+ 
     /**
      * @param args the command line arguments
      */
@@ -112,7 +480,28 @@ public class Accueil extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable datagrid;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField AdresseText;
+    private javax.swing.JTextField DateText;
+    private javax.swing.JButton InsererButton;
+    private javax.swing.JTextField LoginText;
+    private javax.swing.JTextField NomText;
+    private javax.swing.JTextField PasswordText;
+    private javax.swing.JTextField PrenomText;
+    private javax.swing.JTable Tableau;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextField numTelText;
+    private javax.swing.JComboBox sexeCMB;
     // End of variables declaration//GEN-END:variables
 }

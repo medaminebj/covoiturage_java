@@ -33,6 +33,42 @@ public class AuthentificationDAO implements utils.interfaces.DAO<Authentificatio
         return _instance;
     }
     
+    public List<Authentification> getAllByType(char type) throws ProblemeTechniqueException {
+        List<Authentification> result = new ArrayList<>();
+        
+        try {
+            statement = DAO.getInstance().getConnection().createStatement();
+            requete = "select * from authentifications where type = '"+type+"'";
+        
+            resultRequest = statement.executeQuery(requete);
+            
+            Authentification authentification ;
+            while(resultRequest.next()){
+                authentification = new Authentification();
+                
+                authentification.setIdAuthentification(resultRequest.getInt("idAuthentification"));
+                authentification.setLogin(resultRequest.getString("login"));
+                authentification.setPassword(resultRequest.getString("password"));
+                authentification.setType(resultRequest.getString("type").charAt(0));
+                authentification.setDateCreation(resultRequest.getDate("dateCreation"));
+                authentification.setDateDernierModification(resultRequest.getDate("dateDernierModification"));
+                
+                switch(authentification.getType()){
+                    case 's':
+                    case 'a':
+                        authentification.setCompte(AdministrateurDAO.getInstance().findById(resultRequest.getInt("idCompte")));
+                        break;
+                }
+            
+                result.add(authentification);
+            }
+        } catch (SQLException ex) {
+            System.out.println("Erreur lors de la récupération de la liste des users.");
+        }
+        
+        return result;
+    }
+    
     public Authentification getByLogin(String login) throws ProblemeTechniqueException 
     {
         Authentification result = null;
@@ -57,7 +93,7 @@ public class AuthentificationDAO implements utils.interfaces.DAO<Authentificatio
                 switch(result.getType()){
                     case 's':
                     case 'a':
-                        result.setCompte(AdministrateurDAO.getInstance().getAdministrateurById(resultRequest.getInt("idCompte")));
+                        result.setCompte(AdministrateurDAO.getInstance().findById(resultRequest.getInt("idCompte")));
                         break;
                 }
                
@@ -65,6 +101,7 @@ public class AuthentificationDAO implements utils.interfaces.DAO<Authentificatio
             }
         } catch (SQLException ex) {
             System.out.println("Erreur lors de la récupération d'un user by login.");
+            throw new ProblemeTechniqueException();
         }
         
         return result;
@@ -82,7 +119,17 @@ public class AuthentificationDAO implements utils.interfaces.DAO<Authentificatio
 
     @Override
     public boolean delete(Authentification obj) throws ProblemeTechniqueException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            statement = DAO.getInstance().getConnection().createStatement();
+            requete = "DELETE FROM authentifications where idCompte="+obj.getIdAuthentification();
+            int execute =  statement.executeUpdate(requete);
+            if (execute==1)
+                return true;
+            else return false ;
+        } catch (SQLException ex) {
+            System.out.println("Erreur lors de la rÃ©cupÃ©ration de la liste des Administrateurs.");
+        }
+        return false ;
     }
 
     @Override
@@ -109,7 +156,7 @@ public class AuthentificationDAO implements utils.interfaces.DAO<Authentificatio
                 switch(authentification.getType()){
                     case 's':
                     case 'a':
-                        authentification.setCompte(AdministrateurDAO.getInstance().getAdministrateurById(resultRequest.getInt("idCompte")));
+                        authentification.setCompte(AdministrateurDAO.getInstance().findById(resultRequest.getInt("idCompte")));
                         break;
                 }
             
@@ -146,7 +193,7 @@ public class AuthentificationDAO implements utils.interfaces.DAO<Authentificatio
                 switch(result.getType()){
                     case 's':
                     case 'a':
-                        result.setCompte(AdministrateurDAO.getInstance().getAdministrateurById(resultRequest.getInt("idCompte")));
+                        result.setCompte(AdministrateurDAO.getInstance().findById(resultRequest.getInt("idCompte")));
                         break;
                 }
             }
