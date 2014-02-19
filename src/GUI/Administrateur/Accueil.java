@@ -4,6 +4,8 @@
  */
 package GUI.Administrateur;
 
+import javax.swing.JOptionPane;
+import Entity.Session;
 /**
  *
  * @author Amine
@@ -11,10 +13,12 @@ package GUI.Administrateur;
 public class Accueil extends javax.swing.JFrame {
 
     /**
-     * Creates new form test
+     * Creates new form Accueil
      */
     public Accueil() {
         initComponents();
+        GererAdminBtn.setVisible(false);
+        //UserNameLabel.setText(Session.getInstance().getUser().);
     }
 
     /**
@@ -26,21 +30,95 @@ public class Accueil extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        decoBtn = new javax.swing.JButton();
+        ModifierProfileBtn = new javax.swing.JButton();
+        GestionUsersBtn = new javax.swing.JButton();
+        GestionReclamationBtn = new javax.swing.JButton();
+        StatistiqueBtn = new javax.swing.JButton();
+        GenererPdfBtn = new javax.swing.JButton();
+        GererAdminBtn = new javax.swing.JButton();
+        UserNameLabel = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Back Office");
+        setMinimumSize(new java.awt.Dimension(1024, 768));
+        setResizable(false);
+        getContentPane().setLayout(null);
+
+        decoBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/deco.png"))); // NOI18N
+        decoBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                decoBtnActionPerformed(evt);
+            }
+        });
+        getContentPane().add(decoBtn);
+        decoBtn.setBounds(906, 0, 118, 115);
+
+        ModifierProfileBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/modifierProfile.png"))); // NOI18N
+        getContentPane().add(ModifierProfileBtn);
+        ModifierProfileBtn.setBounds(120, 210, 180, 180);
+
+        GestionUsersBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/gerrer_compte.png"))); // NOI18N
+        getContentPane().add(GestionUsersBtn);
+        GestionUsersBtn.setBounds(430, 210, 180, 180);
+
+        GestionReclamationBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/reclamation.png"))); // NOI18N
+        GestionReclamationBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GestionReclamationBtnActionPerformed(evt);
+            }
+        });
+        getContentPane().add(GestionReclamationBtn);
+        GestionReclamationBtn.setBounds(730, 210, 180, 180);
+
+        StatistiqueBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/stat.png"))); // NOI18N
+        getContentPane().add(StatistiqueBtn);
+        StatistiqueBtn.setBounds(120, 450, 180, 180);
+
+        GenererPdfBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/pdf.png"))); // NOI18N
+        getContentPane().add(GenererPdfBtn);
+        GenererPdfBtn.setBounds(730, 440, 180, 180);
+
+        GererAdminBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/gerrer_admins.png"))); // NOI18N
+        GererAdminBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GererAdminBtnActionPerformed(evt);
+            }
+        });
+        getContentPane().add(GererAdminBtn);
+        GererAdminBtn.setBounds(430, 450, 180, 180);
+        getContentPane().add(UserNameLabel);
+        UserNameLabel.setBounds(930, 130, 0, 0);
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/bg admin.png"))); // NOI18N
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(0, 0, 1030, 770);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void decoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_decoBtnActionPerformed
+        // TODO add your handling code here:
+        int dialogResult = JOptionPane.showConfirmDialog(null, "Voulez vous continuer ?", "Deconnexion", JOptionPane.YES_NO_OPTION);
+        
+        if (dialogResult == JOptionPane.YES_OPTION)
+        {
+            GUI.Authentification acc = new GUI.Authentification();
+            acc.setVisible(true);
+            this.dispose();
+            Session.getInstance().deconnexion();
+        }
+    }//GEN-LAST:event_decoBtnActionPerformed
+
+    private void GestionReclamationBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GestionReclamationBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_GestionReclamationBtnActionPerformed
+
+    private void GererAdminBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GererAdminBtnActionPerformed
+        GUI.SuperAdministrateur.GererAdministrateurs.Accueil gaInterface = new GUI.SuperAdministrateur.GererAdministrateurs.Accueil();
+        gaInterface.setVisible(true);
+    }//GEN-LAST:event_GererAdminBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -76,6 +154,19 @@ public class Accueil extends javax.swing.JFrame {
             }
         });
     }
+    
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton GenererPdfBtn;
+    protected javax.swing.JButton GererAdminBtn;
+    private javax.swing.JButton GestionReclamationBtn;
+    private javax.swing.JButton GestionUsersBtn;
+    private javax.swing.JButton ModifierProfileBtn;
+    private javax.swing.JButton StatistiqueBtn;
+    private javax.swing.JLabel UserNameLabel;
+    private javax.swing.JButton decoBtn;
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
+

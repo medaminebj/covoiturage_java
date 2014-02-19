@@ -12,11 +12,14 @@ public class Session {
     
     private static Session _instance = null;
     
-    private User user;
+    private Authentification user;
+    private boolean estConnecté;
+    
+    public String message;
     
     private Session()
     {
-        
+        estConnecté = false;
     }
     
     public static Session getInstance()
@@ -26,15 +29,41 @@ public class Session {
         
         return _instance;
     }
+    
+    public String getMessage() {
+        return message;
+    }
 
-    public User getUser() {
+    public void setMessage(String message) {
+        this.message = message;
+    }
+    
+    public Authentification getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(Authentification user) {
         this.user = user;
     }
+
+    public boolean isEstConnecté() {
+        return estConnecté;
+    }
+
+    public void setEstConnecté(boolean estConnecté) {
+        this.estConnecté = estConnecté;
+    }
     
+    public void connexion(Authentification user)
+    {
+        this.user = user;
+        estConnecté = true;
+    }
     
+    public void deconnexion()
+    {
+        this.user = null;
+        estConnecté = false;
+    }
     
 }

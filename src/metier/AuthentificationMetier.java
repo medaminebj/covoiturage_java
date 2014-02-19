@@ -4,52 +4,78 @@
  */
 package metier;
 
-import DAO.UserDAO;
-import Entity.User;
+import DAO.AuthentificationDAO;
+import DAO.BanissementsDAO;
+import Entity.Authentification;
+import Entity.Session;
+import Entity.Banissement;
 import java.math.BigInteger;
-import java.sql.SQLException;
 import java.security.*;
+import java.util.Date;
+import utils.Exceptions.ProblemeTechniqueException;
 /**
  *
  * @author Amine
  */
 public class AuthentificationMetier {
     
-    private User user;
+    private Authentification user;
 
-    public User getUser() {
+    public Authentification getUser() {
         return user;
     }
     
     
     
     public AuthentificationMetier(){
-        
+        user = new Authentification();
     }
     
-    public boolean verifierAccee(String login, String pwd) throws NoSuchAlgorithmException{
-        try {
-            user = UserDAO.getInstance().getUserByLogin(login);
+    public boolean verifierAccee(String login, String pwd) throws ProblemeTechniqueException{
+        
+        //conditions
+            if (login.equals("") || pwd.equals(""))
+                return false;
+        
+        
+            user = AuthentificationDAO.getInstance().getByLogin(login);
+            
             
             if (user == null)
                 return false;
             else
             {
-                 MessageDigest m= MessageDigest.getInstance("MD5");
-             m.update(pwd.getBytes(),0,pwd.length());
-             
-                if (user.getPassword().equals(new BigInteger(1,m.digest()).toString(16)))
+                try {
+                    MessageDigest m;
+                    m = MessageDigest.getInstance("MD5");
+                    m.update(pwd.getBytes(),0,pwd.length());
+                    
+                    String pwdHashed = new BigInteger(1,m.digest()).toString(16);
+                    //fix bug 0 au debut
+                    if (pwdHashed.length() < 32)
+                        pwdHashed = "0" + pwdHashed;
+                    
+                    if (user.getPassword().equals(pwdHashed))
                     return true;
+                } catch (NoSuchAlgorithmException ex) {
+                    System.out.println("probleme avec la méthode de hachage");
+                    return false;
+                }
+                 
             }
-            
-        } catch (ClassNotFoundException ex) {
-            System.out.println("p1");
-        }
-        catch (SQLException ex2)
-        {
-            System.out.println("p2");
-        }
         
         return false;
+    }
+    
+    public boolean verifierBan(int idAuthentification) throws ProblemeTechniqueException{
+        Date myDate = new Date();
+            
+        Banissement ban = BanissementsDAO.getInstance().getByIdAuthentificationAndDate(idAuthentification, new java.sql.Date(myDate.getTime()));
+        
+        if (ban == null)
+            return false;
+        
+        Session.getInstance().setMessage("Vous êtes banni jusqu'au "+ ban.getDateFin() + ".\nLa cause: "+ban.getCause());
+        return true;
     }
 }

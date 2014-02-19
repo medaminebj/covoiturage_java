@@ -4,12 +4,10 @@
  */
 package GUI;
 
-import DAO.UserDAO;
+import DAO.AuthentificationDAO;
 import Entity.Session;
-import GUI.Administrateur.Accueil;
-import java.security.NoSuchAlgorithmException;
-import java.sql.SQLException;
 import metier.AuthentificationMetier;
+import utils.Exceptions.ProblemeTechniqueException;
 
 /**
  *
@@ -27,6 +25,54 @@ public class Authentification extends javax.swing.JFrame {
         initComponents();
         
         authentificationMetier = new AuthentificationMetier();
+    }
+    
+    private void verifierAuthentification()
+    {
+        if (loginTF.getText().equals("") && pwdTF.getText().equals(""))
+            errorMessageLabel.setText("Les champs login et password sont vides.");
+        else if (loginTF.getText().equals(""))
+            errorMessageLabel.setText("Le champs login est vide.");
+        else if (pwdTF.getText().equals(""))
+            errorMessageLabel.setText("Le champs password est vide.");
+        else
+        {
+         try {
+            // TODO add your handling code here:
+            if (authentificationMetier.verifierAccee(loginTF.getText(), pwdTF.getText()))
+            {
+                
+                Session.getInstance().connexion(AuthentificationDAO.getInstance().getByLogin(loginTF.getText()));
+                
+                if (authentificationMetier.verifierBan(Session.getInstance().getUser().getIdAuthentification()))
+                {
+                    errorMessageLabel.setText(Session.getInstance().getMessage());
+                }
+                else
+                {
+                    if (Session.getInstance().getUser().getType() == 's')
+                    {
+                        GUI.SuperAdministrateur.Accueil acc = new GUI.SuperAdministrateur.Accueil();
+                        acc.setVisible(true);
+                    }
+                    else if (Session.getInstance().getUser().getType() == 'a')
+                    {
+                        GUI.Administrateur.Accueil acc = new GUI.Administrateur.Accueil();
+                        acc.setVisible(true);
+                    }
+                    this.dispose();
+                }
+            }
+            else
+            {
+                pwdTF.setText("");
+                pwdTF.requestFocus();
+                errorMessageLabel.setText("Veuillez vérifier votre login et/ou mot de passe");
+            }
+        } catch (ProblemeTechniqueException ex) {
+            errorMessageLabel.setText(ex.getMessage());
+        }   
+        }
     }
 
     /**
@@ -61,6 +107,12 @@ public class Authentification extends javax.swing.JFrame {
         jLabel2.setText("Password :");
         getContentPane().add(jLabel2);
         jLabel2.setBounds(320, 360, 80, 14);
+
+        pwdTF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                pwdTFKeyPressed(evt);
+            }
+        });
         getContentPane().add(pwdTF);
         pwdTF.setBounds(420, 350, 160, 30);
 
@@ -76,7 +128,7 @@ public class Authentification extends javax.swing.JFrame {
             }
         });
         getContentPane().add(connectBtn);
-        connectBtn.setBounds(493, 400, 90, 23);
+        connectBtn.setBounds(483, 400, 100, 23);
 
         errorMessageLabel.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         errorMessageLabel.setForeground(new java.awt.Color(255, 0, 0));
@@ -96,29 +148,13 @@ public class Authentification extends javax.swing.JFrame {
     }//GEN-LAST:event_connectBtnMousePressed
 
     private void connectBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_connectBtnActionPerformed
-        try {
-            // TODO add your handling code here:
-            if (authentificationMetier.verifierAccee(loginTF.getText(), pwdTF.getText()))
-            {
-                try {
-                    Session.getInstance().setUser(UserDAO.getInstance().getUserByLogin(loginTF.getText()));
-                } catch (ClassNotFoundException ex) {
-                    System.out.println("p");
-                } catch (SQLException ex) {
-                    System.out.println("p");
-                }
-                Accueil acc=new Accueil();
-                //this.setVisible(false);
-                this.dispose();
-                acc.setVisible(true);
-            }
-            else
-            errorMessageLabel.setText("Veuillez vérifier votre login et/ou mot de passe");
-
-        } catch (NoSuchAlgorithmException ex) {
-            System.out.println("p");
-        }
+        verifierAuthentification();
     }//GEN-LAST:event_connectBtnActionPerformed
+
+    private void pwdTFKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pwdTFKeyPressed
+        if (evt.getKeyCode()== 10)
+            verifierAuthentification();
+    }//GEN-LAST:event_pwdTFKeyPressed
 
     /**
      * @param args the command line arguments
