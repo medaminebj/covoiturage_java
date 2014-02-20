@@ -109,7 +109,59 @@ public class AuthentificationDAO implements utils.interfaces.DAO<Authentificatio
     
     @Override
     public boolean create(Authentification obj) throws ProblemeTechniqueException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            int id=0;
+            
+            //on ajout le compte relative a l'authentification
+            switch(obj.getType()){
+                case 's':
+                case 'a':
+                    Entity.Administrateur admin = (Entity.Administrateur) obj.getCompte();
+                    requete = "INSERT INTO administrateurs(nom, prenom, adresse, numeroTel, dateNaissance, sexe) VALUES (?, ?, ?, ?, ?, ?)";
+                    pStatement = DAO.getInstance().getConnection().prepareStatement(requete, Statement.RETURN_GENERATED_KEYS);
+                    pStatement.setString(1, admin.getNom());
+                    pStatement.setString(2, admin.getPrenom());
+                    pStatement.setString(3, admin.getAdresse());
+                    pStatement.setString(4, admin.getNumeroTel());
+                    pStatement.setDate(5, new Date(new java.util.Date().getTime()));
+                    pStatement.setString(6, admin.getSexe()+"");
+                    
+                    
+                    
+                    if (pStatement.executeUpdate() != 0)
+                    {
+                        ResultSet ids = pStatement.getGeneratedKeys();
+                        if (ids.next()) 
+                            id = ids.getInt(1);
+                        else 
+                            return false;
+                        
+                    }
+                    else
+                        return false;
+                    
+                    break;
+            }
+            
+            requete = "INSERT INTO authentifications(login, password, type, idCompte, dateCreation) VALUES (?, ?, ?, ?, ?)";
+                        
+            pStatement = DAO.getInstance().getConnection().prepareStatement(requete);
+
+            pStatement.setString(1, obj.getLogin());
+            pStatement.setString(2, obj.getPassword());
+            pStatement.setString(3, obj.getType()+"");
+            pStatement.setInt(4, id);
+            pStatement.setDate(5, obj.getDateCreation());
+            
+            if (pStatement.executeUpdate() != -1)
+                return true;
+            
+            return false;
+            
+        } catch (SQLException ex) {
+            System.out.println("probleme lors de l'ajout d'une authentification.");
+            return false;
+        }
     }
 
     @Override

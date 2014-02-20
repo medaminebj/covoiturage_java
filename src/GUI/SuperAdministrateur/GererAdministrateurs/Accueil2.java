@@ -6,6 +6,7 @@ package GUI.SuperAdministrateur.GererAdministrateurs;
 
 import Entity.Administrateur;
 import Entity.Authentification;
+import java.sql.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -23,7 +24,8 @@ public class Accueil2 extends javax.swing.JFrame {
     /**
      * Creates new form Accueil2
      */
-    
+    Authentification authentification;
+    Administrateur administrateur;
     metier.AuthentificationMetier authentificationMetier;
     public Accueil2() {
         initComponents();
@@ -38,6 +40,10 @@ public class Accueil2 extends javax.swing.JFrame {
         supprimerBtn.setVisible(false);
         informationsContainer.setVisible(false);
         enregisterBtn.setVisible(false);
+        
+        //disable dates
+        dateCreationTF.setEnabled(false);
+        dateDerniereModificationTF.setEnabled(false);
         
         //les champs des mot de passe
         changerEtatMotDePasse(false);
@@ -83,6 +89,7 @@ public class Accueil2 extends javax.swing.JFrame {
         passwordTF = new javax.swing.JPasswordField();
         confirmationPasswordTF = new javax.swing.JPasswordField();
         errLoginLabel = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1024, 768));
@@ -109,6 +116,11 @@ public class Accueil2 extends javax.swing.JFrame {
         supprimerBtn.setText("Supprimer");
 
         enregisterBtn.setText("Enregistrer");
+        enregisterBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                enregisterBtnActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Nom :");
 
@@ -148,6 +160,8 @@ public class Accueil2 extends javax.swing.JFrame {
         errLoginLabel.setText("Login existant");
         errLoginLabel.setFocusable(false);
 
+        jLabel10.setText("YYYY-MM-DD");
+
         javax.swing.GroupLayout informationsContainerLayout = new javax.swing.GroupLayout(informationsContainer);
         informationsContainer.setLayout(informationsContainerLayout);
         informationsContainerLayout.setHorizontalGroup(
@@ -174,7 +188,9 @@ public class Accueil2 extends javax.swing.JFrame {
                                 .addComponent(dateNaissanceTF)))))
                 .addGroup(informationsContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(informationsContainerLayout.createSequentialGroup()
-                        .addGap(188, 188, 188)
+                        .addGap(10, 10, 10)
+                        .addComponent(jLabel10)
+                        .addGap(138, 138, 138)
                         .addGroup(informationsContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(informationsContainerLayout.createSequentialGroup()
                                 .addGroup(informationsContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -199,7 +215,7 @@ public class Accueil2 extends javax.swing.JFrame {
                                 .addGap(28, 28, 28)
                                 .addComponent(confirmationPasswordTF, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)))
                         .addGap(18, 18, 18)
-                        .addComponent(errLoginLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE))
+                        .addComponent(errLoginLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, informationsContainerLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(enregisterBtn)))
@@ -226,7 +242,8 @@ public class Accueil2 extends javax.swing.JFrame {
                     .addComponent(jLabel3)
                     .addComponent(jLabel9)
                     .addComponent(dateNaissanceTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(dateDerniereModificationTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(dateDerniereModificationTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel10))
                 .addGap(24, 24, 24)
                 .addGroup(informationsContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(informationsContainerLayout.createSequentialGroup()
@@ -323,6 +340,10 @@ public class Accueil2 extends javax.swing.JFrame {
         enregisterBtn.setVisible(true);
         modifierBtn.setEnabled(false);
         supprimerBtn.setEnabled(false);
+        
+        //créer un entité authentification vide
+        authentification = new Authentification();
+        administrateur = new Administrateur();
     }//GEN-LAST:event_addBtnMouseClicked
 
     private void loginTFFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_loginTFFocusLost
@@ -338,6 +359,43 @@ public class Accueil2 extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_loginTFFocusLost
+
+    private void enregisterBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enregisterBtnActionPerformed
+        
+        if (verifierChamps()){
+        //on doit savoir si nous allons modifier ou ajouter
+        if (authentification.getIdAuthentification() == -1)//ajout
+        {
+            authentification.setLogin(loginTF.getText());
+            authentification.setPassword(utils.Functions.ConvertToMd5(passwordTF.getPassword().toString()));
+            authentification.setType('a');
+            authentification.setDateCreation(new Date(new java.util.Date().getTime()));
+            authentification.setDateDernierModification(null);
+            
+            administrateur.setNom(nomTF.getText());
+            administrateur.setPrenom(prenomTF.getText());
+            administrateur.setAdresse(adresseTA.getText());
+            administrateur.setNumeroTel(telephoneTF.getText());
+            administrateur.setEstSuper(0);
+            administrateur.setDateNaissance(null);
+            
+            if (sexeCB.getSelectedIndex() == 1)
+                administrateur.setSexe('H');
+            else
+                administrateur.setSexe('F');
+                    
+            authentification.setCompte(administrateur);
+            try {
+                DAO.AuthentificationDAO.getInstance().create(authentification);
+            } catch (ProblemeTechniqueException ex) {
+                Logger.getLogger(Accueil2.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        else{//modification
+            
+        }
+        }
+    }//GEN-LAST:event_enregisterBtnActionPerformed
     
     
     private void remplireInformations(int ligne){
@@ -372,8 +430,6 @@ public class Accueil2 extends javax.swing.JFrame {
         telephoneTF.setEnabled(etat);
         sexeCB.setEnabled(etat);
         loginTF.setEnabled(etat);
-        dateCreationTF.setEnabled(etat);
-        dateDerniereModificationTF.setEnabled(etat);
     }
     
     private void viderChamps(){
@@ -395,6 +451,36 @@ public class Accueil2 extends javax.swing.JFrame {
         confirmationPasswordTF.setVisible(etat);
     }
     
+    private boolean verifierChamps(){
+        String erreurMsg = "";
+        boolean result = true;
+        
+        if (nomTF.getText().length() < 3)
+        {
+            erreurMsg += "Le nom doit au moins avoir trois caracteres.\n";
+            result = false;
+        }
+        
+        if (prenomTF.getText().length() < 3)
+        {
+            erreurMsg += "Le prenom doit au moins avoir trois caracteres.\n";
+            result = false;
+        }
+        
+        //date de naissance
+        
+        if (!utils.Validators.adresseValidator(adresseTA.getText()))
+        {
+            erreurMsg += "L'adresse est invalide.\n";
+            result = false;
+        }
+        
+        
+        if (!result)
+            JOptionPane.showMessageDialog(null, erreurMsg);
+        
+        return result;
+    }
     /**
      * @param args the command line arguments
      */
@@ -442,6 +528,7 @@ public class Accueil2 extends javax.swing.JFrame {
     private javax.swing.JLabel errLoginLabel;
     private javax.swing.JPanel informationsContainer;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

@@ -11,7 +11,7 @@ import java.sql.Date;
  * @author Amine
  */
 public class Authentification {
-    private int idAuthentification ;
+    private int idAuthentification = -1;
     private String login;
     private String password;
     private char type;
