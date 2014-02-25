@@ -79,13 +79,9 @@ public class AdministrateurMetier {
         
     
     
-    public boolean DeleteAdmin (Authentification obj) throws ProblemeTechniqueException
+    public boolean DeleteAdmin (Administrateur obj) throws ProblemeTechniqueException
     {
-         if (AdministrateurDAO.getInstance().delete((Administrateur)obj.getCompte()))   
-            return true ; 
-        
-        else 
-            return false ; 
+        return AdministrateurDAO.getInstance().delete(obj) ; 
     }
     
 }

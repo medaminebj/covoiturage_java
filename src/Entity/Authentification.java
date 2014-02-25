@@ -18,6 +18,7 @@ public class Authentification {
     private Object Compte;
     private Date dateCreation;
     private Date dateDernierModification ; 
+    private String email ; 
     
     
     public Authentification()
@@ -25,7 +26,7 @@ public class Authentification {
         
     }
 
-    public Authentification(int idAuthentification, String login, String password, char type, Object compte, Date dateCreation, Date dateDernierModification) {
+    public Authentification(int idAuthentification, String login, String password, char type, Object compte, Date dateCreation, Date dateDernierModification , String email) {
         this.idAuthentification = idAuthentification;
         this.login = login;
         this.password = password;
@@ -38,6 +39,7 @@ public class Authentification {
         }
         this.dateCreation = dateCreation;
         this.dateDernierModification = dateDernierModification;
+        this.email = email ; 
     }
     
     public Authentification(String login, String password ) {
@@ -49,6 +51,14 @@ public class Authentification {
         this.login = login;
         this.password = password;
         this.type = type;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     

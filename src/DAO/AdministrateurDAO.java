@@ -74,7 +74,7 @@ public class AdministrateurDAO implements utils.interfaces.DAO<Administrateur>{
             
             return true;
         } catch (SQLException ex) {
-            System.out.println("Erreur lors de la rÃ©cupÃ©ration de la liste des Administrateurs.");
+            System.out.println("Erreur lors de la supression d'un administrateur");
         }
         return false ; 
     }

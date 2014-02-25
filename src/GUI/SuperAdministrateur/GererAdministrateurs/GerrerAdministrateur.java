@@ -15,11 +15,12 @@ import utils.Exceptions.ProblemeTechniqueException;
 import utils.components.jtable.tableModelGerrerAdmins;
 
 
+
 /**
  *
- * @author Amine
+ * @author Axel
  */
-public class Accueil2 extends javax.swing.JFrame {
+public class GerrerAdministrateur extends javax.swing.JFrame {
 
     /**
      * Creates new form Accueil2
@@ -27,7 +28,8 @@ public class Accueil2 extends javax.swing.JFrame {
     Authentification authentification;
     Administrateur administrateur;
     metier.AuthentificationMetier authentificationMetier;
-    public Accueil2() {
+    metier.AdministrateurMetier administrateurMetier ; 
+    public GerrerAdministrateur() {
         initComponents();
         
         authentificationMetier = new AuthentificationMetier();
@@ -60,11 +62,8 @@ public class Accueil2 extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         datagrid = new javax.swing.JTable();
-        addBtn = new javax.swing.JButton();
-        modifierBtn = new javax.swing.JButton();
         supprimerBtn = new javax.swing.JButton();
         informationsContainer = new javax.swing.JPanel();
-        enregisterBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -90,10 +89,15 @@ public class Accueil2 extends javax.swing.JFrame {
         confirmationPasswordTF = new javax.swing.JPasswordField();
         errLoginLabel = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
+        RetourBTN = new javax.swing.JButton();
+        modifierBtn = new javax.swing.JButton();
+        addBtn = new javax.swing.JButton();
+        enregisterBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(1024, 768));
-        setResizable(false);
+        setTitle("Gerrer les administrateurs");
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setMinimumSize(new java.awt.Dimension(1024, 500));
 
         datagrid.setModel(new utils.components.jtable.tableModelGerrerAdmins());
         datagrid.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
@@ -104,21 +108,10 @@ public class Accueil2 extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(datagrid);
 
-        addBtn.setText("Ajouter");
-        addBtn.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                addBtnMouseClicked(evt);
-            }
-        });
-
-        modifierBtn.setText("Modifier");
-
         supprimerBtn.setText("Supprimer");
-
-        enregisterBtn.setText("Enregistrer");
-        enregisterBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                enregisterBtnActionPerformed(evt);
+        supprimerBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                supprimerBtnMouseClicked(evt);
             }
         });
 
@@ -166,7 +159,7 @@ public class Accueil2 extends javax.swing.JFrame {
         informationsContainer.setLayout(informationsContainerLayout);
         informationsContainerLayout.setHorizontalGroup(
             informationsContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(informationsContainerLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, informationsContainerLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(informationsContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6)
@@ -186,39 +179,36 @@ public class Accueil2 extends javax.swing.JFrame {
                                 .addComponent(prenomTF)
                                 .addComponent(jScrollPane2)
                                 .addComponent(dateNaissanceTF)))))
+                .addGap(10, 10, 10)
+                .addComponent(jLabel10)
+                .addGap(138, 138, 138)
                 .addGroup(informationsContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(informationsContainerLayout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jLabel10)
-                        .addGap(138, 138, 138)
+                        .addGroup(informationsContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(informationsContainerLayout.createSequentialGroup()
+                                .addGap(73, 73, 73)
+                                .addGroup(informationsContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel9)
+                                    .addComponent(passwordLabel, javax.swing.GroupLayout.Alignment.TRAILING)))
+                            .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addGroup(informationsContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(informationsContainerLayout.createSequentialGroup()
-                                .addGroup(informationsContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel7)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, informationsContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel9)
-                                        .addComponent(jLabel8)
-                                        .addComponent(passwordLabel)))
+                                .addGap(17, 17, 17)
                                 .addGroup(informationsContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(informationsContainerLayout.createSequentialGroup()
-                                        .addGap(17, 17, 17)
-                                        .addGroup(informationsContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(loginTF)
-                                            .addComponent(dateCreationTF, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)))
-                                    .addGroup(informationsContainerLayout.createSequentialGroup()
-                                        .addGap(18, 18, 18)
-                                        .addGroup(informationsContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(dateDerniereModificationTF, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
-                                            .addComponent(passwordTF)))))
+                                    .addComponent(loginTF)
+                                    .addComponent(dateCreationTF, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)))
                             .addGroup(informationsContainerLayout.createSequentialGroup()
-                                .addComponent(ConfirmPasswordLabel)
-                                .addGap(28, 28, 28)
-                                .addComponent(confirmationPasswordTF, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)))
-                        .addGap(18, 18, 18)
-                        .addComponent(errLoginLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE))
+                                .addGap(18, 18, 18)
+                                .addGroup(informationsContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(dateDerniereModificationTF, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
+                                    .addComponent(passwordTF)))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, informationsContainerLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(enregisterBtn)))
+                        .addComponent(ConfirmPasswordLabel)
+                        .addGap(18, 18, 18)
+                        .addComponent(confirmationPasswordTF, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addComponent(errLoginLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         informationsContainerLayout.setVerticalGroup(
@@ -266,10 +256,36 @@ public class Accueil2 extends javax.swing.JFrame {
                         .addGroup(informationsContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(ConfirmPasswordLabel)
                             .addComponent(confirmationPasswordTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(enregisterBtn)
-                        .addContainerGap())))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
+
+        RetourBTN.setText("Accueil");
+        RetourBTN.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                RetourBTNMouseClicked(evt);
+            }
+        });
+
+        modifierBtn.setText("Modifier");
+        modifierBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                modifierBtnActionPerformed(evt);
+            }
+        });
+
+        addBtn.setText("Ajouter");
+        addBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                addBtnMouseClicked(evt);
+            }
+        });
+
+        enregisterBtn.setText("Enregistrer");
+        enregisterBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                enregisterBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -279,12 +295,16 @@ public class Accueil2 extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(supprimerBtn)
-                        .addGap(18, 18, 18)
-                        .addComponent(modifierBtn)
-                        .addGap(18, 18, 18)
-                        .addComponent(addBtn))
+                        .addComponent(RetourBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(35, 35, 35)
+                        .addComponent(supprimerBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                        .addComponent(enregisterBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(70, 70, 70)
+                        .addComponent(modifierBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(49, 49, 49)
+                        .addComponent(addBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(13, 13, 13))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(informationsContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -294,12 +314,14 @@ public class Accueil2 extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(14, 14, 14)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(addBtn)
+                    .addComponent(RetourBTN)
+                    .addComponent(supprimerBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(modifierBtn)
-                    .addComponent(supprimerBtn))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(addBtn)
+                    .addComponent(enregisterBtn))
+                .addGap(3, 3, 3)
                 .addComponent(informationsContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -362,40 +384,157 @@ public class Accueil2 extends javax.swing.JFrame {
 
     private void enregisterBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enregisterBtnActionPerformed
         
-        if (verifierChamps()){
-        //on doit savoir si nous allons modifier ou ajouter
-        if (authentification.getIdAuthentification() == -1)//ajout
+        if (verifierChamps())
         {
-            authentification.setLogin(loginTF.getText());
-            authentification.setPassword(utils.Functions.ConvertToMd5(passwordTF.getPassword().toString()));
-            authentification.setType('a');
-            authentification.setDateCreation(new Date(new java.util.Date().getTime()));
-            authentification.setDateDernierModification(null);
-            
-            administrateur.setNom(nomTF.getText());
-            administrateur.setPrenom(prenomTF.getText());
-            administrateur.setAdresse(adresseTA.getText());
-            administrateur.setNumeroTel(telephoneTF.getText());
-            administrateur.setEstSuper(0);
-            administrateur.setDateNaissance(null);
-            
-            if (sexeCB.getSelectedIndex() == 1)
-                administrateur.setSexe('H');
+        //on doit savoir si nous allons modifier ou ajouter
+            if (authentification.getIdAuthentification() == -1)//ajout
+            {
+                authentification.setLogin(loginTF.getText());
+                authentification.setPassword(utils.Functions.ConvertToMd5(passwordTF.getPassword().toString()));
+                authentification.setType('a');
+                authentification.setDateCreation(new Date(new java.util.Date().getTime()));
+                authentification.setDateDernierModification(null);
+
+                administrateur.setNom(nomTF.getText());
+                administrateur.setPrenom(prenomTF.getText());
+                administrateur.setAdresse(adresseTA.getText());
+                administrateur.setNumeroTel(telephoneTF.getText());
+                administrateur.setEstSuper(0);
+                administrateur.setDateNaissance(null);
+
+                if (sexeCB.getSelectedIndex() == 1)
+                    administrateur.setSexe('H');
+                else
+                    administrateur.setSexe('F');
+
+                authentification.setCompte(administrateur);
+                try {
+                        //Tester si l'ajout avec succé on rafréchi le Jtable
+                        if (DAO.AuthentificationDAO.getInstance().create(authentification))
+                        {
+                               datagrid.setModel(new tableModelGerrerAdmins());
+                               JOptionPane.showMessageDialog(null, "Ajout avec succé");
+                               viderChamps();
+                               informationsContainer.setVisible(false);
+                               enregisterBtn.setVisible(false);
+                               supprimerBtn.setVisible(false);
+                               modifierBtn.setVisible(false);
+                        }
+                        else
+                        {
+                            JOptionPane.showMessageDialog(null, "Ajout n'as pas été abouti");
+                        }
+                } catch (ProblemeTechniqueException ex) {
+                    Logger.getLogger(GerrerAdministrateur.class.getName()).log(Level.SEVERE, null, ex);
+                }
+             }
+        //modification
             else
-                administrateur.setSexe('F');
-                    
-            authentification.setCompte(administrateur);
-            try {
-                DAO.AuthentificationDAO.getInstance().create(authentification);
-            } catch (ProblemeTechniqueException ex) {
-                Logger.getLogger(Accueil2.class.getName()).log(Level.SEVERE, null, ex);
+            {   
+                authentification.setLogin(loginTF.getText());
+                if (passwordTF.getPassword().length != 0)
+                    authentification.setPassword(utils.Functions.ConvertToMd5(passwordTF.getPassword().toString()));
+                else
+                     authentification.setPassword(authentification.getPassword());
+                
+                authentification.setType('a');
+                authentification.setDateCreation(new Date(new java.util.Date().getTime()));
+                authentification.setDateDernierModification(null);
+                authentification.setEmail(null);
+                String jjj = nomTF.getText();
+                administrateur.setNom(jjj);
+                administrateur.setPrenom(prenomTF.getText());
+                administrateur.setAdresse(adresseTA.getText());
+                administrateur.setNumeroTel(telephoneTF.getText());
+                administrateur.setEstSuper(0);
+                administrateur.setDateNaissance(null);
+                
+
+                if (sexeCB.getSelectedIndex() == 1)
+                    administrateur.setSexe('H');
+                else
+                    administrateur.setSexe('F');
+
+                authentification.setCompte(administrateur);
+                
+                try {
+                        //Tester si la modification avec succé on rafréchi le Jtable
+                        if (DAO.AuthentificationDAO.getInstance().update(authentification))
+                        {
+                               datagrid.setModel(new tableModelGerrerAdmins());
+                               JOptionPane.showMessageDialog(null, "Modification avec succé");
+                               viderChamps();
+                               informationsContainer.setVisible(false);
+                               enregisterBtn.setVisible(false);
+                               supprimerBtn.setVisible(false);
+                               modifierBtn.setVisible(false);
+                        }
+                        else
+                        {
+                            JOptionPane.showMessageDialog(null, "Modification n'as pas été abouti");
+                        }
+                } catch (ProblemeTechniqueException ex) {
+                    Logger.getLogger(GerrerAdministrateur.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         }
-        else{//modification
-            
-        }
-        }
     }//GEN-LAST:event_enregisterBtnActionPerformed
+
+    private void RetourBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RetourBTNMouseClicked
+            GUI.Administrateur.Accueil acc = new GUI.Administrateur.Accueil();
+            acc.setVisible(true);
+           
+    }//GEN-LAST:event_RetourBTNMouseClicked
+
+    private void supprimerBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_supprimerBtnMouseClicked
+        
+          try {
+            Authentification authentification = ((tableModelGerrerAdmins)datagrid.getModel()).getRowEntity(datagrid.getSelectedRow());
+            Administrateur admin = (Administrateur)authentification.getCompte();
+            
+            // supression d'un admin séléctionner apartir de la table authentification et administrateur 
+            if (authentificationMetier.DeleteAuthentification(authentification))
+            {
+                if (DAO.AdministrateurDAO.getInstance().delete(admin))
+                {
+                     JOptionPane.showMessageDialog(null, "Supression avec succé");
+                     datagrid.setModel(new tableModelGerrerAdmins());
+                }
+                else
+                    JOptionPane.showMessageDialog(null, "Supression non abouti"); 
+            }
+            else
+                  System.out.println("aaa");
+           
+                   
+                   
+        } catch (ProblemeTechniqueException ex) {
+            System.out.println("Probléme de supression");
+        }
+        
+        
+    }//GEN-LAST:event_supprimerBtnMouseClicked
+
+    private void modifierBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifierBtnActionPerformed
+        // TODO add your handling code here:
+        if (!informationsContainer.isVisible())
+            informationsContainer.setVisible(true);
+        
+        //si les champs sont déactivés (setEnable(false), on les active
+        changerEtatInformation(true);
+        
+        //on affiche les champs des mot de passe
+        changerEtatMotDePasse(true);
+        
+        //on vide les champs
+        remplireInformations(datagrid.getSelectedRow());
+        
+        enregisterBtn.setVisible(true);
+        modifierBtn.setEnabled(false);
+        supprimerBtn.setEnabled(false);
+        authentification = ((tableModelGerrerAdmins)datagrid.getModel()).getRowEntity(datagrid.getSelectedRow());
+        administrateur = (Administrateur)authentification.getCompte();
+    }//GEN-LAST:event_modifierBtnActionPerformed
     
     
     private void remplireInformations(int ligne){
@@ -450,7 +589,7 @@ public class Accueil2 extends javax.swing.JFrame {
         ConfirmPasswordLabel.setVisible(etat);
         confirmationPasswordTF.setVisible(etat);
     }
-    
+    // Méthode pour vérifier les champs saisies par l'utilisateur
     private boolean verifierChamps(){
         String erreurMsg = "";
         boolean result = true;
@@ -465,17 +604,38 @@ public class Accueil2 extends javax.swing.JFrame {
         {
             erreurMsg += "Le prenom doit au moins avoir trois caracteres.\n";
             result = false;
-        }
+        }    
         
-        //date de naissance
-        
-        if (!utils.Validators.adresseValidator(adresseTA.getText()))
+        if (!utils.Validators.NumeroTelValidator(telephoneTF.getText()) )
         {
-            erreurMsg += "L'adresse est invalide.\n";
+            erreurMsg += "Le numéro de téléphone n'est pas valide.\n";
             result = false;
         }
-        
-        
+        else if (!utils.Validators.TailleNumTelValidator(telephoneTF.getText()) )
+        {
+            erreurMsg += "Le numéro de téléphone est supérieur a 8 chiffre .\n";
+            result = false;
+        }
+       else if (!utils.Validators.NomPrenomValidator(nomTF.getText()) )
+        {
+            erreurMsg += "Le Nom est invalide.\n";
+            result = false;
+        }
+       else if (!utils.Validators.NomPrenomValidator(prenomTF.getText()) )
+        {
+            erreurMsg += "Le Prennom est invalide.\n";
+            result = false;
+        }
+       else if (!utils.Validators.DateValidator(dateNaissanceTF.getText()) )
+        {
+            erreurMsg += "Le Format de la date est incorecte .\n";
+            result = false;
+        }
+       else if (!utils.Validators.ConfirmerMotDePasseValidator(passwordTF.getText(),confirmationPasswordTF.getText()))
+       {
+            erreurMsg += "la confirmation du mot de passe est inccorecte \n";
+            result = false;
+       }
         if (!result)
             JOptionPane.showMessageDialog(null, erreurMsg);
         
@@ -498,25 +658,26 @@ public class Accueil2 extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Accueil2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GerrerAdministrateur.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Accueil2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GerrerAdministrateur.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Accueil2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GerrerAdministrateur.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Accueil2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GerrerAdministrateur.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Accueil2().setVisible(true);
+                new GerrerAdministrateur().setVisible(true);
             }
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel ConfirmPasswordLabel;
+    private javax.swing.JButton RetourBTN;
     private javax.swing.JButton addBtn;
     private javax.swing.JTextArea adresseTA;
     private javax.swing.JPasswordField confirmationPasswordTF;

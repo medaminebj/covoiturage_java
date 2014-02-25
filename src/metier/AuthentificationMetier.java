@@ -74,4 +74,22 @@ public class AuthentificationMetier {
         else 
             return true;
     }
+    
+    //selectionner la ligne qui contient le login type de retour Idauthentification
+    
+    public Authentification FindIdByLogin(String login) throws ProblemeTechniqueException
+    {
+        
+        user = DAO.AuthentificationDAO.getInstance().getByLogin(login);
+        return user ;  
+    }
+    
+      //Supprimer l'Authentification d'un administrateur
+    
+    public boolean DeleteAuthentification(Authentification authentification) throws ProblemeTechniqueException
+    {
+        return  DAO.AuthentificationDAO.getInstance().delete(authentification);
+    }
+    
+    
 }

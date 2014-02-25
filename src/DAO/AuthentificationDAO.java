@@ -128,7 +128,7 @@ public class AuthentificationDAO implements utils.interfaces.DAO<Authentificatio
                     
                     
                     
-                    if (pStatement.executeUpdate() != 0)
+                    if (pStatement.executeUpdate() != -1)
                     {
                         ResultSet ids = pStatement.getGeneratedKeys();
                         if (ids.next()) 
@@ -154,6 +154,7 @@ public class AuthentificationDAO implements utils.interfaces.DAO<Authentificatio
             pStatement.setDate(5, obj.getDateCreation());
             
             if (pStatement.executeUpdate() != -1)
+                
                 return true;
             
             return false;
@@ -166,22 +167,66 @@ public class AuthentificationDAO implements utils.interfaces.DAO<Authentificatio
 
     @Override
     public boolean update(Authentification obj) throws ProblemeTechniqueException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            int id=0;
+            
+            //on ajout le compte relative a l'authentification
+            switch(obj.getType()){
+                case 's':
+                case 'a':
+                    Entity.Administrateur admin = (Entity.Administrateur) obj.getCompte();
+                    
+                    requete = "UPDATE administrateurs SET nom=? ,prenom=? ,adresse=?,numeroTel=?, sexe= ? WHERE idAdministrateurs= ?";
+                    pStatement = DAO.getInstance().getConnection().prepareStatement(requete);
+                    pStatement.setString(1, admin.getNom());
+                    pStatement.setString(2, admin.getPrenom());
+                    pStatement.setString(3, admin.getAdresse());
+                    pStatement.setString(4, admin.getNumeroTel());
+                    //pStatement.setDate(5, new Date(admin.getDateNaissance().getTime()));
+                    pStatement.setString(5, admin.getSexe()+"");
+                    pStatement.setInt(6, admin.getIdAdministrateurs());
+                    
+                    
+                    
+                    if (pStatement.executeUpdate() == -1)
+                        return false;
+                    break;
+            }
+            
+            requete = "UPDATE authentifications SET login=?,password=? WHERE idAuthentification=?";
+                        
+            pStatement = DAO.getInstance().getConnection().prepareStatement(requete);
+
+            pStatement.setString(1, obj.getLogin());
+            pStatement.setString(2, obj.getPassword());
+            System.out.println(obj.getIdAuthentification());
+            pStatement.setInt(3, obj.getIdAuthentification());
+            
+            if (pStatement.executeUpdate() != -1)
+                return true;
+            
+            return false;
+            
+        } catch (SQLException ex) {
+            System.out.println("probleme lors de la modification d'une authentification.");
+            return false;
+        }
     }
 
     @Override
     public boolean delete(Authentification obj) throws ProblemeTechniqueException {
         try {
             statement = DAO.getInstance().getConnection().createStatement();
-            requete = "DELETE FROM authentifications where idCompte="+obj.getIdAuthentification();
-            int execute =  statement.executeUpdate(requete);
-            if (execute==1)
+            requete = "DELETE FROM authentifications where idAuthentification="+obj.getIdAuthentification();
+            
+            if (statement.executeUpdate(requete) != -1)
                 return true;
-            else return false ;
+            else 
+                return false;
         } catch (SQLException ex) {
             System.out.println("Erreur lors de la rÃ©cupÃ©ration de la liste des Administrateurs.");
-        }
-        return false ;
+            return false ;
+        }   
     }
 
     @Override
@@ -255,5 +300,26 @@ public class AuthentificationDAO implements utils.interfaces.DAO<Authentificatio
         
         return result;
     }
+    //selectionner la ligne qui contient le login type de retour Idauthentification
+    public int findIdBylogin(String login) throws ProblemeTechniqueException {
+        
+        
+        try {
+            requete = "select IdAuthentification from authentifications where login = ?";
+            
+            pStatement = DAO.getInstance().getConnection().prepareStatement(requete);
+            pStatement.setString(1, login);
+            resultRequest = pStatement.executeQuery();
+            if (resultRequest.next())
+            {
+              return resultRequest.getInt("IdAuthentification") ;
+            }
+        } catch (SQLException ex) {
+            System.out.println("Erreur lors de la récupération d'un user by login.");
+        }
+        
+        return 0;
+    }
+    
 
 }

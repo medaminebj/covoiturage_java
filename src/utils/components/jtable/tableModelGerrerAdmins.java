@@ -73,4 +73,14 @@ public class tableModelGerrerAdmins extends javax.swing.table.AbstractTableModel
         return data.get(rowIndex);
     }
     
+    public boolean refreshData(){
+        
+        try {
+            data = AuthentificationDAO.getInstance().getAllByType('a');
+            return true;
+        } catch (ProblemeTechniqueException ex) {
+            Logger.getLogger(tableModelGerrerAdmins.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+    }
 }
