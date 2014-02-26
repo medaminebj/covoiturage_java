@@ -90,6 +90,8 @@ public class Authentification extends javax.swing.JFrame {
         pwdTF = new javax.swing.JPasswordField();
         connectBtn = new javax.swing.JButton();
         errorMessageLabel = new javax.swing.JLabel();
+        InscriptionBtn = new javax.swing.JButton();
+        contactBtn = new javax.swing.JButton();
         backgroundLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -136,6 +138,19 @@ public class Authentification extends javax.swing.JFrame {
         getContentPane().add(errorMessageLabel);
         errorMessageLabel.setBounds(320, 440, 260, 40);
 
+        InscriptionBtn.setText("S'inscrire");
+        InscriptionBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                InscriptionBtnMousePressed(evt);
+            }
+        });
+        getContentPane().add(InscriptionBtn);
+        InscriptionBtn.setBounds(480, 490, 90, 23);
+
+        contactBtn.setText("Nous contacter");
+        getContentPane().add(contactBtn);
+        contactBtn.setBounds(320, 490, 110, 23);
+
         backgroundLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/background logo.png"))); // NOI18N
         getContentPane().add(backgroundLabel);
         backgroundLabel.setBounds(0, 0, 600, 600);
@@ -155,6 +170,10 @@ public class Authentification extends javax.swing.JFrame {
         if (evt.getKeyCode()== 10)
             verifierAuthentification();
     }//GEN-LAST:event_pwdTFKeyPressed
+
+    private void InscriptionBtnMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_InscriptionBtnMousePressed
+        (new GUI.Inscription.Inscription()).setVisible(true);
+    }//GEN-LAST:event_InscriptionBtnMousePressed
 
     /**
      * @param args the command line arguments
@@ -191,8 +210,10 @@ public class Authentification extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton InscriptionBtn;
     private javax.swing.JLabel backgroundLabel;
     private javax.swing.JButton connectBtn;
+    private javax.swing.JButton contactBtn;
     private javax.swing.JLabel errorMessageLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

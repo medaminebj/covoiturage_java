@@ -66,4 +66,11 @@ public class Session {
         estConnecté = false;
     }
     
+    public boolean estSuperAdministrateur(){
+        return user.getType() == 's';
+    }
+    
+    public boolean estAdministrateur(){
+        return user.getType() == 'a';
+    }
 }

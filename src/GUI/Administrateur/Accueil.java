@@ -6,6 +6,7 @@ package GUI.Administrateur;
 
 import javax.swing.JOptionPane;
 import Entity.Session;
+import GUI.Administrateur.Statistiques.Statistiques;
 /**
  *
  * @author Amine
@@ -73,6 +74,11 @@ public class Accueil extends javax.swing.JFrame {
         GestionReclamationBtn.setBounds(730, 210, 180, 180);
 
         StatistiqueBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/stat.png"))); // NOI18N
+        StatistiqueBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                StatistiqueBtnMousePressed(evt);
+            }
+        });
         getContentPane().add(StatistiqueBtn);
         StatistiqueBtn.setBounds(120, 450, 180, 180);
 
@@ -119,6 +125,11 @@ public class Accueil extends javax.swing.JFrame {
         GUI.SuperAdministrateur.GererAdministrateurs.Accueil gaInterface = new GUI.SuperAdministrateur.GererAdministrateurs.Accueil();
         gaInterface.setVisible(true);
     }//GEN-LAST:event_GererAdminBtnActionPerformed
+
+    private void StatistiqueBtnMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_StatistiqueBtnMousePressed
+        Statistiques fenetre = new Statistiques();
+        fenetre.setVisible(true);
+    }//GEN-LAST:event_StatistiqueBtnMousePressed
 
     /**
      * @param args the command line arguments
