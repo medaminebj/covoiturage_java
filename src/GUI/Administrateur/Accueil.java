@@ -122,7 +122,7 @@ public class Accueil extends javax.swing.JFrame {
     }//GEN-LAST:event_GestionReclamationBtnActionPerformed
 
     private void GererAdminBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GererAdminBtnActionPerformed
-        GUI.SuperAdministrateur.GererAdministrateurs.Accueil gaInterface = new GUI.SuperAdministrateur.GererAdministrateurs.Accueil();
+        GUI.SuperAdministrateur.GererAdministrateurs.GerrerAdministrateur gaInterface = new GUI.SuperAdministrateur.GererAdministrateurs.GerrerAdministrateur();
         gaInterface.setVisible(true);
     }//GEN-LAST:event_GererAdminBtnActionPerformed
 

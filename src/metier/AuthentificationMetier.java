@@ -12,6 +12,8 @@ import Entity.Banissement;
 import java.math.BigInteger;
 import java.security.*;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import utils.Exceptions.ProblemeTechniqueException;
 /**
  *
@@ -44,27 +46,13 @@ public class AuthentificationMetier {
             if (user == null)
                 return false;
             else
-            {
-                try {
-                    MessageDigest m;
-                    m = MessageDigest.getInstance("MD5");
-                    m.update(pwd.getBytes(),0,pwd.length());
-                    
-                    String pwdHashed = new BigInteger(1,m.digest()).toString(16);
-                    //fix bug 0 au debut
-                    if (pwdHashed.length() < 32)
-                        pwdHashed = "0" + pwdHashed;
-                    
-                    if (user.getPassword().equals(pwdHashed))
+            {                
+                if (user.getPassword().equals(utils.Functions.ConvertToMd5(pwd)))
                     return true;
-                } catch (NoSuchAlgorithmException ex) {
-                    System.out.println("probleme avec la méthode de hachage");
+                else
                     return false;
-                }
                  
             }
-        
-        return false;
     }
     
     public boolean verifierBan(int idAuthentification) throws ProblemeTechniqueException{
@@ -78,4 +66,30 @@ public class AuthentificationMetier {
         Session.getInstance().setMessage("Vous êtes banni jusqu'au "+ ban.getDateFin() + ".\nLa cause: "+ban.getCause());
         return true;
     }
+    
+    public boolean loginExistant(String login) throws ProblemeTechniqueException{
+        
+        if (AuthentificationDAO.getInstance().getByLogin(login) == null)
+            return false;
+        else 
+            return true;
+    }
+    
+    //selectionner la ligne qui contient le login type de retour Idauthentification
+    
+    public Authentification FindIdByLogin(String login) throws ProblemeTechniqueException
+    {
+        
+        user = DAO.AuthentificationDAO.getInstance().getByLogin(login);
+        return user ;  
+    }
+    
+      //Supprimer l'Authentification d'un administrateur
+    
+    public boolean DeleteAuthentification(Authentification authentification) throws ProblemeTechniqueException
+    {
+        return  DAO.AuthentificationDAO.getInstance().delete(authentification);
+    }
+    
+    
 }
