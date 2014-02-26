@@ -176,15 +176,15 @@ public class AuthentificationDAO implements utils.interfaces.DAO<Authentificatio
                 case 'a':
                     Entity.Administrateur admin = (Entity.Administrateur) obj.getCompte();
                     
-                    requete = "UPDATE administrateurs SET nom=? ,prenom=? ,adresse=?,numeroTel=?, sexe= ? WHERE idAdministrateurs= ?";
+                    requete = "UPDATE administrateurs SET nom=? ,prenom=? ,adresse=?,numeroTel=?, sexe= ?, dateNaissance= ? WHERE idAdministrateurs= ?";
                     pStatement = DAO.getInstance().getConnection().prepareStatement(requete);
                     pStatement.setString(1, admin.getNom());
                     pStatement.setString(2, admin.getPrenom());
                     pStatement.setString(3, admin.getAdresse());
                     pStatement.setString(4, admin.getNumeroTel());
-                    //pStatement.setDate(5, new Date(admin.getDateNaissance().getTime()));
+                    pStatement.setDate(6, new Date(admin.getDateNaissance().getTime()));
                     pStatement.setString(5, admin.getSexe()+"");
-                    pStatement.setInt(6, admin.getIdAdministrateurs());
+                    pStatement.setInt(7, admin.getIdAdministrateurs());
                     
                     
                     

@@ -8,6 +8,8 @@ import Entity.Administrateur;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import utils.Exceptions.ProblemeTechniqueException;
 
 /**
@@ -58,7 +60,28 @@ public class AdministrateurDAO implements utils.interfaces.DAO<Administrateur>{
 
     @Override
     public boolean update(Administrateur obj) throws ProblemeTechniqueException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        requete = "UPDATE INTO administrateurs SET nom=? prenom=?,dateNaissance=?,adresse=?,numeroTel=?,sexe=?,";
+        try {
+            pStatement = DAO.getInstance().getConnection().prepareStatement(requete);
+            
+            pStatement.setString(1, obj.getNom());
+            pStatement.setString(1, obj.getNom());
+            pStatement.setString(2, obj.getPrenom());
+            pStatement.setDate(3, new java.sql.Date(obj.getDateNaissance().getTime()));
+            
+            pStatement.setString(4, obj.getAdresse());
+            pStatement.setString(5, obj.getNumeroTel());
+            pStatement.setString(6, obj.getSexe()+"");
+            
+            
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(AdministrateurDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        
+        throw new UnsupportedOperationException("Not supported yet."); 
     }
 
     @Override

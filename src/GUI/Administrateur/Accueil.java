@@ -6,6 +6,7 @@ package GUI.Administrateur;
 
 import javax.swing.JOptionPane;
 import Entity.Session;
+
 /**
  *
  * @author Amine
@@ -44,6 +45,11 @@ public class Accueil extends javax.swing.JFrame {
         setTitle("Back Office");
         setMinimumSize(new java.awt.Dimension(1024, 768));
         setResizable(false);
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                formMouseClicked(evt);
+            }
+        });
         getContentPane().setLayout(null);
 
         decoBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/deco.png"))); // NOI18N
@@ -56,6 +62,11 @@ public class Accueil extends javax.swing.JFrame {
         decoBtn.setBounds(906, 0, 118, 115);
 
         ModifierProfileBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/modifierProfile.png"))); // NOI18N
+        ModifierProfileBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ModifierProfileBtnMouseClicked(evt);
+            }
+        });
         getContentPane().add(ModifierProfileBtn);
         ModifierProfileBtn.setBounds(120, 210, 180, 180);
 
@@ -101,9 +112,8 @@ public class Accueil extends javax.swing.JFrame {
     private void decoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_decoBtnActionPerformed
         // TODO add your handling code here:
         int dialogResult = JOptionPane.showConfirmDialog(null, "Voulez vous continuer ?", "Deconnexion", JOptionPane.YES_NO_OPTION);
-        
-        if (dialogResult == JOptionPane.YES_OPTION)
-        {
+
+        if (dialogResult == JOptionPane.YES_OPTION) {
             GUI.Authentification acc = new GUI.Authentification();
             acc.setVisible(true);
             this.dispose();
@@ -119,6 +129,14 @@ public class Accueil extends javax.swing.JFrame {
         GUI.SuperAdministrateur.GererAdministrateurs.GerrerAdministrateur gaInterface = new GUI.SuperAdministrateur.GererAdministrateurs.GerrerAdministrateur();
         gaInterface.setVisible(true);
     }//GEN-LAST:event_GererAdminBtnActionPerformed
+
+    private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
+    }//GEN-LAST:event_formMouseClicked
+
+    private void ModifierProfileBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ModifierProfileBtnMouseClicked
+        GUI.GestionProfil.GestionProfil gpInterface = new GUI.GestionProfil.GestionProfil();
+        gpInterface.setVisible(true);
+    }//GEN-LAST:event_ModifierProfileBtnMouseClicked
 
     /**
      * @param args the command line arguments
@@ -154,9 +172,6 @@ public class Accueil extends javax.swing.JFrame {
             }
         });
     }
-    
-    
-    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton GenererPdfBtn;
     protected javax.swing.JButton GererAdminBtn;
@@ -169,4 +184,3 @@ public class Accueil extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
-
