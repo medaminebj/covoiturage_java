@@ -83,4 +83,10 @@ public class tableModelGerrerAdmins extends javax.swing.table.AbstractTableModel
             return false;
         }
     }
+
+    public List<Authentification> getData() {
+        return data;
+    }
+    
+    
 }

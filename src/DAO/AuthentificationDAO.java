@@ -69,6 +69,108 @@ public class AuthentificationDAO implements utils.interfaces.DAO<Authentificatio
         return result;
     }
     
+    public int getNumberByType(char type) throws ProblemeTechniqueException{
+        try {       
+            requete = "select count(idAuthentification) from authentifications where type = ?";
+            pStatement = DAO.getInstance().getConnection().prepareStatement(requete);
+            pStatement.setString(1, type+"");
+            
+            resultRequest = pStatement.executeQuery();
+            
+            if (resultRequest.next())
+                return resultRequest.getInt(1);
+            return -1;
+        } catch (SQLException ex) {
+            System.out.println("Probleme lors du getNumberByType.");
+            throw new ProblemeTechniqueException();
+        }
+        
+    }
+    
+    public int getNumberByTypeAndYear(int year, char type) throws ProblemeTechniqueException{
+        try {       
+            requete = "select count(idAuthentification) from authentifications where type = ? and extract(year from dateCreation) = ?";
+            pStatement = DAO.getInstance().getConnection().prepareStatement(requete);
+            pStatement.setString(1, type+"");
+            pStatement.setInt(2, year);
+            
+            resultRequest = pStatement.executeQuery();
+            
+            if (resultRequest.next())
+                return resultRequest.getInt(1);
+            return -1;
+        } catch (SQLException ex) {
+            System.out.println("Probleme lors du getNumberByType.");
+            throw new ProblemeTechniqueException();
+        }
+        
+    }
+    
+    public int getNumberByDateCreationInMonth(int year, int monthNumber, char type) throws ProblemeTechniqueException{
+        try {
+            
+            requete = "SELECT count(idAuthentification) FROM authentifications WHERE extract(year from dateCreation) = ? and extract(month from dateCreation) = ?";
+            
+            if (type != ' ')
+            {
+                requete += " AND type = ?";
+            }
+            
+            
+            pStatement = DAO.getInstance().getConnection().prepareStatement(requete);
+            pStatement.setInt(1, year);
+            pStatement.setInt(2, monthNumber);
+            
+            if (type != ' ')
+            {
+                pStatement.setString(3, type+"");
+            }
+            
+            resultRequest = pStatement.executeQuery();
+            
+            if (resultRequest.next())
+                return resultRequest.getInt(1);
+            else
+                return 0;
+            
+        }catch (SQLException ex) {
+            System.out.println("probleme getNumberByDateCreationInMonth");
+        }
+        return 0;
+    }
+    
+    public int getNumberByDateCreationInDay(Date date, char type) throws ProblemeTechniqueException{
+        try {
+            
+            requete = "SELECT count(idAuthentification) FROM authentifications WHERE dateCreation = ? ";
+            
+            if (type != ' ')
+            {
+                requete += " AND type = ?";
+            }
+            
+            
+            pStatement = DAO.getInstance().getConnection().prepareStatement(requete);
+            pStatement.setDate(1, date);
+            
+            if (type != ' ')
+            {
+                pStatement.setString(2, type+"");
+            }
+            
+            resultRequest = pStatement.executeQuery();
+            
+            if (resultRequest.next())
+                return resultRequest.getInt(1);
+            else
+                return 0;
+            
+        }catch (SQLException ex) {
+            System.out.println("probleme getNumberByDateCreationInDay");
+        }
+        return 0;
+    }
+    
     public Authentification getByLogin(String login) throws ProblemeTechniqueException 
     {
         Authentification result = null;
@@ -126,9 +228,32 @@ public class AuthentificationDAO implements utils.interfaces.DAO<Authentificatio
                     pStatement.setDate(5, new Date(new java.util.Date().getTime()));
                     pStatement.setString(6, admin.getSexe()+"");
                     
+                    break;
+                case 'p':
+                    Entity.Passager passager = (Entity.Passager) obj.getCompte();
                     
+                    requete = "INSERT INTO passagers(nom, prenom, email, sexe) VALUES (?, ?, ?, ?)";
+                    pStatement = DAO.getInstance().getConnection().prepareStatement(requete, Statement.RETURN_GENERATED_KEYS);
                     
-                    if (pStatement.executeUpdate() != -1)
+                    pStatement.setString(1, passager.getNom());
+                    pStatement.setString(2, passager.getPrenom());
+                    pStatement.setString(3, passager.getEmail());
+                    pStatement.setString(4, passager.getSexe()+"");
+                    break;
+                case 'c':
+                    Entity.Conducteur conducteur = (Entity.Conducteur) obj.getCompte();
+                    
+                    requete = "INSERT INTO conducteurs(nom, prenom, email, sexe) VALUES (?, ?, ?, ?)";
+                    pStatement = DAO.getInstance().getConnection().prepareStatement(requete, Statement.RETURN_GENERATED_KEYS);
+                    
+                    pStatement.setString(1, conducteur.getNom());
+                    pStatement.setString(2, conducteur.getPrenom());
+                    pStatement.setString(3, conducteur.getEmail());
+                    pStatement.setString(4, conducteur.getSexe()+"");
+                    break;
+            }
+            
+            if (pStatement.executeUpdate() != 0)
                     {
                         ResultSet ids = pStatement.getGeneratedKeys();
                         if (ids.next()) 
@@ -139,9 +264,7 @@ public class AuthentificationDAO implements utils.interfaces.DAO<Authentificatio
                     }
                     else
                         return false;
-                    
-                    break;
-            }
+            
             
             requete = "INSERT INTO authentifications(login, password, type, idCompte, dateCreation) VALUES (?, ?, ?, ?, ?)";
                         

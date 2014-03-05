@@ -8,6 +8,7 @@ import Entity.*;
 import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import utils.Exceptions.ProblemeTechniqueException;
 /**
  *
@@ -162,51 +163,69 @@ public class Inscription extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void enregistrerBtnMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_enregistrerBtnMousePressed
-        authentification = new Authentification();
-        
-        authentification.setLogin(loginTF.getText());
-        authentification.setPassword(utils.Functions.ConvertToMd5(passwordTF.getPassword().toString()));
-        authentification.setDateCreation(new java.sql.Date(Calendar.getInstance().getTime().getTime()));
-        
-        if (typeCompteCB.getSelectedIndex() == 0)
-        {
-            authentification.setType('c');
-            Conducteur compte = new Conducteur();
-            
-            compte.setNom(nomTF.getText());
-            compte.setPrenom(prenomTF.getText());
-            compte.setEmail(emailTF.getText());
-            
-            if (sexeCB.getSelectedIndex() == 0) //homme
-                compte.setSexe('H');
-            else
-                compte.setSexe('F');
-            
-            authentification.setCompte(compte);
-            
-        }
-        else
-        {
-            authentification.setType('p');
-            Passager compte = new Passager();
-            
-            compte.setNom(nomTF.getText());
-            compte.setPrenom(prenomTF.getText());
-            compte.setEmail(emailTF.getText());
-            
-            if (sexeCB.getSelectedIndex() == 0) //homme
-                compte.setSexe('H');
-            else
-                compte.setSexe('F');
-            
-            authentification.setCompte(compte);
-        }
-        
         try {
-            DAO.AuthentificationDAO.getInstance().create(authentification);
+            authentification = new Authentification();
+            boolean verification = true;
+            String errMsg = "";
+            
+            if (DAO.AuthentificationDAO.getInstance().getByLogin(loginTF.getText()) == null)
+                authentification.setLogin(loginTF.getText());
+            else
+            {
+                verification = false;
+                errMsg = "login existant\n";
+            }
+            
+            if (utils.Validators.ConfirmerMotDePasseValidator(passwordTF.getPassword().toString(), confirmPasswordTF.getPassword().toString()))
+                authentification.setPassword(utils.Functions.ConvertToMd5(passwordTF.getPassword().toString()));
+            else
+            {
+                verification = false;
+                errMsg += "le mot de passe et la confirmation sont differents";
+            }
+            authentification.setDateCreation(new java.sql.Date(Calendar.getInstance().getTime().getTime()));
+            
+            if (typeCompteCB.getSelectedIndex() == 0)
+            {
+                authentification.setType('c');
+                Conducteur compte = new Conducteur();
+                
+                compte.setNom(nomTF.getText());
+                compte.setPrenom(prenomTF.getText());
+                compte.setEmail(emailTF.getText());
+                
+                if (sexeCB.getSelectedIndex() == 0) //homme
+                    compte.setSexe('H');
+                else
+                    compte.setSexe('F');
+                
+                authentification.setCompte(compte);
+                
+            }
+            else
+            {
+                authentification.setType('p');
+                Passager compte = new Passager();
+                
+                compte.setNom(nomTF.getText());
+                compte.setPrenom(prenomTF.getText());
+                compte.setEmail(emailTF.getText());
+                
+                if (sexeCB.getSelectedIndex() == 0) //homme
+                    compte.setSexe('H');
+                else
+                    compte.setSexe('F');
+                
+                authentification.setCompte(compte);
+            }
+            if (verification)
+                DAO.AuthentificationDAO.getInstance().create(authentification);
+            else
+               JOptionPane.showMessageDialog(null, errMsg, "Erreur de saisie", JOptionPane.ERROR_MESSAGE);
         } catch (ProblemeTechniqueException ex) {
-            Logger.getLogger(Inscription.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Problème technique", JOptionPane.ERROR_MESSAGE);
         }
+        
     }//GEN-LAST:event_enregistrerBtnMousePressed
 
     /**

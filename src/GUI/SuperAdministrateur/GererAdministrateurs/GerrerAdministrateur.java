@@ -6,10 +6,13 @@ package GUI.SuperAdministrateur.GererAdministrateurs;
 
 import Entity.Administrateur;
 import Entity.Authentification;
+import com.sun.imageio.plugins.png.RowFilter;
 import java.sql.Date;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.table.TableRowSorter;
 import metier.AuthentificationMetier;
 import utils.Exceptions.ProblemeTechniqueException;
 import utils.components.jtable.tableModelGerrerAdmins;
@@ -29,6 +32,8 @@ public class GerrerAdministrateur extends javax.swing.JFrame {
     Administrateur administrateur;
     metier.AuthentificationMetier authentificationMetier;
     metier.AdministrateurMetier administrateurMetier ; 
+    
+    TableRowSorter<utils.components.jtable.tableModelGerrerAdmins> sorter; 
     public GerrerAdministrateur() {
         initComponents();
         
@@ -49,6 +54,10 @@ public class GerrerAdministrateur extends javax.swing.JFrame {
         
         //les champs des mot de passe
         changerEtatMotDePasse(false);
+        
+          
+        sorter = new TableRowSorter<utils.components.jtable.tableModelGerrerAdmins>((tableModelGerrerAdmins) datagrid.getModel());
+        datagrid.setRowSorter(sorter);
     }
 
     /**
@@ -93,6 +102,7 @@ public class GerrerAdministrateur extends javax.swing.JFrame {
         modifierBtn = new javax.swing.JButton();
         addBtn = new javax.swing.JButton();
         enregisterBtn = new javax.swing.JButton();
+        jTextField1 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Gerrer les administrateurs");
@@ -287,6 +297,13 @@ public class GerrerAdministrateur extends javax.swing.JFrame {
             }
         });
 
+        jTextField1.setText("jTextField1");
+        jTextField1.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextField1FocusLost(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -306,14 +323,19 @@ public class GerrerAdministrateur extends javax.swing.JFrame {
                         .addComponent(addBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(13, 13, 13))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(informationsContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(informationsContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(16, 16, 16)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(14, 14, 14)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(RetourBTN)
@@ -535,6 +557,40 @@ public class GerrerAdministrateur extends javax.swing.JFrame {
         authentification = ((tableModelGerrerAdmins)datagrid.getModel()).getRowEntity(datagrid.getSelectedRow());
         administrateur = (Administrateur)authentification.getCompte();
     }//GEN-LAST:event_modifierBtnActionPerformed
+
+    private void jTextField1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField1FocusLost
+        final String result = jTextField1.getText();
+        //sorter.setRowFilter(RowFilter.regexFilter(result, 0, 1));
+        
+        /*javax.swing.RowFilter<tableModelGerrerAdmins,Integer> loginFilter = new javax.swing.RowFilter<tableModelGerrerAdmins, Integer>() {
+
+            public boolean include(javax.swing.RowFilter.Entry<? extends tableModelGerrerAdmins, ? extends Integer> entry) {
+                //List<Authentification> donnees = entry.getModel().getData();
+                for (int i = entry.getValueCount() - 1; i >= 0; i--) {
+                    if (entry.getStringValue(6).contains(result) )
+                        return true;
+                    return false;
+                }
+     
+                return false;
+            }
+        };*/
+               
+        javax.swing.RowFilter<tableModelGerrerAdmins,Integer> loginFilter = new javax.swing.RowFilter<tableModelGerrerAdmins, Integer>() {
+
+            @Override
+            public boolean include(javax.swing.RowFilter.Entry<? extends tableModelGerrerAdmins, ? extends Integer> entry) {
+                tableModelGerrerAdmins model = entry.getModel();
+                Authentification entityModel = model.getData().get(entry.getIdentifier());
+                
+                if(entityModel.getLogin().contains(result))
+                    return true;
+                return false;
+            }
+        };
+        
+       sorter.setRowFilter(loginFilter);
+    }//GEN-LAST:event_jTextField1FocusLost
     
     
     private void remplireInformations(int ligne){
@@ -700,6 +756,7 @@ public class GerrerAdministrateur extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField loginTF;
     private javax.swing.JButton modifierBtn;
     private javax.swing.JTextField nomTF;

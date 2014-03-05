@@ -4,12 +4,21 @@
  */
 package GUI.Administrateur.Statistiques;
 
+import Entity.Session;
+import com.itextpdf.text.Paragraph;
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.geom.Rectangle2D;
+import java.awt.image.BufferedImage;
 import java.util.Calendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import metier.AuthentificationMetier;
 import org.jfree.chart.ChartMouseEvent;
 import org.jfree.chart.ChartMouseListener;
 import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
 import utils.Exceptions.ProblemeTechniqueException;
 
 /**
@@ -54,12 +63,18 @@ public class Statistiques extends javax.swing.JFrame {
         genererStat = new javax.swing.JButton();
         filterMonthLabel = new javax.swing.JLabel();
         filterMonth = new javax.swing.JComboBox();
+        addToPdfBtn = new javax.swing.JButton();
         inscriBtnComptes = new javax.swing.JButton();
         banStatPanel = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1024, 768));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("Les statistiques des comptes :");
@@ -86,12 +101,21 @@ public class Statistiques extends javax.swing.JFrame {
 
         filterMonth.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Toute l'année", "Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Aout", "Septembre", "Octobre", "Novombre", "Décembre" }));
 
+        addToPdfBtn.setText("Ajouter au PDF");
+        addToPdfBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                addToPdfBtnMousePressed(evt);
+            }
+        });
+
         javax.swing.GroupLayout filterStatCompteLayout = new javax.swing.GroupLayout(filterStatCompte);
         filterStatCompte.setLayout(filterStatCompteLayout);
         filterStatCompteLayout.setHorizontalGroup(
             filterStatCompteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(filterStatCompteLayout.createSequentialGroup()
                 .addComponent(genererStat)
+                .addGap(18, 18, 18)
+                .addComponent(addToPdfBtn)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(filterStatCompteLayout.createSequentialGroup()
                 .addContainerGap()
@@ -119,7 +143,9 @@ public class Statistiques extends javax.swing.JFrame {
                     .addComponent(filterYear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(filterMonth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(genererStat)
+                .addGroup(filterStatCompteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(genererStat)
+                    .addComponent(addToPdfBtn))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -218,6 +244,8 @@ public class Statistiques extends javax.swing.JFrame {
         filterYear.setValue(0);
        
         histoBtnComptes(0);
+        
+        ajouterAuPdfBtnValue();
     }//GEN-LAST:event_histoBtnComptesMousePressed
 
     private void histoBtnComptes(int year){
@@ -242,6 +270,8 @@ public class Statistiques extends javax.swing.JFrame {
         filterYear.setValue(Calendar.getInstance().get(Calendar.YEAR));
         
         inscriBtnCompteStat(Calendar.getInstance().get(Calendar.YEAR),0);
+        
+        ajouterAuPdfBtnValue();
     }//GEN-LAST:event_inscriBtnComptesMousePressed
 
     private void genererStatMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_genererStatMousePressed
@@ -257,6 +287,46 @@ public class Statistiques extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_genererStatMousePressed
 
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        ajouterAuPdfBtnValue();
+    }//GEN-LAST:event_formWindowOpened
+
+    private void addToPdfBtnMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addToPdfBtnMousePressed
+        String titlePage = JOptionPane.showInputDialog(null, "Saissiez le titre");
+        if (titlePage != null && !titlePage.equals(""))
+            if (JOptionPane.showConfirmDialog(null, "Voulez vous créer la page " + titlePage + " ?", "Ajouter une nouvelle page au pdf", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
+            {
+                Paragraph contentPage = new Paragraph();
+                try {
+                    
+                    int year = Integer.parseInt(filterYear.getValue().toString());
+                    int month = filterMonth.getSelectedIndex();
+                    
+                    //bug quand chart = null; pour l'initier
+                    JFreeChart chart = authentificationMetier.get3DPieChartsAllDataByYear(year);;
+                    
+                    switch (menucontainer.getSelectedIndex()){
+                        case 0://les comptes
+                            if (currentStat == 1) //histogramme
+                                authentificationMetier.get3DPieChartsAllDataByYear(year);
+                            if (currentStat == 2) //barchart
+                            {   
+                                if (month == 0)
+                                    chart = authentificationMetier.getBarChartsTypeDateCreationByYearVertical(year);
+                                else
+                                    chart = authentificationMetier.getBarChartsTypeDateCreationByYearandMonthVertical(year,month);
+                            }
+                            break;
+                    }
+                    
+                    Session.getInstance().getPdfFile().addPage(chart, titlePage);
+                    
+                } catch (ProblemeTechniqueException ex) {
+                    Logger.getLogger(Statistiques.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+    }//GEN-LAST:event_addToPdfBtnMousePressed
+
     private void inscriBtnCompteStat(int year, int month){
         try {
             CompteStatResult.removeAll();
@@ -270,6 +340,13 @@ public class Statistiques extends javax.swing.JFrame {
         } catch (ProblemeTechniqueException ex) {
             JOptionPane.showMessageDialog(null, "il ya un probleme technique", "Erreur", JOptionPane.ERROR_MESSAGE);
         }
+    }
+    
+    private void ajouterAuPdfBtnValue(){
+        if (Session.getInstance().isModePdfOn())
+            addToPdfBtn.setVisible(true);
+        else
+            addToPdfBtn.setVisible(false);
     }
     
     /**
@@ -308,6 +385,7 @@ public class Statistiques extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel CompteStatResult;
+    private javax.swing.JButton addToPdfBtn;
     private javax.swing.JPanel banStatPanel;
     private javax.swing.JPanel comptesStatPanel;
     private javax.swing.JComboBox filterMonth;

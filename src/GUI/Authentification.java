@@ -6,6 +6,7 @@ package GUI;
 
 import DAO.AuthentificationDAO;
 import Entity.Session;
+import javax.swing.JOptionPane;
 import metier.AuthentificationMetier;
 import utils.Exceptions.ProblemeTechniqueException;
 
@@ -124,11 +125,6 @@ public class Authentification extends javax.swing.JFrame {
                 connectBtnMousePressed(evt);
             }
         });
-        connectBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                connectBtnActionPerformed(evt);
-            }
-        });
         getContentPane().add(connectBtn);
         connectBtn.setBounds(483, 400, 100, 23);
 
@@ -159,12 +155,8 @@ public class Authentification extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void connectBtnMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_connectBtnMousePressed
-
-    }//GEN-LAST:event_connectBtnMousePressed
-
-    private void connectBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_connectBtnActionPerformed
         verifierAuthentification();
-    }//GEN-LAST:event_connectBtnActionPerformed
+    }//GEN-LAST:event_connectBtnMousePressed
 
     private void pwdTFKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pwdTFKeyPressed
         if (evt.getKeyCode()== 10)

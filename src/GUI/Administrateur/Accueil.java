@@ -7,6 +7,7 @@ package GUI.Administrateur;
 import javax.swing.JOptionPane;
 import Entity.Session;
 import GUI.Administrateur.Statistiques.Statistiques;
+import GUI.Administrateur.pdf.PDF;
 /**
  *
  * @author Amine
@@ -83,6 +84,11 @@ public class Accueil extends javax.swing.JFrame {
         StatistiqueBtn.setBounds(120, 450, 180, 180);
 
         GenererPdfBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/pdf.png"))); // NOI18N
+        GenererPdfBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                GenererPdfBtnMousePressed(evt);
+            }
+        });
         getContentPane().add(GenererPdfBtn);
         GenererPdfBtn.setBounds(730, 440, 180, 180);
 
@@ -130,6 +136,11 @@ public class Accueil extends javax.swing.JFrame {
         Statistiques fenetre = new Statistiques();
         fenetre.setVisible(true);
     }//GEN-LAST:event_StatistiqueBtnMousePressed
+
+    private void GenererPdfBtnMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GenererPdfBtnMousePressed
+        // TODO add your handling code here:
+        (new PDF()).setVisible(true);
+    }//GEN-LAST:event_GenererPdfBtnMousePressed
 
     /**
      * @param args the command line arguments
