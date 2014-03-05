@@ -18,7 +18,7 @@ public class Authentification {
     private Object Compte;
     private Date dateCreation;
     private Date dateDernierModification ; 
-    private String email ; 
+     
     
     
     public Authentification()
@@ -26,7 +26,7 @@ public class Authentification {
         
     }
 
-    public Authentification(int idAuthentification, String login, String password, char type, Object compte, Date dateCreation, Date dateDernierModification , String email) {
+    public Authentification(int idAuthentification, String login, String password, char type, Object compte, Date dateCreation, Date dateDernierModification) {
         this.idAuthentification = idAuthentification;
         this.login = login;
         this.password = password;
@@ -36,10 +36,16 @@ public class Authentification {
             case 'a':
                 this.Compte = (Administrateur)compte;
                 break;
+            case 'c':
+                this.Compte = (Conducteurs)compte;
+                break;
+            case 'p':
+                this.Compte = (Passagers)compte;
+                break;     
         }
         this.dateCreation = dateCreation;
         this.dateDernierModification = dateDernierModification;
-        this.email = email ; 
+        
     }
     
     public Authentification(String login, String password ) {
@@ -52,16 +58,7 @@ public class Authentification {
         this.password = password;
         this.type = type;
     }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    
+  
     public String getLogin() {
         return login;
     }
@@ -78,11 +75,17 @@ public class Authentification {
         return Compte;
     }
 
-    public void setCompte(Object compte) {
+      public void setCompte(Object compte) {
         switch(type){
             case 's':
             case 'a':
                 this.Compte = (Administrateur)compte;
+                break;
+            case 'c':
+                this.Compte = (Conducteurs)compte;
+                break;
+            case 'p':
+                this.Compte = (Passagers)compte;
                 break;
         }
     }

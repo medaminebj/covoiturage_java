@@ -6,6 +6,7 @@ package GUI;
 
 import DAO.AuthentificationDAO;
 import Entity.Session;
+import javax.swing.JOptionPane;
 import metier.AuthentificationMetier;
 import utils.Exceptions.ProblemeTechniqueException;
 
@@ -60,6 +61,16 @@ public class Authentification extends javax.swing.JFrame {
                         GUI.Administrateur.Accueil acc = new GUI.Administrateur.Accueil();
                         acc.setVisible(true);
                     }
+                    else if (Session.getInstance().getUser().getType() == 'c')
+                    {
+                        GUI.Conductuer.Accueil acc = new GUI.Conductuer.Accueil();
+                        acc.setVisible(true);
+                    }
+                    else if (Session.getInstance().getUser().getType() == 'p')
+                    {
+                        GUI.Passager.Accueil acc = new GUI.Passager.Accueil();
+                        acc.setVisible(true);
+                    }
                     this.dispose();
                 }
             }
@@ -90,6 +101,8 @@ public class Authentification extends javax.swing.JFrame {
         pwdTF = new javax.swing.JPasswordField();
         connectBtn = new javax.swing.JButton();
         errorMessageLabel = new javax.swing.JLabel();
+        InscriptionBtn = new javax.swing.JButton();
+        contactBtn = new javax.swing.JButton();
         backgroundLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -122,11 +135,6 @@ public class Authentification extends javax.swing.JFrame {
                 connectBtnMousePressed(evt);
             }
         });
-        connectBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                connectBtnActionPerformed(evt);
-            }
-        });
         getContentPane().add(connectBtn);
         connectBtn.setBounds(483, 400, 100, 23);
 
@@ -136,6 +144,19 @@ public class Authentification extends javax.swing.JFrame {
         getContentPane().add(errorMessageLabel);
         errorMessageLabel.setBounds(320, 440, 260, 40);
 
+        InscriptionBtn.setText("S'inscrire");
+        InscriptionBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                InscriptionBtnMousePressed(evt);
+            }
+        });
+        getContentPane().add(InscriptionBtn);
+        InscriptionBtn.setBounds(480, 490, 90, 23);
+
+        contactBtn.setText("Nous contacter");
+        getContentPane().add(contactBtn);
+        contactBtn.setBounds(320, 490, 110, 23);
+
         backgroundLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/background logo.png"))); // NOI18N
         getContentPane().add(backgroundLabel);
         backgroundLabel.setBounds(0, 0, 600, 600);
@@ -144,17 +165,17 @@ public class Authentification extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void connectBtnMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_connectBtnMousePressed
-
-    }//GEN-LAST:event_connectBtnMousePressed
-
-    private void connectBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_connectBtnActionPerformed
         verifierAuthentification();
-    }//GEN-LAST:event_connectBtnActionPerformed
+    }//GEN-LAST:event_connectBtnMousePressed
 
     private void pwdTFKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pwdTFKeyPressed
         if (evt.getKeyCode()== 10)
             verifierAuthentification();
     }//GEN-LAST:event_pwdTFKeyPressed
+
+    private void InscriptionBtnMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_InscriptionBtnMousePressed
+        (new GUI.Inscription.Inscription()).setVisible(true);
+    }//GEN-LAST:event_InscriptionBtnMousePressed
 
     /**
      * @param args the command line arguments
@@ -191,8 +212,10 @@ public class Authentification extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton InscriptionBtn;
     private javax.swing.JLabel backgroundLabel;
     private javax.swing.JButton connectBtn;
+    private javax.swing.JButton contactBtn;
     private javax.swing.JLabel errorMessageLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

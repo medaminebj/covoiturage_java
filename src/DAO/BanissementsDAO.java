@@ -23,7 +23,7 @@ public class BanissementsDAO implements utils.interfaces.DAO<Banissement>{
     private String requete;
     private ResultSet resultRequest;
     
-    private BanissementsDAO() {
+    public BanissementsDAO() {
         
     }
     
@@ -54,7 +54,7 @@ public class BanissementsDAO implements utils.interfaces.DAO<Banissement>{
                 ban.setDateFin(resultRequest.getDate("dateFin"));
                 ban.setCause(resultRequest.getString("cause"));
                 ban.setUser(user);
-                ban.setIdAdministrateurs(resultRequest.getInt("idAdministrateurs"));
+                ban.setIdAdministrateurs(AdministrateurDAO.getInstance().findById(resultRequest.getInt("idAdministrateurs")));
                 
                 System.out.println(ban.getIdBanissements() + " cause : "+ban.getCause());
                 result.add(ban);
@@ -87,7 +87,7 @@ public class BanissementsDAO implements utils.interfaces.DAO<Banissement>{
                 result.setDateFin(resultRequest.getDate("dateFin"));
                 result.setCause(resultRequest.getString("cause"));
                 result.setUser(user);
-                result.setIdAdministrateurs(resultRequest.getInt("idAdministrateurs"));
+                result.setIdAdministrateurs(AdministrateurDAO.getInstance().findById(resultRequest.getInt("idAdministrateurs")));
             }
             
         } catch (SQLException ex) {
@@ -100,7 +100,46 @@ public class BanissementsDAO implements utils.interfaces.DAO<Banissement>{
 
     @Override
     public boolean create(Banissement obj) throws ProblemeTechniqueException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+               
+            requete = "INSERT INTO banissements (dateDebut,dateFin,cause,idAuthentification,idAdministrateurs) VALUES (?,?,?,?,?)";
+            pStatement = DAO.getInstance().getConnection().prepareStatement(requete);
+            pStatement.setDate(1, new java.sql.Date(obj.getDateDebut().getTime()));
+            pStatement.setDate(2, new java.sql.Date(obj.getDateFin().getTime()));
+            pStatement.setString(3, obj.getCause());
+            pStatement.setInt(4, obj.getUser().getIdAuthentification());
+            pStatement.setInt(5, obj.getIdAdministrateurs().getIdAdministrateurs());
+            
+            if (pStatement.executeUpdate() == -1)
+                return false;
+
+        } catch (SQLException ex) {
+            System.out.println("Erreur lors de la création.");
+        }
+        
+        return true;
+    }
+    
+    public int getNbrBannisementByIdAuthentification (int idAuthentification) throws ProblemeTechniqueException{
+       int NbrBan = 0 ; 
+        
+        requete = "Select count(*) as nbr from banissements where idAuthentification = ?";
+        try {
+            pStatement = DAO.getInstance().getConnection().prepareStatement(requete);
+            pStatement.setInt(1, idAuthentification);
+            resultRequest = pStatement.executeQuery();
+
+            if (resultRequest.next()) {
+                
+                NbrBan = resultRequest.getInt("nbr");
+            }
+            
+        } catch (SQLException ex) {
+            System.out.println("Erreur lors de la récupération du nombre de banne.");
+        }
+        
+        
+        return NbrBan;
     }
 
     @Override

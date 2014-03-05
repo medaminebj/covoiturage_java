@@ -7,6 +7,8 @@ package GUI.SuperAdministrateur.GererAdministrateurs;
 import Entity.Administrateur;
 import Entity.Authentification;
 import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -89,6 +91,8 @@ public class GerrerAdministrateur extends javax.swing.JFrame {
         confirmationPasswordTF = new javax.swing.JPasswordField();
         errLoginLabel = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        EmailTf = new javax.swing.JTextField();
         RetourBTN = new javax.swing.JButton();
         modifierBtn = new javax.swing.JButton();
         addBtn = new javax.swing.JButton();
@@ -155,6 +159,8 @@ public class GerrerAdministrateur extends javax.swing.JFrame {
 
         jLabel10.setText("YYYY-MM-DD");
 
+        jLabel11.setText("Email :");
+
         javax.swing.GroupLayout informationsContainerLayout = new javax.swing.GroupLayout(informationsContainer);
         informationsContainer.setLayout(informationsContainerLayout);
         informationsContainerLayout.setHorizontalGroup(
@@ -191,7 +197,8 @@ public class GerrerAdministrateur extends javax.swing.JFrame {
                                     .addComponent(jLabel9)
                                     .addComponent(passwordLabel, javax.swing.GroupLayout.Alignment.TRAILING)))
                             .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING))
+                            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addGroup(informationsContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(informationsContainerLayout.createSequentialGroup()
                                 .addGap(17, 17, 17)
@@ -201,8 +208,11 @@ public class GerrerAdministrateur extends javax.swing.JFrame {
                             .addGroup(informationsContainerLayout.createSequentialGroup()
                                 .addGap(18, 18, 18)
                                 .addGroup(informationsContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(dateDerniereModificationTF, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
-                                    .addComponent(passwordTF)))))
+                                    .addComponent(dateDerniereModificationTF)
+                                    .addComponent(passwordTF)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, informationsContainerLayout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(EmailTf, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, informationsContainerLayout.createSequentialGroup()
                         .addComponent(ConfirmPasswordLabel)
                         .addGap(18, 18, 18)
@@ -217,46 +227,58 @@ public class GerrerAdministrateur extends javax.swing.JFrame {
                 .addGap(45, 45, 45)
                 .addGroup(informationsContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jLabel7)
                     .addComponent(nomTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(loginTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(errLoginLabel))
+                    .addComponent(jLabel11)
+                    .addComponent(EmailTf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(22, 22, 22)
-                .addGroup(informationsContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel8)
-                    .addComponent(prenomTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(dateCreationTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
-                .addGroup(informationsContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel9)
-                    .addComponent(dateNaissanceTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(dateDerniereModificationTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel10))
-                .addGap(24, 24, 24)
                 .addGroup(informationsContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(informationsContainerLayout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                         .addGroup(informationsContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(telephoneTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(34, 34, 34)
+                            .addComponent(jLabel7)
+                            .addComponent(loginTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(errLoginLabel))
+                        .addGap(22, 22, 22)
                         .addGroup(informationsContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(sexeCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6))
-                        .addGap(23, 23, 23))
-                    .addGroup(informationsContainerLayout.createSequentialGroup()
+                            .addComponent(jLabel8)
+                            .addComponent(dateCreationTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(29, 29, 29)
                         .addGroup(informationsContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
+                            .addComponent(jLabel9)
+                            .addComponent(dateDerniereModificationTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(24, 24, 24)
+                        .addGroup(informationsContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(passwordLabel)
                             .addComponent(passwordTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(29, 29, 29)
                         .addGroup(informationsContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(ConfirmPasswordLabel)
                             .addComponent(confirmationPasswordTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(informationsContainerLayout.createSequentialGroup()
+                        .addGroup(informationsContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(prenomTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(29, 29, 29)
+                        .addGroup(informationsContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(dateNaissanceTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel10))
+                        .addGap(24, 24, 24)
+                        .addGroup(informationsContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(informationsContainerLayout.createSequentialGroup()
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                                .addGroup(informationsContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel5)
+                                    .addComponent(telephoneTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(34, 34, 34)
+                                .addGroup(informationsContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(sexeCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel6))
+                                .addGap(23, 23, 23))
+                            .addGroup(informationsContainerLayout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addGap(0, 0, Short.MAX_VALUE))))))
         );
 
         RetourBTN.setText("Accueil");
@@ -298,7 +320,7 @@ public class GerrerAdministrateur extends javax.swing.JFrame {
                         .addComponent(RetourBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(35, 35, 35)
                         .addComponent(supprimerBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(enregisterBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(70, 70, 70)
                         .addComponent(modifierBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -383,7 +405,7 @@ public class GerrerAdministrateur extends javax.swing.JFrame {
     }//GEN-LAST:event_loginTFFocusLost
 
     private void enregisterBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enregisterBtnActionPerformed
-        
+       
         if (verifierChamps())
         {
         //on doit savoir si nous allons modifier ou ajouter
@@ -393,17 +415,25 @@ public class GerrerAdministrateur extends javax.swing.JFrame {
                 authentification.setPassword(utils.Functions.ConvertToMd5(passwordTF.getPassword().toString()));
                 authentification.setType('a');
                 authentification.setDateCreation(new Date(new java.util.Date().getTime()));
-                authentification.setDateDernierModification(null);
-
+                
+                authentification.setDateDernierModification(new Date(new java.util.Date().getTime()));
+                
+                SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+                try {
+                    administrateur.setDateNaissance(df.parse(dateNaissanceTF.getText()));
+                } catch (ParseException ex) {
+                    Logger.getLogger(GerrerAdministrateur.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 administrateur.setNom(nomTF.getText());
                 administrateur.setPrenom(prenomTF.getText());
                 administrateur.setAdresse(adresseTA.getText());
                 administrateur.setNumeroTel(telephoneTF.getText());
                 administrateur.setEstSuper(0);
                 administrateur.setDateNaissance(null);
+                administrateur.setEmail(EmailTf.getText());
 
-                if (sexeCB.getSelectedIndex() == 1)
-                    administrateur.setSexe('H');
+                if (sexeCB.getSelectedIndex() == 0)
+                    administrateur.setSexe('M');
                 else
                     administrateur.setSexe('F');
 
@@ -440,18 +470,24 @@ public class GerrerAdministrateur extends javax.swing.JFrame {
                 authentification.setType('a');
                 authentification.setDateCreation(new Date(new java.util.Date().getTime()));
                 authentification.setDateDernierModification(null);
-                authentification.setEmail(null);
+                authentification.setDateDernierModification(new Date(new java.util.Date().getTime()));
+                SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+                try {
+                    administrateur.setDateNaissance(df.parse(dateNaissanceTF.getText()));
+                } catch (ParseException ex) {
+                    System.out.println("probleme de date");
+                }
                 String jjj = nomTF.getText();
                 administrateur.setNom(jjj);
                 administrateur.setPrenom(prenomTF.getText());
                 administrateur.setAdresse(adresseTA.getText());
                 administrateur.setNumeroTel(telephoneTF.getText());
                 administrateur.setEstSuper(0);
-                administrateur.setDateNaissance(null);
+                administrateur.setEmail(EmailTf.getText());
                 
 
-                if (sexeCB.getSelectedIndex() == 1)
-                    administrateur.setSexe('H');
+                if (sexeCB.getSelectedIndex() == 0)
+                    administrateur.setSexe('M');
                 else
                     administrateur.setSexe('F');
 
@@ -516,7 +552,10 @@ public class GerrerAdministrateur extends javax.swing.JFrame {
     }//GEN-LAST:event_supprimerBtnMouseClicked
 
     private void modifierBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifierBtnActionPerformed
-        // TODO add your handling code here:
+        modifierBtn.disable();
+        supprimerBtn.disable();
+        modifierBtn.setVisible(false);
+        supprimerBtn.setVisible(false);
         if (!informationsContainer.isVisible())
             informationsContainer.setVisible(true);
         
@@ -546,6 +585,7 @@ public class GerrerAdministrateur extends javax.swing.JFrame {
         dateNaissanceTF.setText(admin.getDateNaissance().toString());
         adresseTA.setText(admin.getAdresse());
         telephoneTF.setText(admin.getNumeroTel());
+        EmailTf.setText(admin.getEmail());
         
         if (admin.getSexe() == 'M')
             sexeCB.setSelectedIndex(0);
@@ -569,6 +609,7 @@ public class GerrerAdministrateur extends javax.swing.JFrame {
         telephoneTF.setEnabled(etat);
         sexeCB.setEnabled(etat);
         loginTF.setEnabled(etat);
+        EmailTf.setEnabled(etat);
     }
     
     private void viderChamps(){
@@ -581,6 +622,7 @@ public class GerrerAdministrateur extends javax.swing.JFrame {
         loginTF.setText(null);
         dateCreationTF.setText(null);
         dateDerniereModificationTF.setText(null);
+        EmailTf.setText(null);
     }
     
     private void changerEtatMotDePasse(boolean etat){
@@ -636,6 +678,11 @@ public class GerrerAdministrateur extends javax.swing.JFrame {
             erreurMsg += "la confirmation du mot de passe est inccorecte \n";
             result = false;
        }
+        else if (!utils.Validators.EmailValidator(EmailTf.getText()))
+       {
+            erreurMsg += "le format du mail est incorrecte \n";
+            result = false;
+       }
         if (!result)
             JOptionPane.showMessageDialog(null, erreurMsg);
         
@@ -677,6 +724,7 @@ public class GerrerAdministrateur extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel ConfirmPasswordLabel;
+    private javax.swing.JTextField EmailTf;
     private javax.swing.JButton RetourBTN;
     private javax.swing.JButton addBtn;
     private javax.swing.JTextArea adresseTA;
@@ -690,6 +738,7 @@ public class GerrerAdministrateur extends javax.swing.JFrame {
     private javax.swing.JPanel informationsContainer;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

@@ -17,9 +17,14 @@ public class Session {
     
     public String message;
     
+    private pdf pdfFile;
+    private boolean modePdfOn;
+    
     private Session()
     {
         estConnecté = false;
+        pdfFile = new pdf();
+        modePdfOn = false;
     }
     
     public static Session getInstance()
@@ -66,4 +71,28 @@ public class Session {
         estConnecté = false;
     }
     
+    public boolean estSuperAdministrateur(){
+        return user.getType() == 's';
+    }
+    
+    public boolean estAdministrateur(){
+        return user.getType() == 'a';
+    }
+
+    public pdf getPdfFile() {
+        return pdfFile;
+    }
+
+    public void setPdfFile(pdf pdfFile) {
+        this.pdfFile = pdfFile;
+    }
+
+    public boolean isModePdfOn() {
+        return modePdfOn;
+    }
+
+    public void setModePdfOn(boolean modePdfOn) {
+        this.modePdfOn = modePdfOn;
+    }
+   
 }

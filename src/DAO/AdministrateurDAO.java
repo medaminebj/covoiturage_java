@@ -36,7 +36,7 @@ public class AdministrateurDAO implements utils.interfaces.DAO<Administrateur>{
     public boolean create(Administrateur obj) throws ProblemeTechniqueException {
         try {
                
-            requete = "INSERT INTO administrateurs (nom, prenom,dateNaissance,adresse,numeroTel,sexe) VALUES (?,?,?,?,?,? )";
+            requete = "INSERT INTO administrateurs (nom, prenom,dateNaissance,adresse,numeroTel,sexe,email) VALUES (?,?,?,?,?,?,?)";
             pStatement = DAO.getInstance().getConnection().prepareStatement(requete);
             
             pStatement.setString(1, obj.getNom());
@@ -45,7 +45,7 @@ public class AdministrateurDAO implements utils.interfaces.DAO<Administrateur>{
             pStatement.setString(4, obj.getAdresse());
             pStatement.setString(5, obj.getNumeroTel());
             pStatement.setString(6, obj.getSexe()+"");
-            
+            pStatement.setString(7, obj.getEmail());
             if (pStatement.executeUpdate() == -1)
                 return false;
 
@@ -91,7 +91,7 @@ public class AdministrateurDAO implements utils.interfaces.DAO<Administrateur>{
         
             while(resultRequest.next())
             result.add
-            (new Administrateur(resultRequest.getInt(1), resultRequest.getString(2), resultRequest.getString(3),resultRequest.getString(4),resultRequest.getString(5),resultRequest.getDate(6),resultRequest.getString(7).charAt(0)));
+            (new Administrateur(resultRequest.getInt(1), resultRequest.getString(2), resultRequest.getString(3),resultRequest.getString(4),resultRequest.getString(5),resultRequest.getDate(6),resultRequest.getString(7).charAt(0) ,resultRequest.getString(8)));
         
         } catch (SQLException ex) {
             System.out.println("Erreur lors de la récupération de la liste des Administrateurs.");
@@ -124,6 +124,7 @@ public class AdministrateurDAO implements utils.interfaces.DAO<Administrateur>{
                 result.setDateNaissance(resultRequest.getDate("dateNaissance"));
                 result.setEstSuper(resultRequest.getInt("estSuper"));
                 result.setSexe(resultRequest.getString("sexe").charAt(0));
+                result.setEmail(resultRequest.getString("email"));
                 
             }
         } catch (SQLException ex) {

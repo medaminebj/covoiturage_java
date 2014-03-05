@@ -56,14 +56,29 @@ public class Accueil extends javax.swing.JFrame {
         decoBtn.setBounds(906, 0, 118, 115);
 
         ModifierProfileBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/modifierProfile.png"))); // NOI18N
+        ModifierProfileBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ModifierProfileBtnMouseClicked(evt);
+            }
+        });
         getContentPane().add(ModifierProfileBtn);
         ModifierProfileBtn.setBounds(120, 210, 180, 180);
 
         GestionUsersBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/gerrer_compte.png"))); // NOI18N
+        GestionUsersBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                GestionUsersBtnMouseClicked(evt);
+            }
+        });
         getContentPane().add(GestionUsersBtn);
         GestionUsersBtn.setBounds(430, 210, 180, 180);
 
         GestionReclamationBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/reclamation.png"))); // NOI18N
+        GestionReclamationBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                GestionReclamationBtnMouseClicked(evt);
+            }
+        });
         GestionReclamationBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 GestionReclamationBtnActionPerformed(evt);
@@ -73,10 +88,20 @@ public class Accueil extends javax.swing.JFrame {
         GestionReclamationBtn.setBounds(730, 210, 180, 180);
 
         StatistiqueBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/stat.png"))); // NOI18N
+        StatistiqueBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                StatistiqueBtnMouseClicked(evt);
+            }
+        });
         getContentPane().add(StatistiqueBtn);
         StatistiqueBtn.setBounds(120, 450, 180, 180);
 
         GenererPdfBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/pdf.png"))); // NOI18N
+        GenererPdfBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                GenererPdfBtnMouseClicked(evt);
+            }
+        });
         getContentPane().add(GenererPdfBtn);
         GenererPdfBtn.setBounds(730, 440, 180, 180);
 
@@ -119,6 +144,31 @@ public class Accueil extends javax.swing.JFrame {
         GUI.SuperAdministrateur.GererAdministrateurs.GerrerAdministrateur gaInterface = new GUI.SuperAdministrateur.GererAdministrateurs.GerrerAdministrateur();
         gaInterface.setVisible(true);
     }//GEN-LAST:event_GererAdminBtnActionPerformed
+
+    private void ModifierProfileBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ModifierProfileBtnMouseClicked
+        GUI.GestionProfil.GestionProfil gaInterface = new GUI.GestionProfil.GestionProfil();
+        gaInterface.setVisible(true);
+    }//GEN-LAST:event_ModifierProfileBtnMouseClicked
+
+    private void GestionReclamationBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GestionReclamationBtnMouseClicked
+        GUI.GestionRapports.GestionRapports gaInterface = new GUI.GestionRapports.GestionRapports();
+        gaInterface.setVisible(true);
+    }//GEN-LAST:event_GestionReclamationBtnMouseClicked
+
+    private void GestionUsersBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GestionUsersBtnMouseClicked
+        GUI.GererUtilisateur.GererUtilisateur gaInterface = new GUI.GererUtilisateur.GererUtilisateur();
+        gaInterface.setVisible(true);
+    }//GEN-LAST:event_GestionUsersBtnMouseClicked
+
+    private void StatistiqueBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_StatistiqueBtnMouseClicked
+        GUI.Administrateur.Statistiques.Statistiques gaInterface = new GUI.Administrateur.Statistiques.Statistiques();
+        gaInterface.setVisible(true);
+    }//GEN-LAST:event_StatistiqueBtnMouseClicked
+
+    private void GenererPdfBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GenererPdfBtnMouseClicked
+        GUI.Administrateur.pdf.PDF gaInterface = new GUI.Administrateur.pdf.PDF();
+        gaInterface.setVisible(true);
+    }//GEN-LAST:event_GenererPdfBtnMouseClicked
 
     /**
      * @param args the command line arguments

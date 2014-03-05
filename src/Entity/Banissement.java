@@ -16,13 +16,13 @@ public class Banissement {
     private Date dateFin;
     private String cause;
     private Authentification user;
-    private int idAdministrateurs;
+    private Administrateur idAdministrateurs;
     
     public Banissement(){
         
     }
     
-    public Banissement(int idBanissements, Date dateDebut, Date dateFin, String cause, Authentification user, int idAdministrateurs) {
+    public Banissement(int idBanissements, Date dateDebut, Date dateFin, String cause, Authentification user, Administrateur idAdministrateurs) {
         this.idBanissements = idBanissements;
         this.dateDebut = dateDebut;
         this.dateFin = dateFin;
@@ -71,11 +71,11 @@ public class Banissement {
         this.user = user;
     }
 
-    public int getIdAdministrateurs() {
+    public Administrateur getIdAdministrateurs() {
         return idAdministrateurs;
     }
 
-    public void setIdAdministrateurs(int idAdministrateurs) {
+    public void setIdAdministrateurs(Administrateur idAdministrateurs) {
         this.idAdministrateurs = idAdministrateurs;
     }
     

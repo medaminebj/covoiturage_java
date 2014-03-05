@@ -18,8 +18,9 @@ public class Administrateur {
     private Date dateNaissance ; 
     private int estSuper ; 
     private char sexe ; 
+    private String email ; 
 
-    public Administrateur(int idAdministrateurs, String nom, String prenom, String adresse, String numeroTel, Date dateNaissance, int estSuper, char sexe) {
+    public Administrateur(int idAdministrateurs, String nom, String prenom, String adresse, String numeroTel, Date dateNaissance, int estSuper, char sexe,String email) {
         this.idAdministrateurs = idAdministrateurs;
         this.nom = nom;
         this.prenom = prenom;
@@ -28,6 +29,7 @@ public class Administrateur {
         this.dateNaissance = dateNaissance;
         this.estSuper = estSuper;
         this.sexe = sexe;
+        this.email = email ; 
     }
     
     public Administrateur()
@@ -35,7 +37,7 @@ public class Administrateur {
         
     }
 
-    public Administrateur(int idAdministrateurs, String nom, String prenom, String adresse, String numeroTel, Date dateNaissance, char sexe) {
+    public Administrateur(int idAdministrateurs, String nom, String prenom, String adresse, String numeroTel, Date dateNaissance, char sexe , String email) {
         this.idAdministrateurs = idAdministrateurs;
         this.nom = nom;
         this.prenom = prenom;
@@ -43,6 +45,7 @@ public class Administrateur {
         this.numeroTel = numeroTel;
         this.dateNaissance = dateNaissance;
         this.sexe = sexe;
+        this.email = email ; 
     }
 
    
@@ -109,6 +112,14 @@ public class Administrateur {
 
     public void setSexe(char sexe) {
         this.sexe = sexe;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
     
     

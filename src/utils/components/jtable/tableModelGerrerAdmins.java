@@ -19,7 +19,7 @@ import utils.Exceptions.ProblemeTechniqueException;
  */
 public class tableModelGerrerAdmins extends javax.swing.table.AbstractTableModel{
     private List<Authentification> data;
-    private String[] entetes = {"Nom", "Prénom", "Date de naissance" , "Adresse", "Téléphone", "sexe", "login", "date de création"};
+    private String[] entetes = {"Nom", "Prénom", "Date de naissance" , "Adresse", "Téléphone", "sexe", "login", "date de création","E-mail"};
     
     public tableModelGerrerAdmins(){
         try {
@@ -64,6 +64,8 @@ public class tableModelGerrerAdmins extends javax.swing.table.AbstractTableModel
                 return data.get(rowIndex).getLogin();
             case 7:
                 return data.get(rowIndex).getDateCreation();
+            case 8:
+                return admin.getEmail();
             default:
                 return null; //Ne devrait jamais arriver
         }
