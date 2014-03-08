@@ -27,9 +27,19 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="AcceuilBtn" min="-2" pref="139" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="ModifierBtn" pref="161" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
+                      <Component id="EnregistrerBtn" min="-2" pref="127" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="AnnulerBtn" min="-2" pref="135" max="-2" attributes="0"/>
+                  </Group>
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -46,33 +56,33 @@
                           <Component id="emailTf" max="32767" attributes="0"/>
                           <Component id="datedenaissanceTf" alignment="0" max="32767" attributes="0"/>
                           <Component id="numtelTf" alignment="0" max="32767" attributes="0"/>
-                          <Component id="adresseTf" alignment="0" max="32767" attributes="0"/>
-                          <Component id="nomTf" alignment="0" max="32767" attributes="0"/>
-                          <Component id="prenomTf" alignment="0" max="32767" attributes="0"/>
                           <Component id="passwordTf" alignment="0" max="32767" attributes="0"/>
                           <Component id="confirmPasswordTf" alignment="0" max="32767" attributes="0"/>
-                          <Component id="sexeTf" pref="87" max="32767" attributes="0"/>
+                          <Component id="sexeTf" max="32767" attributes="0"/>
+                          <Component id="nomTf" max="32767" attributes="0"/>
+                          <Component id="prenomTf" alignment="0" max="32767" attributes="0"/>
+                          <Component id="adresseTf" alignment="0" min="-2" pref="196" max="-2" attributes="0"/>
                       </Group>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="AcceuilBtn" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                      <Component id="formaDate" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="ModifierBtn" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="EnregistrerBtn" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="AnnulerBtn" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="15" max="32767" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="232" max="-2" attributes="0"/>
+              <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
+          <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
+              <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="46" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="nomTf" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -95,7 +105,10 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
-                  <Component id="datedenaissanceTf" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                      <Component id="datedenaissanceTf" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="formaDate" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -117,12 +130,12 @@
                   <Component id="confirmPasswordTf" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="27" max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="EnregistrerBtn" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="AcceuilBtn" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="ModifierBtn" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="AnnulerBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="AnnulerBtn" max="32767" attributes="0"/>
+                  <Component id="AcceuilBtn" min="-2" pref="32" max="-2" attributes="0"/>
+                  <Component id="ModifierBtn" max="32767" attributes="0"/>
+                  <Component id="EnregistrerBtn" min="-2" pref="32" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -196,6 +209,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="EnregistrerBtn">
       <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/assets/Enregistrer.png"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Enregistrer"/>
       </Properties>
       <Events>
@@ -204,11 +220,20 @@
     </Component>
     <Component class="javax.swing.JButton" name="AcceuilBtn">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Acceuil"/>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/assets/quitter.png"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Quiiter"/>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="AcceuilBtnMouseClicked"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="ModifierBtn">
       <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/assets/modifier.png"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Modifier"/>
       </Properties>
       <Events>
@@ -218,6 +243,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="AnnulerBtn">
       <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/assets/Annuler.png"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Annuler"/>
       </Properties>
       <Events>
@@ -232,6 +260,19 @@
             <StringItem index="1" value="Femme"/>
           </StringArray>
         </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="formaDate">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="yyyy-mm-dd"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel10">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="18" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Mon profil "/>
       </Properties>
     </Component>
   </SubComponents>

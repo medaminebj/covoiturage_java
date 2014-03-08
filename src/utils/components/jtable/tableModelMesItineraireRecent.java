@@ -60,13 +60,8 @@ public class tableModelMesItineraireRecent  extends javax.swing.table.AbstractTa
         ItineraireMetier itineraireMetier = new ItineraireMetier();
         DAO.participereventsDAO p ;
         boolean VerifierAncienItineraire=false;
-        try {
-            VerifierAncienItineraire = itineraireMetier.VerfierAncienItineraire(data.get(rowIndex).getIdItineraires().getIditineraire());
-        } catch (ProblemeTechniqueException ex) {
-            System.out.println("Probleme de vérification un ancien itineraire");
-        }
-        if (VerifierAncienItineraire)
-        {
+        
+
             switch (columnIndex) {
             case 0:
                 return data.get(rowIndex).getIdItineraires().getDateitineraire();
@@ -111,14 +106,8 @@ public class tableModelMesItineraireRecent  extends javax.swing.table.AbstractTa
             default:
                 return null;
          }
-        }
-        else
-        {
-            switch (columnIndex) {
-                 default:
-                return null;
-            }
-        }
+     
+      
      }
         
     

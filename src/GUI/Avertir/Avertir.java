@@ -47,9 +47,9 @@ public class Avertir extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         Message = new javax.swing.JTextArea();
-        AnullerBtn = new javax.swing.JButton();
+        Quitter = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
@@ -71,7 +71,12 @@ public class Avertir extends javax.swing.JFrame {
         Message.setRows(5);
         jScrollPane1.setViewportView(Message);
 
-        AnullerBtn.setText("Annuler");
+        Quitter.setText("Quitter");
+        Quitter.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                QuitterMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -79,10 +84,10 @@ public class Avertir extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(AnullerBtn)
+                .addComponent(Quitter, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(envoyer)
-                .addGap(23, 23, 23))
+                .addComponent(envoyer, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -110,7 +115,7 @@ public class Avertir extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(envoyer)
-                    .addComponent(AnullerBtn))
+                    .addComponent(Quitter))
                 .addGap(26, 26, 26))
         );
 
@@ -142,11 +147,17 @@ public class Avertir extends javax.swing.JFrame {
                     mail = new Mail(MailTf.getText());
                     mail.SetContenuMail(Message.getText());
                     mail.envoyerMail();
+                    JOptionPane.showMessageDialog(null, "Votre Avertissement à été envoyer");
+                    this.dispose();
             } catch (Exception ex) {
                 Logger.getLogger(Avertir.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }//GEN-LAST:event_envoyerMouseClicked
+
+    private void QuitterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QuitterMouseClicked
+        this.dispose();
+    }//GEN-LAST:event_QuitterMouseClicked
 
     /**
      * @param args the command line arguments
@@ -183,9 +194,9 @@ public class Avertir extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton AnullerBtn;
     private javax.swing.JTextField MailTf;
     private javax.swing.JTextArea Message;
+    private javax.swing.JButton Quitter;
     private javax.swing.JButton envoyer;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

@@ -28,9 +28,11 @@ public class GererUtilisateur extends javax.swing.JFrame {
 
         ConducteurBtn = new javax.swing.JButton();
         PassagerBtn = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(1020, 770));
         getContentPane().setLayout(null);
 
         ConducteurBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/Conductuer.jpg"))); // NOI18N
@@ -40,7 +42,7 @@ public class GererUtilisateur extends javax.swing.JFrame {
             }
         });
         getContentPane().add(ConducteurBtn);
-        ConducteurBtn.setBounds(120, 180, 140, 130);
+        ConducteurBtn.setBounds(230, 330, 140, 130);
 
         PassagerBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/Passager.png"))); // NOI18N
         PassagerBtn.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -49,9 +51,20 @@ public class GererUtilisateur extends javax.swing.JFrame {
             }
         });
         getContentPane().add(PassagerBtn);
-        PassagerBtn.setBounds(490, 180, 140, 130);
+        PassagerBtn.setBounds(650, 330, 140, 130);
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/Precedent.png"))); // NOI18N
+        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel2MouseClicked(evt);
+            }
+        });
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(850, 10, 170, 150);
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/bg admin.png"))); // NOI18N
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(0, 0, 650, 800);
+        jLabel1.setBounds(0, 0, 1010, 768);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -59,12 +72,20 @@ public class GererUtilisateur extends javax.swing.JFrame {
     private void ConducteurBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ConducteurBtnMouseClicked
           GUI.GererUtilisateur.GererConducteur acc = new GUI.GererUtilisateur.GererConducteur();
             acc.setVisible(true);
+            this.dispose();
     }//GEN-LAST:event_ConducteurBtnMouseClicked
 
     private void PassagerBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PassagerBtnMouseClicked
         GUI.GererUtilisateur.GererPassager acc = new GUI.GererUtilisateur.GererPassager();
          acc.setVisible(true);
+         this.dispose();
     }//GEN-LAST:event_PassagerBtnMouseClicked
+
+    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+        GUI.Administrateur.Accueil acc = new GUI.Administrateur.Accueil();
+         acc.setVisible(true);
+         this.dispose();
+    }//GEN-LAST:event_jLabel2MouseClicked
 
     /**
      * @param args the command line arguments
@@ -104,5 +125,6 @@ public class GererUtilisateur extends javax.swing.JFrame {
     private javax.swing.JButton ConducteurBtn;
     private javax.swing.JButton PassagerBtn;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 }

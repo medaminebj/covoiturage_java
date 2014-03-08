@@ -237,4 +237,89 @@ public class PassagersDAO implements utils.interfaces.DAO<Passagers> {
 
         return passager;
     }
+    
+    public double getDeficiteByidPassager(int id, int year) throws ProblemeTechniqueException{
+        requete = "SELECT "+
+                    "case when (sum(prix) is null) then 0 else sum(prix) end "+
+                    "as total "+  
+                    "FROM itineraires "+ 
+                    "WHERE idItineraires in (SELECT idItineraires FROM participerevents WHERE idPassagers = ? and estAccepter = 1)";
+        
+        //si year = 0, on retourne la somme totale de benefices
+        if (year != 0)
+            requete += "and  extract(year from dateItineraire) =? ";
+        
+        try {
+            pStatement = DAO.getInstance().getConnection().prepareStatement(requete);
+            
+            pStatement.setInt(1, id);
+            if (year != 0)
+                pStatement.setInt(2, year);
+            
+            resulrequest = pStatement.executeQuery();
+            
+            resulrequest.next();
+            return resulrequest.getInt("total");
+            
+        } catch (SQLException ex) {
+            System.out.println("probleme lors getDeficiteByidPassager");
+        }
+        return 0;
+    }
+    
+    public double getDeficiteByidPassagerInMonth(int id, int year, int mont) throws ProblemeTechniqueException{
+        requete = "SELECT "+
+                    "case when (sum(prix) is null) then 0 else sum(prix) end "+
+                    "as total "+  
+                    "FROM itineraires "+ 
+                    "WHERE idItineraires in (SELECT idItineraires FROM participerevents WHERE idPassagers = ? and estAccepter = 1)"+
+                    "and  extract(year from dateItineraire) =? "+
+                    "and  extract(month from dateItineraire) =? ";
+        
+        try {
+            pStatement = DAO.getInstance().getConnection().prepareStatement(requete);
+            
+            pStatement.setInt(1, id);
+            pStatement.setInt(2, year);
+            pStatement.setInt(3, mont);
+            
+            resulrequest = pStatement.executeQuery();
+            
+            resulrequest.next();
+            return resulrequest.getInt("total");
+            
+        } catch (SQLException ex) {
+            System.out.println("probleme lors getDeficiteByidPassager");
+        }
+        return 0;
+    }
+    
+    public double getDeficiteByidPassagerInDay(int id, int year, int month, int day) throws ProblemeTechniqueException{
+        requete = "SELECT "+
+                    "case when (sum(prix) is null) then 0 else sum(prix) end "+
+                    "as total "+  
+                    "FROM itineraires "+ 
+                    "WHERE idItineraires in (SELECT idItineraires FROM participerevents WHERE idPassagers = ? and estAccepter = 1)"+
+                    "and  extract(year from dateItineraire) =? "+
+                    "and  extract(month from dateItineraire) =? "+
+                    "and  extract(day from dateItineraire) =? ";
+        
+        try {
+            pStatement = DAO.getInstance().getConnection().prepareStatement(requete);
+            
+            pStatement.setInt(1, id);
+            pStatement.setInt(2, year);
+            pStatement.setInt(3, month);
+            pStatement.setInt(4, day);
+            
+            resulrequest = pStatement.executeQuery();
+            
+            resulrequest.next();
+            return resulrequest.getInt("total");
+            
+        } catch (SQLException ex) {
+            System.out.println("probleme lors getDeficiteByidPassager");
+        }
+        return 0;
+    }
 }

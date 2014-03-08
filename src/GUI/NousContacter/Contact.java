@@ -33,39 +33,65 @@ public class Contact extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
+        MailAhmed = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
+        MailOussama = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
+        MailSabri = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
+        MailAmine = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
+        MailRjiba = new javax.swing.JLabel();
+        Precedent = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setLayout(null);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/ahmed.png"))); // NOI18N
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel1MouseClicked(evt);
+            }
+        });
         jPanel1.add(jLabel1);
         jLabel1.setBounds(40, 200, 180, 180);
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/kenny.png"))); // NOI18N
         jLabel3.setText("jLabel3");
+        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel3MouseClicked(evt);
+            }
+        });
         jPanel1.add(jLabel3);
         jLabel3.setBounds(410, 200, 180, 180);
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/sabri .png"))); // NOI18N
+        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel4MouseClicked(evt);
+            }
+        });
         jPanel1.add(jLabel4);
         jLabel4.setBounds(760, 200, 180, 180);
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/amine.png"))); // NOI18N
+        jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel5MouseClicked(evt);
+            }
+        });
         jPanel1.add(jLabel5);
         jLabel5.setBounds(50, 460, 180, 180);
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/rjiba.png"))); // NOI18N
+        jLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel6MouseClicked(evt);
+            }
+        });
         jPanel1.add(jLabel6);
         jLabel6.setBounds(760, 460, 180, 180);
 
@@ -74,54 +100,63 @@ public class Contact extends javax.swing.JFrame {
         jPanel1.add(jLabel7);
         jLabel7.setBounds(80, 390, 110, 18);
 
-        jLabel8.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        jLabel8.setText("Gharbi.ahmed@esprit.tn");
-        jPanel1.add(jLabel8);
-        jLabel8.setBounds(50, 420, 170, 16);
+        MailAhmed.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        MailAhmed.setText("ahmed.gharbi@esprit.tn");
+        jPanel1.add(MailAhmed);
+        MailAhmed.setBounds(50, 420, 170, 16);
 
         jLabel9.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jLabel9.setText("Ben Henda Oussama");
         jPanel1.add(jLabel9);
         jLabel9.setBounds(420, 390, 170, 18);
 
-        jLabel10.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        jLabel10.setText("Benhenda.oussama@esprit.tn");
-        jPanel1.add(jLabel10);
-        jLabel10.setBounds(400, 420, 194, 16);
+        MailOussama.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        MailOussama.setText("Oussama.benhenda@esprit.tn");
+        jPanel1.add(MailOussama);
+        MailOussama.setBounds(400, 420, 196, 16);
 
         jLabel11.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jLabel11.setText("Ben Hmida Sabri");
         jPanel1.add(jLabel11);
         jLabel11.setBounds(790, 390, 150, 18);
 
-        jLabel12.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        jLabel12.setText("Benhmida.sabri@esprit.tn");
-        jPanel1.add(jLabel12);
-        jLabel12.setBounds(770, 420, 169, 16);
+        MailSabri.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        MailSabri.setText("sabri.benhmida@esprit.tn");
+        jPanel1.add(MailSabri);
+        MailSabri.setBounds(770, 420, 168, 16);
 
         jLabel13.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jLabel13.setText("Ben Jmia Med Amine");
         jPanel1.add(jLabel13);
         jLabel13.setBounds(60, 650, 170, 18);
 
-        jLabel14.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        jLabel14.setText("Benjmia.mohamedamine@esprit.tn");
-        jPanel1.add(jLabel14);
-        jLabel14.setBounds(30, 680, 229, 16);
+        MailAmine.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        MailAmine.setText("mohamedamine.benjemia@esprit.tn");
+        jPanel1.add(MailAmine);
+        MailAmine.setBounds(30, 680, 240, 16);
 
         jLabel15.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jLabel15.setText("Rjiba Mehdi");
         jPanel1.add(jLabel15);
         jLabel15.setBounds(800, 650, 140, 18);
 
-        jLabel16.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        jLabel16.setText("Rjiba.mehdi@esprit.tn");
-        jPanel1.add(jLabel16);
-        jLabel16.setBounds(770, 680, 160, 16);
+        MailRjiba.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        MailRjiba.setText("Mehdi.rjiba@esprit.tn");
+        jPanel1.add(MailRjiba);
+        MailRjiba.setBounds(770, 680, 160, 16);
+
+        Precedent.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/Precedent.png"))); // NOI18N
+        Precedent.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                PrecedentMouseClicked(evt);
+            }
+        });
+        jPanel1.add(Precedent);
+        Precedent.setBounds(830, 0, 170, 190);
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/bg admin.png"))); // NOI18N
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(0, -3, 1030, 830);
+        jLabel2.setBounds(0, 7, 1000, 820);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -132,12 +167,48 @@ public class Contact extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 12, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 800, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+       String email = MailAhmed.getText();
+        GUI.NousContacter.SendMailAdmins gaInterface = new GUI.NousContacter.SendMailAdmins (email);
+        gaInterface.setVisible(true);
+    }//GEN-LAST:event_jLabel1MouseClicked
+
+    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
+        String email = MailOussama.getText();
+        GUI.NousContacter.SendMailAdmins gaInterface = new GUI.NousContacter.SendMailAdmins (email);
+        gaInterface.setVisible(true);
+    }//GEN-LAST:event_jLabel3MouseClicked
+
+    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
+        String email = MailSabri.getText();
+        GUI.NousContacter.SendMailAdmins gaInterface = new GUI.NousContacter.SendMailAdmins (email);
+        gaInterface.setVisible(true);
+    }//GEN-LAST:event_jLabel4MouseClicked
+
+    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
+        String email = MailAmine.getText();
+        GUI.NousContacter.SendMailAdmins gaInterface = new GUI.NousContacter.SendMailAdmins (email);
+        gaInterface.setVisible(true);
+    }//GEN-LAST:event_jLabel5MouseClicked
+
+    private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
+        String email = MailRjiba.getText();
+        GUI.NousContacter.SendMailAdmins gaInterface = new GUI.NousContacter.SendMailAdmins (email);
+        gaInterface.setVisible(true);
+    }//GEN-LAST:event_jLabel6MouseClicked
+
+    private void PrecedentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PrecedentMouseClicked
+        GUI.Authentification gaInterface = new  GUI.Authentification ();
+        gaInterface.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_PrecedentMouseClicked
 
     /**
      * @param args the command line arguments
@@ -174,21 +245,22 @@ public class Contact extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel MailAhmed;
+    private javax.swing.JLabel MailAmine;
+    private javax.swing.JLabel MailOussama;
+    private javax.swing.JLabel MailRjiba;
+    private javax.swing.JLabel MailSabri;
+    private javax.swing.JLabel Precedent;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables

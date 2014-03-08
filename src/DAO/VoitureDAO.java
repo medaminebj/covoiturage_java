@@ -5,6 +5,7 @@
 package DAO;
 
 import Entity.Voiture;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -21,6 +22,8 @@ public class VoitureDAO {
     private Statement statement;
     private String requete;
     private ResultSet resultrequest;
+    private ResultSet resultRequete;
+    private PreparedStatement pStatement;
     
     private VoitureDAO() throws ClassNotFoundException, SQLException, ProblemeTechniqueException {
         statement = DAO.getInstance().getConnection().createStatement();
@@ -80,6 +83,57 @@ public class VoitureDAO {
         return voiture;
     }
     
+     public boolean create(Voiture obj) throws ProblemeTechniqueException {
+        
+        try {
+               
+            requete = "INSERT INTO voitures (marque, modele, annee, nbrPlaces, bagage, estClimatiser,tabac, enfant) VALUES (?,?,?,?,?,?,?,?)";
+            pStatement = DAO.getInstance().getConnection().prepareStatement(requete);
+            
+            pStatement.setString(1, obj.getMarque());
+            pStatement.setString(2, obj.getModele());
+            pStatement.setInt(3, obj.getAnnee());
+            pStatement.setInt(4, obj.getNbrplaces());
+            pStatement.setBoolean(5, obj.isBagage());
+            pStatement.setBoolean(6, obj.isEstclimatiser());
+            pStatement.setBoolean(7, obj.isTabac());
+            pStatement.setBoolean(8, obj.isEnfant());
+            
+            if (pStatement.executeUpdate() == -1)
+                return false;
+
+        } catch (SQLException ex) {
+            System.out.println("Erreur lors de la création.");
+        }
+        
+        return true;
     
+    }
+        
+         public boolean update(Voiture obj) throws ProblemeTechniqueException {
+        
+        try {
+                requete = "UPDATE voitures SET marque=?, modele=?, annee=?, nbrPlaces=?, bagage=?, estClimatiser=?,tabac=?, enfant=? where  idVoitures=?";
+                pStatement = DAO.getInstance().getConnection().prepareStatement(requete);
+
+                pStatement.setString(1, obj.getMarque());
+                pStatement.setString(2, obj.getModele());
+                pStatement.setInt(3, obj.getAnnee());
+                pStatement.setInt(4, obj.getNbrplaces());
+                pStatement.setBoolean(5, obj.isBagage());
+                pStatement.setBoolean(6, obj.isEstclimatiser());
+                pStatement.setBoolean(7, obj.isTabac());
+                pStatement.setBoolean(8, obj.isEnfant());
+                pStatement.setInt(9, obj.getIdvoiture());
+            if (pStatement.executeUpdate() == -1)
+                return false;
+
+        } catch (SQLException ex) {
+            System.out.println("Erreur lors de la création.");
+        }
+        
+        return true;
+    
+    }
     
 }

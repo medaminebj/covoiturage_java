@@ -103,6 +103,7 @@ public class Authentification extends javax.swing.JFrame {
         errorMessageLabel = new javax.swing.JLabel();
         InscriptionBtn = new javax.swing.JButton();
         contactBtn = new javax.swing.JButton();
+        MdpOublier = new javax.swing.JLabel();
         backgroundLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -136,7 +137,7 @@ public class Authentification extends javax.swing.JFrame {
             }
         });
         getContentPane().add(connectBtn);
-        connectBtn.setBounds(483, 400, 100, 23);
+        connectBtn.setBounds(480, 420, 100, 30);
 
         errorMessageLabel.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         errorMessageLabel.setForeground(new java.awt.Color(255, 0, 0));
@@ -154,8 +155,24 @@ public class Authentification extends javax.swing.JFrame {
         InscriptionBtn.setBounds(480, 490, 90, 23);
 
         contactBtn.setText("Nous contacter");
+        contactBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                contactBtnMouseClicked(evt);
+            }
+        });
         getContentPane().add(contactBtn);
         contactBtn.setBounds(320, 490, 110, 23);
+
+        MdpOublier.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        MdpOublier.setForeground(new java.awt.Color(255, 51, 51));
+        MdpOublier.setText("Login ou Mot de passe oublier ? ");
+        MdpOublier.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                MdpOublierMouseClicked(evt);
+            }
+        });
+        getContentPane().add(MdpOublier);
+        MdpOublier.setBounds(410, 390, 180, 15);
 
         backgroundLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/background logo.png"))); // NOI18N
         getContentPane().add(backgroundLabel);
@@ -176,6 +193,15 @@ public class Authentification extends javax.swing.JFrame {
     private void InscriptionBtnMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_InscriptionBtnMousePressed
         (new GUI.Inscription.Inscription()).setVisible(true);
     }//GEN-LAST:event_InscriptionBtnMousePressed
+
+    private void contactBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_contactBtnMouseClicked
+       (new GUI.NousContacter.Contact()).setVisible(true);
+       this.dispose();
+    }//GEN-LAST:event_contactBtnMouseClicked
+
+    private void MdpOublierMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MdpOublierMouseClicked
+        (new GUI.MotDePasseOublier.MotDePasseOublier()).setVisible(true);
+    }//GEN-LAST:event_MdpOublierMouseClicked
 
     /**
      * @param args the command line arguments
@@ -213,6 +239,7 @@ public class Authentification extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton InscriptionBtn;
+    private javax.swing.JLabel MdpOublier;
     private javax.swing.JLabel backgroundLabel;
     private javax.swing.JButton connectBtn;
     private javax.swing.JButton contactBtn;

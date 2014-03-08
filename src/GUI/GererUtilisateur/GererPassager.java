@@ -38,26 +38,26 @@ public class GererPassager extends javax.swing.JFrame {
         datagrid = new javax.swing.JTable();
         RetourBTN = new javax.swing.JButton();
         nomTF = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        NomLabel = new javax.swing.JLabel();
+        PrenomLabel = new javax.swing.JLabel();
+        DateNaissLabel = new javax.swing.JLabel();
         dateNaissanceTF = new javax.swing.JTextField();
-        jLabel10 = new javax.swing.JLabel();
+        yyyy = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         adresseTA = new javax.swing.JTextArea();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        AdresseLabel = new javax.swing.JLabel();
+        TelLabel = new javax.swing.JLabel();
         telephoneTF = new javax.swing.JTextField();
         sexeCB = new javax.swing.JComboBox();
-        jLabel6 = new javax.swing.JLabel();
+        SexeLabel = new javax.swing.JLabel();
         EmailTf = new javax.swing.JTextField();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        EmailLabel = new javax.swing.JLabel();
+        LoginLabel = new javax.swing.JLabel();
         loginTF = new javax.swing.JTextField();
         errLoginLabel = new javax.swing.JLabel();
         dateCreationTF = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
+        DatecLabel = new javax.swing.JLabel();
+        DateMLabel = new javax.swing.JLabel();
         dateDerniereModificationTF = new javax.swing.JTextField();
         passwordLabel = new javax.swing.JLabel();
         passwordTF = new javax.swing.JPasswordField();
@@ -66,7 +66,14 @@ public class GererPassager extends javax.swing.JFrame {
         prenomTF = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(1013, 486));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
+        enregisterBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/Enregistrer.png"))); // NOI18N
         enregisterBtn.setText("Enregistrer");
         enregisterBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -79,6 +86,7 @@ public class GererPassager extends javax.swing.JFrame {
             }
         });
 
+        modifierBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/modifier.png"))); // NOI18N
         modifierBtn.setText("Modifier");
         modifierBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -91,6 +99,7 @@ public class GererPassager extends javax.swing.JFrame {
             }
         });
 
+        supprimerBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/supprimer.png"))); // NOI18N
         supprimerBtn.setText("Supprimer");
         supprimerBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -106,31 +115,34 @@ public class GererPassager extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(datagrid);
 
+        RetourBTN.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/Accueil.png"))); // NOI18N
         RetourBTN.setText("Accueil");
 
-        jLabel1.setText("Nom :");
+        nomTF.setMaximumSize(new java.awt.Dimension(160, 20));
 
-        jLabel2.setText("Prénom :");
+        NomLabel.setText("Nom :");
 
-        jLabel3.setText("Date de naissance :");
+        PrenomLabel.setText("Prénom :");
 
-        jLabel10.setText("YYYY-MM-DD");
+        DateNaissLabel.setText("Date de naissance :");
+
+        yyyy.setText("YYYY-MM-DD");
 
         adresseTA.setColumns(20);
         adresseTA.setRows(5);
         jScrollPane2.setViewportView(adresseTA);
 
-        jLabel4.setText("Adresse :");
+        AdresseLabel.setText("Adresse :");
 
-        jLabel5.setText("Téléphone :");
+        TelLabel.setText("Téléphone :");
 
         sexeCB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Homme", "Femme" }));
 
-        jLabel6.setText("Sexe :");
+        SexeLabel.setText("Sexe :");
 
-        jLabel11.setText("Email :");
+        EmailLabel.setText("Email :");
 
-        jLabel7.setText("Login :");
+        LoginLabel.setText("Login :");
 
         loginTF.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -142,9 +154,9 @@ public class GererPassager extends javax.swing.JFrame {
         errLoginLabel.setText("Login existant");
         errLoginLabel.setFocusable(false);
 
-        jLabel8.setText("Date de création :");
+        DatecLabel.setText("Date de création :");
 
-        jLabel9.setText("Date de la derniere modification :");
+        DateMLabel.setText("Date de la derniere modification :");
 
         passwordLabel.setText("Nouveau mot de passel :");
 
@@ -155,131 +167,130 @@ public class GererPassager extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(127, 127, 127)
-                .addComponent(prenomTF, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
-                .addGap(221, 221, 221)
+                .addContainerGap()
+                .addComponent(PrenomLabel)
+                .addGap(79, 79, 79)
+                .addComponent(prenomTF, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(201, 201, 201)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(DateMLabel)
+                        .addComponent(passwordLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(ConfirmPasswordLabel, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(DatecLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(EmailLabel)
+                        .addComponent(LoginLabel)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel9)
-                                .addComponent(passwordLabel, javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(ConfirmPasswordLabel, javax.swing.GroupLayout.Alignment.TRAILING))
-                            .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(17, 17, 17)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(loginTF)
-                                    .addComponent(dateCreationTF, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(dateDerniereModificationTF, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(passwordTF, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(confirmationPasswordTF, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(18, 18, 18)
-                        .addComponent(errLoginLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(dateDerniereModificationTF, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(passwordTF, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(confirmationPasswordTF, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(127, 127, 127)
-                        .addComponent(jLabel11)
-                        .addGap(18, 18, 18)
-                        .addComponent(EmailTf, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(231, 231, 231))
+                        .addGap(17, 17, 17)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(EmailTf, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(loginTF)
+                                .addComponent(dateCreationTF, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(18, 18, 18)
+                .addComponent(errLoginLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(modifierBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(103, 103, 103)
+                .addComponent(enregisterBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(105, 105, 105)
+                .addComponent(supprimerBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(23, 23, 23))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jScrollPane1)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(RetourBTN)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 416, Short.MAX_VALUE)
-                            .addComponent(enregisterBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(76, 76, 76)
-                            .addComponent(modifierBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(67, 67, 67)
-                            .addComponent(supprimerBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(109, 109, 109))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 993, Short.MAX_VALUE)
                         .addGroup(layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel1)
-                                .addComponent(jLabel2)
-                                .addComponent(jLabel3)
-                                .addComponent(jLabel4)
-                                .addComponent(jLabel5)
-                                .addComponent(jLabel6))
-                            .addGap(26, 26, 26)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(RetourBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(telephoneTF)
-                                        .addComponent(nomTF)
-                                        .addComponent(jScrollPane2)
-                                        .addComponent(dateNaissanceTF, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGap(10, 10, 10)
-                                    .addComponent(jLabel10)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(sexeCB, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(0, 0, Short.MAX_VALUE)))))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(NomLabel)
+                                        .addComponent(DateNaissLabel)
+                                        .addComponent(AdresseLabel)
+                                        .addComponent(TelLabel)
+                                        .addComponent(SexeLabel))
+                                    .addGap(26, 26, 26)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addComponent(telephoneTF)
+                                                .addComponent(jScrollPane2)
+                                                .addComponent(dateNaissanceTF)
+                                                .addComponent(nomTF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                            .addGap(10, 10, 10)
+                                            .addComponent(yyyy))
+                                        .addComponent(sexeCB, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGap(0, 0, Short.MAX_VALUE)))
                     .addContainerGap()))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(195, 195, 195)
-                .addComponent(prenomTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(168, Short.MAX_VALUE)
+                .addGap(121, 121, 121)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel11)
-                    .addComponent(EmailTf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(loginTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(errLoginLabel))
-                .addGap(22, 22, 22)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(dateCreationTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(35, 35, 35)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
-                    .addComponent(dateDerniereModificationTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(24, 24, 24)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(passwordLabel)
-                    .addComponent(passwordTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(ConfirmPasswordLabel)
-                    .addComponent(confirmationPasswordTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(53, 53, 53))
+                    .addComponent(modifierBtn)
+                    .addComponent(enregisterBtn)
+                    .addComponent(supprimerBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(64, 64, 64)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(prenomTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(PrenomLabel)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(EmailLabel)
+                            .addComponent(EmailTf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(LoginLabel)
+                            .addComponent(loginTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(errLoginLabel))
+                        .addGap(7, 7, 7)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(DatecLabel)
+                            .addComponent(dateCreationTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(35, 35, 35)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(DateMLabel)
+                            .addComponent(dateDerniereModificationTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(24, 24, 24)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(passwordLabel)
+                            .addComponent(passwordTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(29, 29, 29)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(ConfirmPasswordLabel)
+                            .addComponent(confirmationPasswordTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(81, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(5, 5, 5)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(supprimerBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(RetourBTN)
-                            .addComponent(modifierBtn)
-                            .addComponent(enregisterBtn)))
+                    .addComponent(RetourBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(18, 18, 18)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel1)
+                        .addComponent(NomLabel)
                         .addComponent(nomTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(22, 22, 22)
-                    .addComponent(jLabel2)
-                    .addGap(35, 35, 35)
+                    .addGap(71, 71, 71)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel3)
+                        .addComponent(DateNaissLabel)
                         .addComponent(dateNaissanceTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel10))
+                        .addComponent(yyyy))
                     .addGap(24, 24, 24)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
@@ -287,13 +298,13 @@ public class GererPassager extends javax.swing.JFrame {
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(telephoneTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel5)))
-                        .addComponent(jLabel4))
+                                .addComponent(TelLabel)))
+                        .addComponent(AdresseLabel))
                     .addGap(18, 18, 18)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel6)
+                        .addComponent(SexeLabel)
                         .addComponent(sexeCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addContainerGap(12, Short.MAX_VALUE)))
+                    .addContainerGap(22, Short.MAX_VALUE)))
         );
 
         pack();
@@ -388,6 +399,31 @@ public class GererPassager extends javax.swing.JFrame {
         confirmationPasswordTF.setVisible(etat);
     }
  
+    private void EtatVisibleAll(boolean etat)
+    {
+        nomTF.setVisible(etat);
+        prenomTF.setVisible(etat);
+        dateNaissanceTF.setVisible(etat);
+        adresseTA.setVisible(etat);
+        telephoneTF.setVisible(etat);
+        sexeCB.setVisible(etat);
+        loginTF.setVisible(etat);
+        dateCreationTF.setVisible(etat);
+        dateDerniereModificationTF.setVisible(etat);
+        EmailTf.setVisible(etat);
+        EmailLabel.setVisible(etat);
+        DatecLabel.setVisible(etat);
+        DateMLabel.setVisible(etat);
+        LoginLabel.setVisible(etat);
+        NomLabel.setVisible(etat);
+        PrenomLabel.setVisible(etat);
+        DateNaissLabel.setVisible(etat);
+        AdresseLabel.setVisible(etat);
+        SexeLabel.setVisible(etat);
+        TelLabel.setVisible(etat);
+        yyyy.setVisible(etat);
+        errLoginLabel.setVisible(etat);
+    }
     private void enregisterBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_enregisterBtnMouseClicked
         Authentification authentification= new Authentification();
         Passagers passager= new Passagers();
@@ -517,11 +553,27 @@ public class GererPassager extends javax.swing.JFrame {
     }
     private void datagridMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_datagridMouseClicked
         remplireInformations(datagrid.getSelectedRow());
+        changerEtatInformation(false);
+        changerEtatMotDePasse(false);
+        EtatVisibleAll(true);
+        modifierBtn.setVisible(true);
+        enregisterBtn.setVisible(true);
+        supprimerBtn.setVisible(true);
     }//GEN-LAST:event_datagridMouseClicked
 
     private void loginTFFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_loginTFFocusLost
 
     }//GEN-LAST:event_loginTFFocusLost
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+      changerEtatInformation(false);
+      changerEtatMotDePasse(false);
+      EtatVisibleAll(false);
+      modifierBtn.setVisible(false);
+      enregisterBtn.setVisible(false);
+      supprimerBtn.setVisible(false);
+      
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
@@ -558,9 +610,19 @@ public class GererPassager extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel AdresseLabel;
     private javax.swing.JLabel ConfirmPasswordLabel;
+    private javax.swing.JLabel DateMLabel;
+    private javax.swing.JLabel DateNaissLabel;
+    private javax.swing.JLabel DatecLabel;
+    private javax.swing.JLabel EmailLabel;
     private javax.swing.JTextField EmailTf;
+    private javax.swing.JLabel LoginLabel;
+    private javax.swing.JLabel NomLabel;
+    private javax.swing.JLabel PrenomLabel;
     private javax.swing.JButton RetourBTN;
+    private javax.swing.JLabel SexeLabel;
+    private javax.swing.JLabel TelLabel;
     private javax.swing.JTextArea adresseTA;
     private javax.swing.JPasswordField confirmationPasswordTF;
     private javax.swing.JTable datagrid;
@@ -569,17 +631,6 @@ public class GererPassager extends javax.swing.JFrame {
     private javax.swing.JTextField dateNaissanceTF;
     private javax.swing.JButton enregisterBtn;
     private javax.swing.JLabel errLoginLabel;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField loginTF;
@@ -591,5 +642,6 @@ public class GererPassager extends javax.swing.JFrame {
     private javax.swing.JComboBox sexeCB;
     private javax.swing.JButton supprimerBtn;
     private javax.swing.JTextField telephoneTF;
+    private javax.swing.JLabel yyyy;
     // End of variables declaration//GEN-END:variables
 }

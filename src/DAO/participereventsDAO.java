@@ -125,6 +125,37 @@ public class participereventsDAO implements utils.interfaces.DAO<participerevent
         return Result;
     }
      
+      public List<Entity.participerevents> FindParticiperEventsByIdItinerairesAccepted(int id) throws ProblemeTechniqueException
+    {
+        //si le passager est accepter 
+        List<Entity.participerevents> Result = new ArrayList<>();
+        Entity.participerevents participer ;
+         try {
+            requete = "select * from participerevents where idItineraires = ? and estAccepter=true";
+            pStatement = DAO.getInstance().getConnection().prepareStatement(requete);
+            pStatement.setInt(1,id);
+            resultRequest = pStatement.executeQuery();
+            while (resultRequest.next()) {
+               participer = new Entity.participerevents ();
+                participer.setIdParticiperEvents(resultRequest.getInt("IdParticiperEvents"));
+                try {
+                    participer.setIdPassagers(PassagersDAO.getInstance().getPassagerById(resultRequest.getInt("IdPassagers")));
+                    participer.setVilleDepart(VilleItineraireDAO.getInstance().FindVillesItinerairesById(resultRequest.getInt("VilleDepart")));
+                    participer.setVilleArrivee(VilleItineraireDAO.getInstance().FindVillesItinerairesById(resultRequest.getInt("VilleArrivee")));
+                    participer.setIdItineraires(ItineraireDAO.getInstance().getItineraireById(resultRequest.getInt("idItineraires")));
+                } catch (ClassNotFoundException ex) {
+                     System.out.println("Erreur lors de la récupération d'une localité ou itineraire");
+                } 
+                participer.setEstAccepter(resultRequest.getBoolean("EstAccepter"));
+                Result.add(participer);
+            }
+
+        } catch (SQLException ex) {
+            System.out.println("Erreur lors de la récupération d'un user by login.");
+        }
+        
+        return Result;
+    }
      public int NombreDePassagerParEvenement(int idEvent , int idItineraire) throws ProblemeTechniqueException
     {
        int NombrePassager= 0; 

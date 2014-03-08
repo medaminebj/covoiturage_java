@@ -194,6 +194,7 @@ public class GestionRapports extends javax.swing.JFrame {
     private void AcceuilbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AcceuilbtnActionPerformed
         // TODO add your handling code here:
        (new GUI.Administrateur.Accueil()).setVisible(true);
+       this.dispose();
     }//GEN-LAST:event_AcceuilbtnActionPerformed
 
     private void BannirbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BannirbtnActionPerformed
@@ -203,11 +204,17 @@ public class GestionRapports extends javax.swing.JFrame {
     private void datagridMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_datagridMouseClicked
         
         remplirinformations(datagrid.getSelectedRow());
+        Bannirbtn.setVisible(true);
+        Avertirbtn.setVisible(true);
+        infoItinerraire.setVisible(true);
     }//GEN-LAST:event_datagridMouseClicked
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
        infoItinerraire.disable();
        user.disable();
+       Bannirbtn.setVisible(false);
+       Avertirbtn.setVisible(false);
+       infoItinerraire.setVisible(false);
       
     }//GEN-LAST:event_formWindowOpened
 

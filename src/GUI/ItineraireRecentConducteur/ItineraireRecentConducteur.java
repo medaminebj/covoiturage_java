@@ -36,6 +36,7 @@ public class ItineraireRecentConducteur extends javax.swing.JFrame {
     private Passagers passagers ; 
     List<String> info = new ArrayList<>();
     List<String>infoMail = new ArrayList<>();
+    private List<Passagers> PassagerList ;
     
     public ItineraireRecentConducteur() {
         initComponents();
@@ -54,13 +55,11 @@ public class ItineraireRecentConducteur extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         jScrollPane1 = new javax.swing.JScrollPane();
         datagrid = new javax.swing.JTable();
-        ListePassager = new javax.swing.JComboBox();
         ListePassagerLabel = new javax.swing.JLabel();
         NoterBtn = new javax.swing.JButton();
         ReporterBtn = new javax.swing.JButton();
         NoteLabel = new javax.swing.JLabel();
         NoteTf = new javax.swing.JTextField();
-        EmailBox = new javax.swing.JComboBox();
         etoile1 = new javax.swing.JLabel();
         etoile2 = new javax.swing.JLabel();
         etoile3 = new javax.swing.JLabel();
@@ -74,12 +73,15 @@ public class ItineraireRecentConducteur extends javax.swing.JFrame {
         NbrBannisLabel = new javax.swing.JLabel();
         NbrBannisTf = new javax.swing.JTextField();
         EnregisterReportBtn = new javax.swing.JButton();
+        ListePassager = new javax.swing.JComboBox();
+        validerBtn = new javax.swing.JButton();
+        Accueil = new javax.swing.JButton();
 
         jMenu1.setText("jMenu1");
 
         jMenu2.setText("jMenu2");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
@@ -93,13 +95,6 @@ public class ItineraireRecentConducteur extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(datagrid);
-
-        ListePassager.setModel(new utils.ComboBoxModel.ComboModelNomPassager(info));
-        ListePassager.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                ListePassagerItemStateChanged(evt);
-            }
-        });
 
         ListePassagerLabel.setText("Liste des Passagers");
 
@@ -130,8 +125,6 @@ public class ItineraireRecentConducteur extends javax.swing.JFrame {
             }
         });
 
-        EmailBox.setModel(new utils.ComboBoxModel.ComboModelNomPassager(infoMail));
-
         etoile1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/etoile.png"))); // NOI18N
 
         etoile2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/etoile.png"))); // NOI18N
@@ -159,6 +152,27 @@ public class ItineraireRecentConducteur extends javax.swing.JFrame {
             }
         });
 
+        ListePassager.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                ListePassagerItemStateChanged(evt);
+            }
+        });
+
+        validerBtn.setText("Valider");
+        validerBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                validerBtnMouseClicked(evt);
+            }
+        });
+
+        Accueil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/Accueil.png"))); // NOI18N
+        Accueil.setText("Accueil");
+        Accueil.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                AccueilMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -180,9 +194,7 @@ public class ItineraireRecentConducteur extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(ListePassagerLabel)
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(EmailBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(ListePassager, 0, 174, Short.MAX_VALUE))
+                        .addComponent(ListePassager, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(33, 33, 33)
                         .addComponent(NoteLabel)
                         .addGap(18, 18, 18)
@@ -197,15 +209,19 @@ public class ItineraireRecentConducteur extends javax.swing.JFrame {
                         .addComponent(etoile4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(etoile5)
+                        .addGap(18, 18, 18)
+                        .addComponent(validerBtn)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(NoterBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(EnregisterReportBtn)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(CauseLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 543, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(EnregisterReportBtn)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(CauseLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 543, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(Accueil, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -213,17 +229,16 @@ public class ItineraireRecentConducteur extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(EmailBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(11, 11, 11)
+                .addGap(49, 49, 49)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(ListePassager, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(ListePassagerLabel)
                         .addComponent(NoterBtn)
                         .addComponent(NoteLabel)
                         .addComponent(NoteTf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(etoile1))
+                        .addComponent(etoile1)
+                        .addComponent(ListePassager, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(validerBtn))
                     .addComponent(etoile2)
                     .addComponent(etoile3)
                     .addComponent(etoile4)
@@ -237,44 +252,69 @@ public class ItineraireRecentConducteur extends javax.swing.JFrame {
                     .addComponent(NbrBannisTf, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(31, 31, 31)
                         .addComponent(CauseLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(EnregisterReportBtn)
-                        .addGap(54, 54, 54))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(18, 18, 18)
+                .addComponent(EnregisterReportBtn)
+                .addGap(24, 24, 24)
+                .addComponent(Accueil, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
     private void remplirInformationComboBox(int ligne) throws ProblemeTechniqueException
     {
+            ListePassager.removeAllItems();
+            ListePassager.removeAll();
             villeItineraire = new VilleItineraire();
             itineraire = new Itineraire();
-            
+            PassagerList = new ArrayList<>();
         try {
             info=new ArrayList<>();
             infoMail = new ArrayList<>();
             villeItineraire =  ((utils.components.jtable.tableModelMesItineraireRecent)datagrid.getModel()).getRowEntity(ligne);
             itineraire = villeItineraire.getIdItineraires();
             List<participerevents> ListEvents = new ArrayList<>();
-            ListEvents = participereventsDAO.getInstance().FindParticiperEventsByIdItineraires(itineraire.getIditineraire());
-            List<Passagers> PassagerList = new ArrayList<>();
+            ListEvents = participereventsDAO.getInstance().FindParticiperEventsByIdItinerairesAccepted(itineraire.getIditineraire());
             for(int i=0;i<ListEvents.size();i++)
             {
                 PassagerList.add(ListEvents.get(i).getIdPassagers());
             }
              for(int j=0;j<PassagerList.size();j++)
             {
-                info.add(PassagerList.get(j).getNom()+" "+PassagerList.get(j).getPrenom());
-                infoMail.add(PassagerList.get(j).getEmail());
+                ListePassager.addItem(PassagerList.get(j).getNom()+" "+PassagerList.get(j).getPrenom());
             }
             
-            ListePassager.setModel(new utils.ComboBoxModel.ComboModelNomPassager(info));
-            EmailBox.setModel(new utils.ComboBoxModel.ComboModelNomPassager(infoMail));
+             if (PassagerList.isEmpty() || PassagerList.size()==0)
+             {
+                 ListePassager.removeAllItems();
+                 ListePassager.addItem("Pas de passager");
+                 NbrBannisLabel.setVisible(false);
+                 NbrReportLabel.setVisible(false);
+                 NbrBannisTf.setVisible(false);
+                 NbrReportTf.setVisible(false);
+                 ListePassager.disable();
+                 NoteLabel.setVisible(false);
+                 NoteTf.setVisible(false);
+                 NoterBtn.setVisible(false);
+                 ReporterBtn.setVisible(false);
+             }
+             else
+             {
+                 NbrBannisLabel.setVisible(true);
+                 NbrReportLabel.setVisible(true);
+                 NbrBannisTf.setVisible(true);
+                 NbrReportTf.setVisible(true);
+                
+             }
+            
+            //ListePassager.setModel(new utils.ComboBoxModel.ComboModelNomPassager(info));
+            ListePassager.setSelectedIndex(0);
+            //EmailBox.setModel(new utils.ComboBoxModel.ComboModelNomPassager(infoMail));
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ItineraireRecentConducteur.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
@@ -283,12 +323,15 @@ public class ItineraireRecentConducteur extends javax.swing.JFrame {
     }
     private void remplirinformations(int ligne) throws ProblemeTechniqueException
     {
-            
-        remplirInformationComboBox(ligne);
+            ListePassager.removeAllItems();
+            ListePassager.removeAll();   
+            remplirInformationComboBox(ligne);
         
         
     }
     private void datagridMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_datagridMouseClicked
+       ReporterBtn.setVisible(true);
+       NoterBtn.setVisible(true);
        ListePassager.setVisible(true);
        ListePassagerLabel.setVisible(true);
        NoteTf.setText("");
@@ -309,11 +352,10 @@ public class ItineraireRecentConducteur extends javax.swing.JFrame {
     }//GEN-LAST:event_NoteTfActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-      NoteLabel.setVisible(false);
-       NoteTf.setVisible(false);
+        NoteLabel.setVisible(false);
+        NoteTf.setVisible(false);
         ListePassager.setVisible(false);
         ListePassagerLabel.setVisible(false);
-        EmailBox.setVisible(false);
         NoteTf.disable();
         etoile1.setVisible(false);
         etoile2.setVisible(false);
@@ -330,9 +372,20 @@ public class ItineraireRecentConducteur extends javax.swing.JFrame {
         NbrReportTf.disable();
         CauseTF.disable();
         EnregisterReportBtn.setVisible(false);
+        NbrBannisTf.disable();
+        NbrReportTf.disable();
+        validerBtn.setVisible(false);
+        ReporterBtn.setVisible(false);
+        NoterBtn.setVisible(false);
     }//GEN-LAST:event_formWindowOpened
     private void CalculeNote(double note)
     {
+        
+        etoile1.setVisible(false);
+        etoile2.setVisible(false);
+        etoile3.setVisible(false);
+        etoile4.setVisible(false);
+        etoile5.setVisible(false);
         if ((0<=note) && (note<2))
              etoile1.setVisible(true);
         else if ((2<=note) && (note<4))
@@ -371,59 +424,26 @@ public class ItineraireRecentConducteur extends javax.swing.JFrame {
              etoile4.setVisible(false);
              etoile5.setVisible(false);
     }
-    private void ListePassagerItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_ListePassagerItemStateChanged
-            Passagers passagers = new Passagers();
-            NoteLabel.setVisible(true);
-            NoteTf.setVisible(true);
-            setEtoilsInvisible();
-            NbrBannisLabel.setVisible(true);
-            NbrBannisTf.setVisible(true);
-            NbrReportLabel.setVisible(true);
-            NbrReportTf.setVisible(true);
-            
-          
-            
-            
-            //fin de l'affectation
-            EmailBox.setSelectedIndex(ListePassager.getSelectedIndex());
-        try {
-             passagers = PassagersDAO.getInstance().getPassagerByEmail(EmailBox.getSelectedItem().toString()) ;
-             double note = passagers.getNote();
-             String result=String.valueOf(note);
-             NoteTf.setText(result);
-             if(!NoteTf.getText().equals(""))
-             {
-                 CalculeNote(note);
-             }
-               //affecter des vlauer au champs nobre de bannisement et nombre de report 
-            
-            Authentification authentification = new Authentification();
-            authentification = AuthentificationDAO.getInstance().getByIdCompte(passagers.getIdPassagers()) ;
-            int nbrBan = BanissementsDAO.getInstance().getNbrBannisementByIdAuthentification(authentification.getIdAuthentification());
-            int nbrReport = RapportDAO.getInstance().getNbrBannisementByIdPassager(passagers.getIdPassagers());
-            NbrBannisTf.setText(String.valueOf(nbrBan));
-            NbrReportTf.setText(String.valueOf(nbrReport));
-        } catch (ProblemeTechniqueException ex) {
-            Logger.getLogger(ItineraireRecentConducteur.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ItineraireRecentConducteur.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(ItineraireRecentConducteur.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-       
-    }//GEN-LAST:event_ListePassagerItemStateChanged
-
     private void NoterBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_NoterBtnMouseClicked
+        setEtoilsInvisible();
         NoteLabel.setVisible(true);
         NoteTf.setText("");
         NoteTf.setVisible(true);
         NoteTf.enable();
+        validerBtn.setVisible(true);
     }//GEN-LAST:event_NoterBtnMouseClicked
 
     private void NoteTfKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NoteTfKeyReleased
         setEtoilsInvisible();
-        int note = Integer.parseInt(NoteTf.getText());
+        int note;
+        if(NoteTf.getText().equals("") || !utils.Validators.NumeroTelValidator(NoteTf.getText()))
+        {
+            note = -1;
+        }
+        else
+        {
+            note = Integer.parseInt(NoteTf.getText());
+        }
         CalculeNote(note);
     }//GEN-LAST:event_NoteTfKeyReleased
 
@@ -435,6 +455,7 @@ public class ItineraireRecentConducteur extends javax.swing.JFrame {
     }//GEN-LAST:event_ReporterBtnMouseClicked
 
     private void EnregisterReportBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EnregisterReportBtnMouseClicked
+        Passagers pp = new Passagers();
         if (CauseTF.getText().equals(""))
         {
             JOptionPane.showMessageDialog(null, "Il faut remplir le cause");
@@ -445,7 +466,8 @@ public class ItineraireRecentConducteur extends javax.swing.JFrame {
              java.text.SimpleDateFormat df = new java.text.SimpleDateFormat("yyyy-mm-dd");
              df.format(Calendar.getInstance().getTime());
             try {
-                passagers = PassagersDAO.getInstance().getPassagerByEmail(EmailBox.getSelectedItem().toString()) ;
+                  if(ListePassager.getSelectedIndex()!=-1)
+                  pp = PassagersDAO.getInstance().getPassagerByEmail(PassagerList.get(ListePassager.getSelectedIndex()).getEmail()) ;
             } catch (ProblemeTechniqueException ex) {
                 System.out.println("probleme de recuperation dun passager");
             }
@@ -454,38 +476,112 @@ public class ItineraireRecentConducteur extends javax.swing.JFrame {
             rapport.setRapporterConducteur(false);
             rapport.setRapporterPassager(true);
             rapport.setDaterapport(df.getCalendar().getTime());
-            rapport.setIdPassager(passagers);
+            rapport.setIdPassager(pp);
             rapport.setTraiter(false);
             rapport.setIditineraire(itineraire);
             try {
                   if (RapportDAO.getInstance().create(rapport))
                   {
-                      JOptionPane.showMessageDialog(null, "Le Passager "+passagers.getNom()+" "+passagers.getPrenom()+" a été rapporter");
+                      JOptionPane.showMessageDialog(null, "Le Passager "+PassagerList.get(ListePassager.getSelectedIndex()).getNom()+" "+PassagerList.get(ListePassager.getSelectedIndex()).getPrenom()+" a été rapporter");
                       CauseLabel.setVisible(false);
                       CauseTF.setVisible(false);
                       ReporterBtn.setVisible(false);
                       EnregisterReportBtn.setVisible(false);
-                      passagers = PassagersDAO.getInstance().getPassagerByEmail(EmailBox.getSelectedItem().toString()) ;
-                      Authentification authentification = new Authentification();
-                      authentification = AuthentificationDAO.getInstance().getByIdCompte(passagers.getIdPassagers()) ;
-                      int nbrBan = BanissementsDAO.getInstance().getNbrBannisementByIdAuthentification(authentification.getIdAuthentification());
-                      int nbrReport = RapportDAO.getInstance().getNbrBannisementByIdPassager(passagers.getIdPassagers());
-                      NbrBannisTf.setText(String.valueOf(nbrBan));
-                      NbrReportTf.setText(String.valueOf(nbrReport));
+                      if(ListePassager.getSelectedIndex()!=-1)
+                      {
+                        passagers = PassagersDAO.getInstance().getPassagerByEmail(PassagerList.get(ListePassager.getSelectedIndex()).getEmail()) ;
+                        Authentification authentification = new Authentification();
+                        authentification = AuthentificationDAO.getInstance().getByIdCompteAndType(passagers.getIdPassagers(),"p") ;
+                        int nbrBan = BanissementsDAO.getInstance().getNbrBannisementByIdAuthentification(authentification.getIdAuthentification());
+                        int nbrReport = RapportDAO.getInstance().getNbrRapportByIdPassager(passagers.getIdPassagers());
+                        NbrBannisTf.setText(String.valueOf(nbrBan));
+                        NbrReportTf.setText(String.valueOf(nbrReport));
+                      }
                   }
                   else
                   {
                        JOptionPane.showMessageDialog(null, "le Passager n'as pas été rapporter");
                   }
             } catch (ClassNotFoundException ex) {
-                Logger.getLogger(ItineraireRecentConducteur.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println("exception 1 ");
             } catch (ProblemeTechniqueException ex) {
-                Logger.getLogger(ItineraireRecentConducteur.class.getName()).log(Level.SEVERE, null, ex);
+                  System.out.println("exception 2 ");
             } catch (SQLException ex) {
-                Logger.getLogger(ItineraireRecentConducteur.class.getName()).log(Level.SEVERE, null, ex);
+                  System.out.println("exception 3 ");
             } 
         }
     }//GEN-LAST:event_EnregisterReportBtnMouseClicked
+
+    private void ListePassagerItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_ListePassagerItemStateChanged
+        NoteTf.setVisible(true);
+        int index = ListePassager.getSelectedIndex();
+       
+        //EmailBox.setSelectedIndex(index);
+            
+            if(ListePassager.getSelectedIndex()!=-1 && !ListePassager.getSelectedItem().equals("Pas de passager") && !PassagerList.isEmpty())
+            {
+                    ListePassager.enable();
+                    NoteTf.setText(String.valueOf(PassagerList.get(index).getNote()));
+                    CalculeNote(PassagerList.get(index).getNote());
+            try {
+                 Authentification authentification = new Authentification();
+                 authentification = AuthentificationDAO.getInstance().getByIdCompteAndType(PassagerList.get(index).getIdPassagers(),"p") ;
+                int nbrbannis = BanissementsDAO.getInstance().getNbrBannisementByIdAuthentification(authentification.getIdAuthentification());
+                int nbrreport = RapportDAO.getInstance().getNbrRapportByIdPassager(PassagerList.get(index).getIdPassagers());
+                NbrBannisTf.setText(String.valueOf(nbrbannis));
+                NbrReportTf.setText(String.valueOf(nbrreport));
+            } catch (ProblemeTechniqueException ex) {
+                Logger.getLogger(ItineraireRecentConducteur.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(ItineraireRecentConducteur.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(ItineraireRecentConducteur.class.getName()).log(Level.SEVERE, null, ex);
+            }
+                
+            }
+            
+        
+    }//GEN-LAST:event_ListePassagerItemStateChanged
+
+    private void validerBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_validerBtnMouseClicked
+       if (NoteTf.getText().equalsIgnoreCase(""))
+       {
+            JOptionPane.showMessageDialog(null, "il faut remplir la note");
+       }
+       else if (!utils.Validators.NumeroTelValidator(NoteTf.getText()))
+       {
+           JOptionPane.showMessageDialog(null, "la note ne dois pas contenir des caractéres !");
+       }
+       else if (!utils.Validators.TailleNoteValidator(NoteTf.getText()))
+       {
+           JOptionPane.showMessageDialog(null, "la note de dois pas dépasser le chiffre 10 !");
+       }
+       else
+       {
+           passagers=PassagerList.get(ListePassager.getSelectedIndex()) ;
+           Double NoubelleNote = (passagers.getNote() + Double.parseDouble(NoteTf.getText()))/2;
+           passagers.setNote(NoubelleNote);
+           try {
+               if (PassagersDAO.getInstance().update(passagers))
+               {
+                   JOptionPane.showMessageDialog(null, "la note a été attribuer avec succé");
+                   passagers=PassagersDAO.getInstance().getPassagerById(passagers.getIdPassagers());
+                   NoteTf.setText(String.valueOf(passagers.getNote()));
+                   NoteTf.disable();
+                   NoterBtn.setVisible(false);
+                   validerBtn.setVisible(false);
+                   
+               }
+           } catch (ProblemeTechniqueException ex) {
+               Logger.getLogger(ItineraireRecentConducteur.class.getName()).log(Level.SEVERE, null, ex);
+           }
+       }
+    }//GEN-LAST:event_validerBtnMouseClicked
+
+    private void AccueilMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AccueilMouseClicked
+        (new GUI.Conductuer.Accueil()).setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_AccueilMouseClicked
 
     /**
      * @param args the command line arguments
@@ -522,9 +618,9 @@ public class ItineraireRecentConducteur extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Accueil;
     private javax.swing.JLabel CauseLabel;
     private javax.swing.JTextArea CauseTF;
-    private javax.swing.JComboBox EmailBox;
     private javax.swing.JButton EnregisterReportBtn;
     private javax.swing.JComboBox ListePassager;
     private javax.swing.JLabel ListePassagerLabel;
@@ -546,5 +642,6 @@ public class ItineraireRecentConducteur extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JButton validerBtn;
     // End of variables declaration//GEN-END:variables
 }

@@ -65,6 +65,7 @@ public class Statistiques extends javax.swing.JFrame {
         filterMonth = new javax.swing.JComboBox();
         addToPdfBtn = new javax.swing.JButton();
         inscriBtnComptes = new javax.swing.JButton();
+        AccueilBtn = new javax.swing.JButton();
         banStatPanel = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
 
@@ -156,6 +157,14 @@ public class Statistiques extends javax.swing.JFrame {
             }
         });
 
+        AccueilBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/Accueil.png"))); // NOI18N
+        AccueilBtn.setText("Accueuil");
+        AccueilBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                AccueilBtnMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout comptesStatPanelLayout = new javax.swing.GroupLayout(comptesStatPanel);
         comptesStatPanel.setLayout(comptesStatPanelLayout);
         comptesStatPanelLayout.setHorizontalGroup(
@@ -172,6 +181,9 @@ public class Statistiques extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(filterStatCompte, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
+            .addGroup(comptesStatPanelLayout.createSequentialGroup()
+                .addComponent(AccueilBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         comptesStatPanelLayout.setVerticalGroup(
             comptesStatPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -184,9 +196,10 @@ public class Statistiques extends javax.swing.JFrame {
                     .addComponent(inscriBtnComptes))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(filterStatCompte, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 510, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 509, Short.MAX_VALUE)
                 .addComponent(CompteStatResult, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(18, 18, 18)
+                .addComponent(AccueilBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         menucontainer.addTab("Les comptes", comptesStatPanel);
@@ -208,7 +221,7 @@ public class Statistiques extends javax.swing.JFrame {
             .addGroup(banStatPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(657, Short.MAX_VALUE))
+                .addContainerGap(695, Short.MAX_VALUE))
         );
 
         menucontainer.addTab("Les bannissements", banStatPanel);
@@ -327,6 +340,11 @@ public class Statistiques extends javax.swing.JFrame {
             }
     }//GEN-LAST:event_addToPdfBtnMousePressed
 
+    private void AccueilBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AccueilBtnMouseClicked
+        (new GUI.Administrateur.Accueil()).setVisible(true);
+         this.dispose();
+    }//GEN-LAST:event_AccueilBtnMouseClicked
+
     private void inscriBtnCompteStat(int year, int month){
         try {
             CompteStatResult.removeAll();
@@ -384,6 +402,7 @@ public class Statistiques extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton AccueilBtn;
     private javax.swing.JPanel CompteStatResult;
     private javax.swing.JButton addToPdfBtn;
     private javax.swing.JPanel banStatPanel;

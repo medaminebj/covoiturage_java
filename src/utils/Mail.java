@@ -4,6 +4,7 @@ package utils;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.mail.Header;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;
@@ -19,8 +20,8 @@ import javax.mail.internet.MimeMessage;
  */
 public class Mail extends Exception {
 
-                final String username = "oussama.benhenda@esprit.tn";
-		final String password = "loveamerica66";
+                final String username = "devboysteam@gmail.com";
+		final String password = "peaceandlove123456";
                 Message message;
 
     public Mail(String mail) throws Exception{
@@ -42,9 +43,10 @@ public class Mail extends Exception {
                try {
 
 			message = new MimeMessage(session);
-			message.setFrom(new InternetAddress("oussama.benhenda@esprit.tn"));
+			message.setFrom(new InternetAddress("devboysteam@gmail.com"));
 			message.setRecipients(Message.RecipientType.TO,InternetAddress.parse(mail));
-			message.setSubject("Flux RSS");
+                        
+			//message.setSubject("Flux RSS");
 			/*message.setText("Bienvenue "+mail+" ");
 			Transport.send(message);*/
 			System.out.println("Done");
@@ -66,6 +68,18 @@ public class Mail extends Exception {
         }
 
     }
+    
+        public void SetObjectMail(String contenu){
+        try {
+            message.setSubject(contenu);
+
+        } catch (MessagingException ex) {
+            Logger.getLogger(Mail.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+        
+        
     public void envoyerMail(){
         try {
             Transport.send(message);

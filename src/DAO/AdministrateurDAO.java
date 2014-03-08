@@ -133,4 +133,37 @@ public class AdministrateurDAO implements utils.interfaces.DAO<Administrateur>{
         
         return result;
     }
+    
+     public Administrateur findByEmail(String email) throws ProblemeTechniqueException {
+        Administrateur result = null;
+        
+        requete = "select * from administrateurs where email = ?";
+        
+        try {
+            pStatement = DAO.getInstance().getConnection().prepareStatement(requete);
+            
+            pStatement.setString(1 , email);
+            resultRequest = pStatement.executeQuery();
+            
+            if (resultRequest.next())
+            {
+                result = new Administrateur();
+                
+                result.setIdAdministrateurs(resultRequest.getInt("idAdministrateurs"));
+                result.setNom(resultRequest.getString("nom"));
+                result.setPrenom(resultRequest.getString("prenom"));
+                result.setAdresse(resultRequest.getString("adresse"));
+                result.setNumeroTel(resultRequest.getString("numeroTel"));
+                result.setDateNaissance(resultRequest.getDate("dateNaissance"));
+                result.setEstSuper(resultRequest.getInt("estSuper"));
+                result.setSexe(resultRequest.getString("sexe").charAt(0));
+                result.setEmail(resultRequest.getString("email"));
+                
+            }
+        } catch (SQLException ex) {
+            System.out.println("probleme lors récupération de l'admin par id.");
+        }
+        
+        return result;
+    }
 }

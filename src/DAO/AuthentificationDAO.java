@@ -47,7 +47,6 @@ public class AuthentificationDAO implements utils.interfaces.DAO<Authentificatio
             Authentification authentification ;
             while(resultRequest.next()){
                 authentification = new Authentification();
-                
                 authentification.setIdAuthentification(resultRequest.getInt("idAuthentification"));
                 authentification.setLogin(resultRequest.getString("login"));
                 authentification.setPassword(resultRequest.getString("password"));
@@ -231,7 +230,7 @@ public class AuthentificationDAO implements utils.interfaces.DAO<Authentificatio
         return 0;
     }
     
-     public Authentification getByIdCompte(int id) throws ProblemeTechniqueException 
+     public Authentification getByIdCompte(int id ) throws ProblemeTechniqueException 
     {
         Authentification result = null;
         
@@ -269,7 +268,44 @@ public class AuthentificationDAO implements utils.interfaces.DAO<Authentificatio
         
         return result;
     }
-    
+      public Authentification getByIdCompteAndType(int id ,String type) throws ProblemeTechniqueException 
+    {
+        Authentification result = null;
+        
+        try {
+            requete = "select * from authentifications where idCompte = ? and type=?";
+            
+            pStatement = DAO.getInstance().getConnection().prepareStatement(requete);
+            pStatement.setInt(1, id);
+            pStatement.setString(2,type);
+            resultRequest = pStatement.executeQuery();
+            if (resultRequest.next())
+            {   
+                result = new Authentification();
+                
+                result.setIdAuthentification(resultRequest.getInt("idAuthentification"));
+                result.setLogin(resultRequest.getString("login"));
+                result.setPassword(resultRequest.getString("password"));
+                result.setType(resultRequest.getString("type").charAt(0));
+                result.setDateCreation(resultRequest.getDate("dateCreation"));
+                result.setDateDernierModification(resultRequest.getDate("dateDernierModification"));
+                
+                switch(result.getType()){
+                    case 's':
+                    case 'a':
+                        result.setCompte(AdministrateurDAO.getInstance().findById(resultRequest.getInt("idCompte")));
+                        break;
+                }
+               
+               
+            }
+        } catch (SQLException ex) {
+            System.out.println("Erreur lors de la récupération d'un user by login.");
+            throw new ProblemeTechniqueException();
+        }
+        
+        return result;
+    }
     @Override
      public boolean create(Authentification obj) throws ProblemeTechniqueException {
         try {

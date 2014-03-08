@@ -283,7 +283,8 @@ public class ItineraireDAO {
        public boolean update(Itineraire obj) throws ProblemeTechniqueException {
         try {
                
-            requete = "UPDATE itineraires SET Description=?, estPublic=? ,dateItineraire=?, prix=?, estConfirmer=? ,distanceItineraire=?, datePublication=? where idItineraires=?";
+            requete = "UPDATE itineraires SET Description=?, estPublic=? ,dateItineraire=?, prix=?, "
+                    + "estConfirmer=? ,distanceItineraire=?, datePublication=? where idItineraires=?";
             pStatement = DAO.getInstance().getConnection().prepareStatement(requete);
             
            
@@ -294,6 +295,7 @@ public class ItineraireDAO {
             pStatement.setBoolean(5, obj.isEstconfirmer());
             pStatement.setDouble(6, obj.getDistanceitineraire());
             pStatement.setDate(7, new java.sql.Date(obj.getDatepublication().getTime()));
+            pStatement.setInt(8, obj.getIditineraire());
             if (pStatement.executeUpdate() == -1)
                 return false;
 

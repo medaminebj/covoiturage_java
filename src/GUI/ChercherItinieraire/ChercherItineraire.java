@@ -39,6 +39,7 @@ public class ChercherItineraire extends javax.swing.JFrame {
 
         jScrollPane2 = new javax.swing.JScrollPane();
         datagrid = new javax.swing.JTable();
+        Scroll = new javax.swing.JScrollPane();
         PanelInfo = new javax.swing.JPanel();
         infoConducteurLabel = new javax.swing.JLabel();
         ConductuerLabel = new javax.swing.JLabel();
@@ -92,8 +93,9 @@ public class ChercherItineraire extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         EmailTf = new javax.swing.JTextField();
         ParticiperBtn = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
@@ -107,6 +109,8 @@ public class ChercherItineraire extends javax.swing.JFrame {
             }
         });
         jScrollPane2.setViewportView(datagrid);
+
+        PanelInfo.setAutoscrolls(true);
 
         infoConducteurLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         infoConducteurLabel.setText("Information Conducteur : ");
@@ -190,122 +194,124 @@ public class ChercherItineraire extends javax.swing.JFrame {
         PanelInfoLayout.setHorizontalGroup(
             PanelInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelInfoLayout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(PanelInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PanelInfoLayout.createSequentialGroup()
-                        .addGap(280, 280, 280)
-                        .addComponent(jLabel3)
-                        .addGap(200, 200, 200)
-                        .addComponent(jLabel4)
-                        .addGap(177, 177, 177)
-                        .addComponent(jLabel5))
-                    .addGroup(PanelInfoLayout.createSequentialGroup()
-                        .addComponent(infoConducteurLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(260, 260, 260)
-                        .addComponent(ParticiperBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(InfoItineraireLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(informationVoitureLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(PanelInfoLayout.createSequentialGroup()
-                        .addGap(8, 8, 8)
+                        .addContainerGap()
                         .addGroup(PanelInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(PanelInfoLayout.createSequentialGroup()
-                                .addGap(389, 389, 389)
-                                .addComponent(tabac)
-                                .addGap(211, 211, 211)
-                                .addComponent(enfant))
+                                .addGap(280, 280, 280)
+                                .addComponent(jLabel3)
+                                .addGap(200, 200, 200)
+                                .addComponent(jLabel4)
+                                .addGap(177, 177, 177)
+                                .addComponent(jLabel5))
                             .addGroup(PanelInfoLayout.createSequentialGroup()
-                                .addComponent(Bagage)
-                                .addGap(108, 108, 108)
-                                .addComponent(climatiseur))
+                                .addComponent(infoConducteurLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(260, 260, 260)
+                                .addComponent(ParticiperBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(InfoItineraireLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(informationVoitureLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(PanelInfoLayout.createSequentialGroup()
-                                .addComponent(ModelLabel)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(ModelTf, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addComponent(DescriptionConducteurLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(8, 8, 8)
+                                .addGroup(PanelInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(PanelInfoLayout.createSequentialGroup()
+                                        .addGap(389, 389, 389)
+                                        .addComponent(tabac)
+                                        .addGap(211, 211, 211)
+                                        .addComponent(enfant))
+                                    .addGroup(PanelInfoLayout.createSequentialGroup()
+                                        .addComponent(Bagage)
+                                        .addGap(108, 108, 108)
+                                        .addComponent(climatiseur))
+                                    .addGroup(PanelInfoLayout.createSequentialGroup()
+                                        .addComponent(ModelLabel)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(ModelTf, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(DescriptionConducteurLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(PanelInfoLayout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addGroup(PanelInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(PanelInfoLayout.createSequentialGroup()
+                                        .addGroup(PanelInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(VilleDLabel)
+                                            .addComponent(VilleALabel))
+                                        .addGap(166, 166, 166)
+                                        .addGroup(PanelInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(GouverneratBox, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(GouverneratBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(109, 109, 109)
+                                        .addGroup(PanelInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(delegationBox, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(delegationBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(88, 88, 88)
+                                        .addGroup(PanelInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(LocalitesBox, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(LocalitesBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(PanelInfoLayout.createSequentialGroup()
+                                        .addGroup(PanelInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(PanelInfoLayout.createSequentialGroup()
+                                                .addComponent(DateDLabel)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(DateDepartTf, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(115, 115, 115)
+                                                .addComponent(PrixLabel)
+                                                .addGap(27, 27, 27)
+                                                .addComponent(PrixTf, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(PanelInfoLayout.createSequentialGroup()
+                                                .addComponent(NbrPConfirmerLabel)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(NbrPassagerConfirmerTf, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(PanelInfoLayout.createSequentialGroup()
+                                                .addGap(343, 343, 343)
+                                                .addComponent(MarqueLabel)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(MarqueTf, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addGap(121, 121, 121)
+                                        .addGroup(PanelInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(PanelInfoLayout.createSequentialGroup()
+                                                .addComponent(AnneVoitureLabel)
+                                                .addGap(29, 29, 29)
+                                                .addComponent(AnneVoitureTf, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(PanelInfoLayout.createSequentialGroup()
+                                                .addComponent(NbrPAttenteLabel)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(NbrAttenteTf, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(PanelInfoLayout.createSequentialGroup()
+                                                .addComponent(NbrPlaceVoitureLabel)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(NbrPlaceVoitureTf, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addGroup(PanelInfoLayout.createSequentialGroup()
+                                        .addComponent(DescriptionLabel)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 526, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                     .addGroup(PanelInfoLayout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addGroup(PanelInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(PanelInfoLayout.createSequentialGroup()
-                                .addGroup(PanelInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(VilleDLabel)
-                                    .addComponent(VilleALabel))
-                                .addGap(166, 166, 166)
-                                .addGroup(PanelInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(GouverneratBox, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(GouverneratBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(109, 109, 109)
-                                .addGroup(PanelInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(delegationBox, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(delegationBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(88, 88, 88)
-                                .addGroup(PanelInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(LocalitesBox, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(LocalitesBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(PanelInfoLayout.createSequentialGroup()
-                                .addGroup(PanelInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(PanelInfoLayout.createSequentialGroup()
-                                        .addComponent(DateDLabel)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(DateDepartTf, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(115, 115, 115)
-                                        .addComponent(PrixLabel)
-                                        .addGap(27, 27, 27)
-                                        .addComponent(PrixTf, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(PanelInfoLayout.createSequentialGroup()
-                                        .addComponent(NbrPConfirmerLabel)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(NbrPassagerConfirmerTf, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(PanelInfoLayout.createSequentialGroup()
-                                        .addGap(343, 343, 343)
-                                        .addComponent(MarqueLabel)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(MarqueTf, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(130, 130, 130)
-                                .addGroup(PanelInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(PanelInfoLayout.createSequentialGroup()
-                                        .addComponent(AnneVoitureLabel)
-                                        .addGap(29, 29, 29)
-                                        .addComponent(AnneVoitureTf, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(PanelInfoLayout.createSequentialGroup()
-                                        .addComponent(NbrPAttenteLabel)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(NbrAttenteTf, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(PanelInfoLayout.createSequentialGroup()
-                                        .addComponent(NbrPlaceVoitureLabel)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(NbrPlaceVoitureTf, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(PanelInfoLayout.createSequentialGroup()
-                                .addComponent(DescriptionLabel)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 526, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(0, 153, Short.MAX_VALUE))
-            .addGroup(PanelInfoLayout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addComponent(ConductuerLabel)
-                .addGap(32, 32, 32)
-                .addComponent(ConductuerTf, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(NoteLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(NoteTf, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(etoile1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(etoile2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(etoile3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(etoile4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(etoile5)
-                .addGap(43, 43, 43)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(NumeroTeltf, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(EmailTf))
+                        .addGap(14, 14, 14)
+                        .addComponent(ConductuerLabel)
+                        .addGap(32, 32, 32)
+                        .addComponent(ConductuerTf, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(NoteLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(NoteTf, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(etoile1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(etoile2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(etoile3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(etoile4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(etoile5)
+                        .addGap(43, 43, 43)
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(NumeroTeltf, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(EmailTf, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 22, Short.MAX_VALUE))
         );
         PanelInfoLayout.setVerticalGroup(
             PanelInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -385,25 +391,42 @@ public class ChercherItineraire extends javax.swing.JFrame {
                 .addGroup(PanelInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(DescriptionLabel)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(90, Short.MAX_VALUE))
         );
+
+        Scroll.setViewportView(PanelInfo);
+
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/Accueil.png"))); // NOI18N
+        jButton1.setText("Accueil");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1051, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1033, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(PanelInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Scroll, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(PanelInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Scroll, javax.swing.GroupLayout.PREFERRED_SIZE, 518, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(13, 13, 13))
         );
 
         pack();
@@ -585,6 +608,7 @@ public class ChercherItineraire extends javax.swing.JFrame {
         
     }
     private void datagridMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_datagridMouseClicked
+        Scroll.setVisible(true);
         PanelInfo.setVisible(true);
         AllDisable();
         try {
@@ -597,6 +621,7 @@ public class ChercherItineraire extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         PanelInfo.setVisible(false);
+        Scroll.setVisible(false);
     }//GEN-LAST:event_formWindowOpened
 
     private void ParticiperBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ParticiperBtnMouseClicked
@@ -610,9 +635,10 @@ public class ChercherItineraire extends javax.swing.JFrame {
             //JOptionPane.showMessageDialog(null, "la Confirmation à été rétablie avec succé");
             
             try {
-                  Passagers passagers = PassagersDAO.getInstance().getPassagerById(1);
+                  Authentification auth = Session.getInstance().getUser();
+                  Passagers passagers = (Passagers)auth.getCompte();
                   participer = participereventsDAO.getInstance().FindEventsByIdItinerairesAndPassager(passagers, itineraire);
-                  if (participer.getIdParticiperEvents()==0)
+                  if (participer==null)
                   {    
                      //Affectation des vlauer au villeItineraire pour effectuer l'ajout 
                      participer = new participerevents();
@@ -627,9 +653,9 @@ public class ChercherItineraire extends javax.swing.JFrame {
                      villeItineraire.setIdItineraires(itineraire);
                      villeItineraire.setIdLocalites(ville.getIdLocalites());
                      villeItineraire.setLattitude(0);
-                     villeItineraire.setLongitude(0);
+                     villeItineraire.setLongitude(0); 
                      villeItineraire.setNumVille(2);
-                     if (VilleItineraireDAO.getInstance().create(villeItineraire))
+                     if (VilleItineraireDAO.getInstance().update(villeItineraire,1) && VilleItineraireDAO.getInstance().update(villeItineraire,0))
                      {
                         
                         participer.setIdItineraires(itineraire);
@@ -641,8 +667,9 @@ public class ChercherItineraire extends javax.swing.JFrame {
                         participer.setVilleArrivee(ville);
                         if(participereventsDAO.getInstance().Inserrer(participer))
                         {
-                            JOptionPane.showMessageDialog(null, "l'ajout à été effectuer avec succé ");
+                            JOptionPane.showMessageDialog(null, "La demande de participation a été envoyé avec succés ");
                             PanelInfo.setVisible(false);
+                            Scroll.setVisible(false);
                         }
                      }
                   }
@@ -661,6 +688,11 @@ public class ChercherItineraire extends javax.swing.JFrame {
             
        
     }//GEN-LAST:event_ParticiperBtnMouseClicked
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+       (new GUI.Passager.Accueil()).setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -730,6 +762,7 @@ public class ChercherItineraire extends javax.swing.JFrame {
     private javax.swing.JButton ParticiperBtn;
     private javax.swing.JLabel PrixLabel;
     private javax.swing.JTextField PrixTf;
+    private javax.swing.JScrollPane Scroll;
     private javax.swing.JLabel VilleALabel;
     private javax.swing.JLabel VilleDLabel;
     private javax.swing.JCheckBox climatiseur;
@@ -744,6 +777,7 @@ public class ChercherItineraire extends javax.swing.JFrame {
     private javax.swing.JLabel etoile5;
     private javax.swing.JLabel infoConducteurLabel;
     private javax.swing.JLabel informationVoitureLabel;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

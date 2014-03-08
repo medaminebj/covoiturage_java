@@ -4,6 +4,7 @@
  */
 package GUI.Conductuer;
 
+import Entity.Conducteurs;
 import GUI.Administrateur.*;
 import javax.swing.JOptionPane;
 import Entity.Session;
@@ -37,12 +38,18 @@ public class Accueil extends javax.swing.JFrame {
         UserNameLabel = new javax.swing.JLabel();
         ItiniraireBtn = new javax.swing.JButton();
         AncienItineraireBtn = new javax.swing.JButton();
+        Attention = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Back Office");
         setMinimumSize(new java.awt.Dimension(1024, 768));
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
         getContentPane().setLayout(null);
 
         decoBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/deco.png"))); // NOI18N
@@ -64,6 +71,11 @@ public class Accueil extends javax.swing.JFrame {
         ModifierProfileBtn.setBounds(70, 210, 180, 180);
 
         StatistiqueBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/stat.png"))); // NOI18N
+        StatistiqueBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                StatistiqueBtnMousePressed(evt);
+            }
+        });
         getContentPane().add(StatistiqueBtn);
         StatistiqueBtn.setBounds(430, 430, 180, 180);
         getContentPane().add(UserNameLabel);
@@ -87,9 +99,14 @@ public class Accueil extends javax.swing.JFrame {
         getContentPane().add(AncienItineraireBtn);
         AncienItineraireBtn.setBounds(790, 210, 180, 180);
 
+        Attention.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/exclamation.png"))); // NOI18N
+        Attention.setToolTipText("Il faut remplir votre profil");
+        getContentPane().add(Attention);
+        Attention.setBounds(980, 170, 30, 30);
+
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/bg admin.png"))); // NOI18N
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(0, 0, 1030, 770);
+        jLabel1.setBounds(0, 0, 1024, 770);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -108,19 +125,40 @@ public class Accueil extends javax.swing.JFrame {
     }//GEN-LAST:event_decoBtnActionPerformed
 
     private void ModifierProfileBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ModifierProfileBtnMouseClicked
-        GUI.GestionProfil.GestionProfil gaInterface = new GUI.GestionProfil.GestionProfil();
+        GUI.GestionProfileConducteur.GestionProfil gaInterface = new GUI.GestionProfileConducteur.GestionProfil();
         gaInterface.setVisible(true);
+        
     }//GEN-LAST:event_ModifierProfileBtnMouseClicked
 
     private void ItiniraireBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ItiniraireBtnMouseClicked
        GUI.NewItineraireConducteur.NewItineraireConducteur gaInterface = new  GUI.NewItineraireConducteur.NewItineraireConducteur();
        gaInterface.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_ItiniraireBtnMouseClicked
 
     private void AncienItineraireBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AncienItineraireBtnMouseClicked
         GUI.ItineraireRecentConducteur.ItineraireRecentConducteur gaInterface = new  GUI.ItineraireRecentConducteur.ItineraireRecentConducteur();
        gaInterface.setVisible(true);
+       this.dispose();
     }//GEN-LAST:event_AncienItineraireBtnMouseClicked
+
+    private void StatistiqueBtnMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_StatistiqueBtnMousePressed
+        new Statistique().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_StatistiqueBtnMousePressed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        Entity.Conducteurs c = new Conducteurs();
+        c = (Entity.Conducteurs)Entity.Session.getInstance().getUser().getCompte();
+        if (c.getIdVoitures().getIdvoiture()==0)
+        {
+            Attention.setVisible(true);
+        }
+        else
+        {
+            Attention.setVisible(false);
+        }
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
@@ -161,6 +199,7 @@ public class Accueil extends javax.swing.JFrame {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AncienItineraireBtn;
+    private javax.swing.JLabel Attention;
     private javax.swing.JButton ItiniraireBtn;
     private javax.swing.JButton ModifierProfileBtn;
     private javax.swing.JButton StatistiqueBtn;

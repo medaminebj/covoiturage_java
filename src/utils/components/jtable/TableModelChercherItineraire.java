@@ -19,7 +19,7 @@ import utils.Exceptions.ProblemeTechniqueException;
 public class TableModelChercherItineraire  extends javax.swing.table.AbstractTableModel
 {
     private List<Itineraire> data;
-    private String [] entetes ={"Date itinéraire","Date de publication","Ville de départ","Ville d'arriver","Distance itinéraire","Confirmer"}; 
+    private String [] entetes ={"Ville de départ","Ville d'arriver","Date itinéraire","Date de publication","Distance itinéraire","Statuts"}; 
     private VilleItineraire ville ;
     
     
@@ -58,12 +58,7 @@ public class TableModelChercherItineraire  extends javax.swing.table.AbstractTab
             
             switch (columnIndex) {
                 case 0:
-                    return data.get(rowIndex).getDateitineraire();
-                case 1:
-                    return data.get(rowIndex).getDatepublication();
-                case 2:
-           
-                try {
+                          try {
                 try {
                     ville = VilleItineraireDAO.getInstance().FindVilleDepart(r.getIditineraire()) ;
                 } catch (ClassNotFoundException ex) {
@@ -76,8 +71,9 @@ public class TableModelChercherItineraire  extends javax.swing.table.AbstractTab
                 }
             
                 return ville.getIdLocalites().getIdDelegations().getIdGouvernorats().getNomGouvernorat();
-                case 3:
-            try {
+                   
+                case 1:
+                    try {
                 try {
                     ville = VilleItineraireDAO.getInstance().FindVilleArriver(r.getIditineraire()) ;
                 } catch (ClassNotFoundException ex) {
@@ -89,18 +85,38 @@ public class TableModelChercherItineraire  extends javax.swing.table.AbstractTab
                 Logger.getLogger(TableModelChercherItineraire.class.getName()).log(Level.SEVERE, null, ex);
             }
                 return ville.getIdLocalites().getIdDelegations().getIdGouvernorats().getNomGouvernorat();
+                   
+                case 2:
+                    return data.get(rowIndex).getDateitineraire();
+          
+                case 3:
+                     return data.get(rowIndex).getDatepublication();
                 
                  case 4:
                      return r.getDistanceitineraire();
                  case 5:
-                     if(r.isEstconfirmer()==true)
-                     {
-                         return "Oui" ;
-                     }
-                     else
-                     {
-                         return "Non";
-                     }
+                     Passagers p = (Passagers)Session.getInstance().getUser().getCompte();
+            try {
+                    participerevents participer  = participereventsDAO.getInstance().FindEventsByIdItinerairesAndPassager(p, data.get(rowIndex));
+                    if (participer==null)
+                    {
+                        return "Disponible";
+                    }
+                    else if (participer.isEstAccepter())
+                    {
+                        return "Accepté";
+                    }
+                    else if (!participer.isEstAccepter())
+                    {
+                        return "En attente";
+                    }
+            } catch (ProblemeTechniqueException ex) {
+                Logger.getLogger(TableModelChercherItineraire.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(TableModelChercherItineraire.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(TableModelChercherItineraire.class.getName()).log(Level.SEVERE, null, ex);
+            }
                 default:
                     return null;
                     

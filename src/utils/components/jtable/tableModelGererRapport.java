@@ -23,7 +23,7 @@ public class tableModelGererRapport extends javax.swing.table.AbstractTableModel
     public tableModelGererRapport() 
     {
         try {
-            data=RapportDAO.getInstance().getRapport();
+            data=RapportDAO.getInstance().getAllRapportNonTraiter();
         } catch (Exception ex) {
             Logger.getLogger(tableModelGererRapport.class.getName()).log(Level.SEVERE, null, ex);
         } 

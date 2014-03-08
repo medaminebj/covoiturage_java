@@ -62,12 +62,22 @@ public class Accueil extends javax.swing.JFrame {
         ModifierProfileBtn.setBounds(80, 280, 180, 180);
 
         StatistiqueBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/stat.png"))); // NOI18N
+        StatistiqueBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                StatistiqueBtnMousePressed(evt);
+            }
+        });
         getContentPane().add(StatistiqueBtn);
         StatistiqueBtn.setBounds(790, 280, 180, 180);
         getContentPane().add(UserNameLabel);
         UserNameLabel.setBounds(930, 130, 0, 0);
 
         ChercherItinieraireBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/chercherItineraire.png"))); // NOI18N
+        ChercherItinieraireBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ChercherItinieraireBtnMouseClicked(evt);
+            }
+        });
         getContentPane().add(ChercherItinieraireBtn);
         ChercherItinieraireBtn.setBounds(440, 280, 180, 180);
 
@@ -92,9 +102,20 @@ public class Accueil extends javax.swing.JFrame {
     }//GEN-LAST:event_decoBtnActionPerformed
 
     private void ModifierProfileBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ModifierProfileBtnMouseClicked
-        GUI.GestionProfil.GestionProfil gaInterface = new GUI.GestionProfil.GestionProfil();
+        GUI.GestionPorfilePassager.GestionProfil gaInterface = new GUI.GestionPorfilePassager.GestionProfil ();
         gaInterface.setVisible(true);
     }//GEN-LAST:event_ModifierProfileBtnMouseClicked
+
+    private void ChercherItinieraireBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ChercherItinieraireBtnMouseClicked
+        GUI.ChercherItinieraire.ChercherItineraire gaInterface = new GUI.ChercherItinieraire.ChercherItineraire();
+        gaInterface.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_ChercherItinieraireBtnMouseClicked
+
+    private void StatistiqueBtnMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_StatistiqueBtnMousePressed
+        new Statistique().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_StatistiqueBtnMousePressed
 
     /**
      * @param args the command line arguments

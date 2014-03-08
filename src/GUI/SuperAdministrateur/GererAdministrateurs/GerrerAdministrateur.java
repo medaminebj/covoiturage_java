@@ -112,6 +112,7 @@ public class GerrerAdministrateur extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(datagrid);
 
+        supprimerBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/supprimer.png"))); // NOI18N
         supprimerBtn.setText("Supprimer");
         supprimerBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -281,6 +282,7 @@ public class GerrerAdministrateur extends javax.swing.JFrame {
                                 .addGap(0, 0, Short.MAX_VALUE))))))
         );
 
+        RetourBTN.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/Retour.png"))); // NOI18N
         RetourBTN.setText("Accueil");
         RetourBTN.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -288,6 +290,7 @@ public class GerrerAdministrateur extends javax.swing.JFrame {
             }
         });
 
+        modifierBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/modifier.png"))); // NOI18N
         modifierBtn.setText("Modifier");
         modifierBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -295,6 +298,7 @@ public class GerrerAdministrateur extends javax.swing.JFrame {
             }
         });
 
+        addBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/ajouter.png"))); // NOI18N
         addBtn.setText("Ajouter");
         addBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -302,6 +306,7 @@ public class GerrerAdministrateur extends javax.swing.JFrame {
             }
         });
 
+        enregisterBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/Enregistrer.png"))); // NOI18N
         enregisterBtn.setText("Enregistrer");
         enregisterBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -341,8 +346,8 @@ public class GerrerAdministrateur extends javax.swing.JFrame {
                     .addComponent(RetourBTN)
                     .addComponent(supprimerBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(modifierBtn)
-                    .addComponent(addBtn)
-                    .addComponent(enregisterBtn))
+                    .addComponent(enregisterBtn)
+                    .addComponent(addBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(3, 3, 3)
                 .addComponent(informationsContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -519,6 +524,7 @@ public class GerrerAdministrateur extends javax.swing.JFrame {
     private void RetourBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RetourBTNMouseClicked
             GUI.Administrateur.Accueil acc = new GUI.Administrateur.Accueil();
             acc.setVisible(true);
+            this.dispose();
            
     }//GEN-LAST:event_RetourBTNMouseClicked
 

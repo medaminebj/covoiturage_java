@@ -21,7 +21,7 @@ public class Validators {
     }
        //vérifier si le nom ou le prenom ne contient pas des chiffre
      public static boolean NomPrenomValidator(String ch){
-        String input = "[a-zA-Z]*";
+        String input = "[a-zA-Z ]*";
         boolean res = ch.matches(input);
         return res;
     }
@@ -39,6 +39,14 @@ public class Validators {
             return false;
         else return true ; 
      } 
+      //vérifier la note 
+      public static boolean TailleNoteValidator(String ch)
+     {
+         double note = Double.parseDouble(ch);
+        if (note>10)
+            return false;
+        else return true ; 
+     }  
       //Vérifier le format de la date 
       public static boolean DateValidator(String ch)
      {

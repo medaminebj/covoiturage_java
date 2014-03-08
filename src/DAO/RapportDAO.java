@@ -58,7 +58,28 @@ public class RapportDAO {
           return result;
         
     }
-
+    
+    public List<Rapport> getAllRapportNonTraiter() throws SQLException, ClassNotFoundException, ClassNotFoundException, ProblemeTechniqueException {
+        List<Rapport> result = new ArrayList<>();
+        requete = "Select * from rapports where traiter=false";
+        resultRequest = statement.executeQuery(requete);
+        Rapport rapport  ;
+        while (resultRequest.next()) {
+            rapport = new Rapport() ;
+            rapport.setIdrapport(resultRequest.getInt("idRapports"));
+            rapport.setDaterapport(resultRequest.getDate("dateRapport"));
+            rapport.setCause(resultRequest.getString("cause"));
+            rapport.setRapporterConducteur(resultRequest.getBoolean("rapporterConducteur"));
+            rapport.setRapporterPassager(resultRequest.getBoolean("rapporterPassager"));
+            rapport.setIdPassager(PassagersDAO.getInstance().getPassagerById(resultRequest.getInt("idPassagers")));
+            rapport.setIditineraire(ItineraireDAO.getInstance().getItineraireById(resultRequest.getInt("idItineraires")));
+            rapport.setTraiter(resultRequest.getBoolean("traiter"));
+            result.add(rapport);
+        }
+          System.out.println(result.get(0).getCause());
+          return result;
+        
+    }
     public Rapport getRapportByIdRapport(int idrapport) throws SQLException, ClassNotFoundException, ClassNotFoundException, ProblemeTechniqueException {
         requete = "select * from rapports where idRapports="+idrapport;
         resultRequest = statement.executeQuery(requete);
@@ -122,9 +143,6 @@ public class RapportDAO {
             pStatement.executeUpdate();
             if(pStatement.executeUpdate()== -1)
                 return false;
-           
-             
-            
         } 
         catch (SQLException ex) 
         {
@@ -134,7 +152,7 @@ public class RapportDAO {
        return true ;  
     }
     
-    public int getNbrBannisementByIdPassager(int idPassagers) throws ProblemeTechniqueException{
+    public int getNbrRapportByIdPassager(int idPassagers) throws ProblemeTechniqueException{
        int NbrReport= 0 ; 
         
         requete = "Select count(*) as nbr from rapports where idPassagers = ?";

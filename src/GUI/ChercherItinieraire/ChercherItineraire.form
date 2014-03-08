@@ -2,7 +2,7 @@
 
 <Form version="1.3" maxVersion="1.8" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
-    <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="defaultCloseOperation" type="int" value="0"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -26,10 +26,17 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jScrollPane2" pref="1051" max="32767" attributes="0"/>
-          <Group type="102" alignment="0" attributes="0">
+          <Component id="jScrollPane2" pref="1033" max="32767" attributes="0"/>
+          <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="PanelInfo" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="Scroll" pref="0" max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="jButton1" min="-2" pref="166" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -37,9 +44,11 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <Component id="jScrollPane2" min="-2" pref="111" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="PanelInfo" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="30" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="Scroll" min="-2" pref="518" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="jButton1" min="-2" pref="34" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -64,520 +73,544 @@
         </Component>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JPanel" name="PanelInfo">
+    <Container class="javax.swing.JScrollPane" name="Scroll">
 
-      <Layout>
-        <DimensionLayout dim="0">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="280" max="-2" attributes="0"/>
-                          <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="200" max="-2" attributes="0"/>
-                          <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="177" max="-2" attributes="0"/>
-                          <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" attributes="0">
-                          <Component id="infoConducteurLabel" min="-2" pref="199" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="260" max="-2" attributes="0"/>
-                          <Component id="ParticiperBtn" min="-2" pref="148" max="-2" attributes="0"/>
-                      </Group>
-                      <Component id="InfoItineraireLabel" alignment="0" min="-2" pref="199" max="-2" attributes="0"/>
-                      <Component id="informationVoitureLabel" alignment="0" min="-2" pref="275" max="-2" attributes="0"/>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="389" max="-2" attributes="0"/>
-                                  <Component id="tabac" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="211" max="-2" attributes="0"/>
-                                  <Component id="enfant" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="Bagage" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="108" max="-2" attributes="0"/>
-                                  <Component id="climatiseur" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" attributes="0">
-                                  <Component id="ModelLabel" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="ModelTf" min="-2" pref="172" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                      </Group>
-                      <Component id="DescriptionConducteurLabel" alignment="0" min="-2" pref="275" max="-2" attributes="0"/>
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="VilleDLabel" min="-2" max="-2" attributes="0"/>
-                                      <Component id="VilleALabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace min="-2" pref="166" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="GouverneratBox" min="-2" pref="140" max="-2" attributes="0"/>
-                                      <Component id="GouverneratBox1" min="-2" pref="140" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace min="-2" pref="109" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="delegationBox" min="-2" pref="145" max="-2" attributes="0"/>
-                                      <Component id="delegationBox1" min="-2" pref="145" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace min="-2" pref="88" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="LocalitesBox" min="-2" pref="145" max="-2" attributes="0"/>
-                                      <Component id="LocalitesBox1" min="-2" pref="145" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" attributes="0">
-                                          <Component id="DateDLabel" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="DateDepartTf" min="-2" pref="130" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="115" max="-2" attributes="0"/>
-                                          <Component id="PrixLabel" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                                          <Component id="PrixTf" min="-2" pref="62" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" attributes="0">
-                                          <Component id="NbrPConfirmerLabel" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="NbrPassagerConfirmerTf" min="-2" pref="48" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <EmptySpace min="-2" pref="343" max="-2" attributes="0"/>
-                                          <Component id="MarqueLabel" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="MarqueTf" min="-2" pref="62" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <EmptySpace min="-2" pref="130" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" attributes="0">
-                                          <Component id="AnneVoitureLabel" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
-                                          <Component id="AnneVoitureTf" min="-2" pref="84" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" attributes="0">
-                                          <Component id="NbrPAttenteLabel" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="NbrAttenteTf" min="-2" pref="43" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" attributes="0">
-                                          <Component id="NbrPlaceVoitureLabel" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="NbrPlaceVoitureTf" min="-2" pref="45" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="DescriptionLabel" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="jScrollPane1" min="-2" pref="526" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                      </Group>
-                  </Group>
-                  <EmptySpace min="0" pref="153" max="32767" attributes="0"/>
-              </Group>
-              <Group type="102" attributes="0">
-                  <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
-                  <Component id="ConductuerLabel" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-                  <Component id="ConductuerTf" min="-2" pref="126" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="NoteLabel" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="NoteTf" min="-2" pref="32" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="etoile1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="etoile2" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="etoile3" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="etoile4" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="etoile5" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
-                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="NumeroTeltf" min="-2" pref="147" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="EmailTf" max="32767" attributes="0"/>
-              </Group>
-          </Group>
-        </DimensionLayout>
-        <DimensionLayout dim="1">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="infoConducteurLabel" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
-                      <Component id="ParticiperBtn" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                          <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="NumeroTeltf" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="EmailTf" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="NoteLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="NoteTf" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="etoile1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="etoile2" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="etoile3" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="etoile4" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="ConductuerTf" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Component id="ConductuerLabel" min="-2" max="-2" attributes="0"/>
-                      <Component id="etoile5" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="InfoItineraireLabel" min="-2" pref="32" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="LocalitesBox" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="delegationBox" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="VilleDLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="GouverneratBox" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="GouverneratBox1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="delegationBox1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="VilleALabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="LocalitesBox1" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="PrixLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="PrixTf" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="DateDLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="DateDepartTf" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="NbrPlaceVoitureLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="NbrPlaceVoitureTf" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="NbrPassagerConfirmerTf" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="NbrPConfirmerLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="NbrPAttenteLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="NbrAttenteTf" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="informationVoitureLabel" min="-2" pref="32" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="ModelLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="ModelTf" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="MarqueLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="MarqueTf" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="AnneVoitureLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="AnneVoitureTf" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="Bagage" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="tabac" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="climatiseur" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="enfant" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="DescriptionConducteurLabel" min="-2" pref="32" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="DescriptionLabel" min="-2" max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" min="-2" pref="63" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace pref="22" max="32767" attributes="0"/>
-              </Group>
-          </Group>
-        </DimensionLayout>
-      </Layout>
+      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="infoConducteurLabel">
+        <Container class="javax.swing.JPanel" name="PanelInfo">
           <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="14" style="1"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Information Conducteur : "/>
+            <Property name="autoscrolls" type="boolean" value="true"/>
           </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="ConductuerLabel">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Conductuer : "/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="ConductuerTf">
-        </Component>
-        <Component class="javax.swing.JLabel" name="NoteLabel">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Note :"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="NoteTf">
-        </Component>
-        <Component class="javax.swing.JLabel" name="etoile1">
-          <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/assets/etoile.png"/>
-            </Property>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="etoile2">
-          <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/assets/etoile.png"/>
-            </Property>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="etoile3">
-          <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/assets/etoile.png"/>
-            </Property>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="etoile4">
-          <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/assets/etoile.png"/>
-            </Property>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="etoile5">
-          <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/assets/etoile.png"/>
-            </Property>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="InfoItineraireLabel">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="14" style="1"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Information Itin&#xe9;raire  : "/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="VilleDLabel">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Ville de d&#xe9;part :"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JComboBox" name="GouverneratBox">
-          <Properties>
-            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="0"/>
-            </Property>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="jLabel3">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Gouvernerat"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="jLabel4">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Delegation"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JComboBox" name="delegationBox">
-          <Properties>
-            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="0"/>
-            </Property>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="jLabel5">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Localite"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JComboBox" name="LocalitesBox">
-          <Properties>
-            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="0"/>
-            </Property>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JComboBox" name="GouverneratBox1">
-          <Properties>
-            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="0"/>
-            </Property>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JComboBox" name="LocalitesBox1">
-          <Properties>
-            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="0"/>
-            </Property>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JComboBox" name="delegationBox1">
-          <Properties>
-            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="0"/>
-            </Property>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="VilleALabel">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Ville d&apos;arriver :"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="PrixTf">
-        </Component>
-        <Component class="javax.swing.JTextField" name="DateDepartTf">
-        </Component>
-        <Component class="javax.swing.JLabel" name="DateDLabel">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Date de d&#xe9;part :"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="PrixLabel">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Prix :"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="NbrPlaceVoitureLabel">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Nombre de place dans la voiture :"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="NbrPlaceVoitureTf">
-        </Component>
-        <Component class="javax.swing.JLabel" name="NbrPConfirmerLabel">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Nombre de passager confirmer :"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="NbrPassagerConfirmerTf">
-        </Component>
-        <Component class="javax.swing.JLabel" name="NbrPAttenteLabel">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Nombre de passager en attente : "/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="NbrAttenteTf">
-        </Component>
-        <Component class="javax.swing.JLabel" name="informationVoitureLabel">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="14" style="1"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Information Voiture conducteur  : "/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="ModelLabel">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Model de la voiture : "/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="ModelTf">
-        </Component>
-        <Component class="javax.swing.JLabel" name="MarqueLabel">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Marque"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="MarqueTf">
-        </Component>
-        <Component class="javax.swing.JLabel" name="AnneVoitureLabel">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Anne de la voiture :"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="AnneVoitureTf">
-        </Component>
-        <Component class="javax.swing.JCheckBox" name="Bagage">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Bagage"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JCheckBox" name="climatiseur">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Climatiseur"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JCheckBox" name="tabac">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Tabac"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JCheckBox" name="enfant">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Enfants"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="DescriptionConducteurLabel">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="14" style="1"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Description du conductuer : "/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="DescriptionLabel">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Description :"/>
-          </Properties>
-        </Component>
-        <Container class="javax.swing.JScrollPane" name="jScrollPane1">
-          <AuxValues>
-            <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
-          </AuxValues>
 
-          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="280" max="-2" attributes="0"/>
+                                      <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="200" max="-2" attributes="0"/>
+                                      <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="177" max="-2" attributes="0"/>
+                                      <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" attributes="0">
+                                      <Component id="infoConducteurLabel" min="-2" pref="199" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="260" max="-2" attributes="0"/>
+                                      <Component id="ParticiperBtn" min="-2" pref="148" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="InfoItineraireLabel" alignment="0" min="-2" pref="199" max="-2" attributes="0"/>
+                                  <Component id="informationVoitureLabel" alignment="0" min="-2" pref="275" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <EmptySpace min="-2" pref="389" max="-2" attributes="0"/>
+                                              <Component id="tabac" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="211" max="-2" attributes="0"/>
+                                              <Component id="enfant" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="Bagage" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="108" max="-2" attributes="0"/>
+                                              <Component id="climatiseur" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" attributes="0">
+                                              <Component id="ModelLabel" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="ModelTf" min="-2" pref="172" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                  </Group>
+                                  <Component id="DescriptionConducteurLabel" alignment="0" min="-2" pref="275" max="-2" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="102" attributes="0">
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Component id="VilleDLabel" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="VilleALabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                              <EmptySpace min="-2" pref="166" max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                                  <Component id="GouverneratBox" min="-2" pref="140" max="-2" attributes="0"/>
+                                                  <Component id="GouverneratBox1" min="-2" pref="140" max="-2" attributes="0"/>
+                                              </Group>
+                                              <EmptySpace min="-2" pref="109" max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                                  <Component id="delegationBox" min="-2" pref="145" max="-2" attributes="0"/>
+                                                  <Component id="delegationBox1" min="-2" pref="145" max="-2" attributes="0"/>
+                                              </Group>
+                                              <EmptySpace min="-2" pref="88" max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Component id="LocalitesBox" min="-2" pref="145" max="-2" attributes="0"/>
+                                                  <Component id="LocalitesBox1" min="-2" pref="145" max="-2" attributes="0"/>
+                                              </Group>
+                                          </Group>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Group type="102" attributes="0">
+                                                      <Component id="DateDLabel" min="-2" max="-2" attributes="0"/>
+                                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                      <Component id="DateDepartTf" min="-2" pref="130" max="-2" attributes="0"/>
+                                                      <EmptySpace min="-2" pref="115" max="-2" attributes="0"/>
+                                                      <Component id="PrixLabel" min="-2" max="-2" attributes="0"/>
+                                                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                                                      <Component id="PrixTf" min="-2" pref="62" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <Group type="102" attributes="0">
+                                                      <Component id="NbrPConfirmerLabel" min="-2" max="-2" attributes="0"/>
+                                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                      <Component id="NbrPassagerConfirmerTf" min="-2" pref="48" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <Group type="102" alignment="0" attributes="0">
+                                                      <EmptySpace min="-2" pref="343" max="-2" attributes="0"/>
+                                                      <Component id="MarqueLabel" min="-2" max="-2" attributes="0"/>
+                                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                      <Component id="MarqueTf" min="-2" pref="62" max="-2" attributes="0"/>
+                                                  </Group>
+                                              </Group>
+                                              <EmptySpace min="-2" pref="121" max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Group type="102" attributes="0">
+                                                      <Component id="AnneVoitureLabel" min="-2" max="-2" attributes="0"/>
+                                                      <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                                                      <Component id="AnneVoitureTf" min="-2" pref="84" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <Group type="102" attributes="0">
+                                                      <Component id="NbrPAttenteLabel" min="-2" max="-2" attributes="0"/>
+                                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                      <Component id="NbrAttenteTf" min="-2" pref="43" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <Group type="102" attributes="0">
+                                                      <Component id="NbrPlaceVoitureLabel" min="-2" max="-2" attributes="0"/>
+                                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                      <Component id="NbrPlaceVoitureTf" min="-2" pref="45" max="-2" attributes="0"/>
+                                                  </Group>
+                                              </Group>
+                                          </Group>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="DescriptionLabel" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                              <Component id="jScrollPane1" min="-2" pref="526" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                  </Group>
+                              </Group>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                              <Component id="ConductuerLabel" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                              <Component id="ConductuerTf" min="-2" pref="126" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="NoteLabel" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="NoteTf" min="-2" pref="32" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="etoile1" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="etoile2" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="etoile3" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="etoile4" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="etoile5" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
+                              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="NumeroTeltf" min="-2" pref="147" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="EmailTf" min="-2" pref="196" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace min="0" pref="22" max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="infoConducteurLabel" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
+                          <Component id="ParticiperBtn" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                              <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="NumeroTeltf" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="EmailTf" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="NoteLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="NoteTf" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="etoile1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="etoile2" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="etoile3" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="etoile4" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="ConductuerTf" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="ConductuerLabel" min="-2" max="-2" attributes="0"/>
+                          <Component id="etoile5" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="InfoItineraireLabel" min="-2" pref="32" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="LocalitesBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="delegationBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="VilleDLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="GouverneratBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="GouverneratBox1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="delegationBox1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="VilleALabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="LocalitesBox1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="PrixLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="PrixTf" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="DateDLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="DateDepartTf" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="NbrPlaceVoitureLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="NbrPlaceVoitureTf" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="NbrPassagerConfirmerTf" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="NbrPConfirmerLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="NbrPAttenteLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="NbrAttenteTf" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="informationVoitureLabel" min="-2" pref="32" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="ModelLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="ModelTf" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="MarqueLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="MarqueTf" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="AnneVoitureLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="AnneVoitureTf" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="Bagage" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="tabac" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="climatiseur" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="enfant" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="DescriptionConducteurLabel" min="-2" pref="32" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="DescriptionLabel" min="-2" max="-2" attributes="0"/>
+                          <Component id="jScrollPane1" min="-2" pref="63" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="90" max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
           <SubComponents>
-            <Component class="javax.swing.JTextArea" name="DescriptionTf">
+            <Component class="javax.swing.JLabel" name="infoConducteurLabel">
               <Properties>
-                <Property name="columns" type="int" value="20"/>
-                <Property name="rows" type="int" value="5"/>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="14" style="1"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Information Conducteur : "/>
               </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="ConductuerLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Conductuer : "/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="ConductuerTf">
+            </Component>
+            <Component class="javax.swing.JLabel" name="NoteLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Note :"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="NoteTf">
+            </Component>
+            <Component class="javax.swing.JLabel" name="etoile1">
+              <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/assets/etoile.png"/>
+                </Property>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="etoile2">
+              <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/assets/etoile.png"/>
+                </Property>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="etoile3">
+              <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/assets/etoile.png"/>
+                </Property>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="etoile4">
+              <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/assets/etoile.png"/>
+                </Property>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="etoile5">
+              <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/assets/etoile.png"/>
+                </Property>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="InfoItineraireLabel">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="14" style="1"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Information Itin&#xe9;raire  : "/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="VilleDLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Ville de d&#xe9;part :"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="GouverneratBox">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="0"/>
+                </Property>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel3">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Gouvernerat"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel4">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Delegation"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="delegationBox">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="0"/>
+                </Property>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel5">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Localite"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="LocalitesBox">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="0"/>
+                </Property>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="GouverneratBox1">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="0"/>
+                </Property>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="LocalitesBox1">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="0"/>
+                </Property>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="delegationBox1">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="0"/>
+                </Property>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="VilleALabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Ville d&apos;arriver :"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="PrixTf">
+            </Component>
+            <Component class="javax.swing.JTextField" name="DateDepartTf">
+            </Component>
+            <Component class="javax.swing.JLabel" name="DateDLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Date de d&#xe9;part :"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="PrixLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Prix :"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="NbrPlaceVoitureLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Nombre de place dans la voiture :"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="NbrPlaceVoitureTf">
+            </Component>
+            <Component class="javax.swing.JLabel" name="NbrPConfirmerLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Nombre de passager confirmer :"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="NbrPassagerConfirmerTf">
+            </Component>
+            <Component class="javax.swing.JLabel" name="NbrPAttenteLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Nombre de passager en attente : "/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="NbrAttenteTf">
+            </Component>
+            <Component class="javax.swing.JLabel" name="informationVoitureLabel">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="14" style="1"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Information Voiture conducteur  : "/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="ModelLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Model de la voiture : "/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="ModelTf">
+            </Component>
+            <Component class="javax.swing.JLabel" name="MarqueLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Marque"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="MarqueTf">
+            </Component>
+            <Component class="javax.swing.JLabel" name="AnneVoitureLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Anne de la voiture :"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="AnneVoitureTf">
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="Bagage">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Bagage"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="climatiseur">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Climatiseur"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="tabac">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Tabac"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="enfant">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Enfants"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="DescriptionConducteurLabel">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="14" style="1"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Description du conductuer : "/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="DescriptionLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Description :"/>
+              </Properties>
+            </Component>
+            <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+              <AuxValues>
+                <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+              </AuxValues>
+
+              <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+              <SubComponents>
+                <Component class="javax.swing.JTextArea" name="DescriptionTf">
+                  <Properties>
+                    <Property name="columns" type="int" value="20"/>
+                    <Property name="rows" type="int" value="5"/>
+                  </Properties>
+                </Component>
+              </SubComponents>
+            </Container>
+            <Component class="javax.swing.JLabel" name="jLabel1">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Num&#xe9;ro de t&#xe9;l&#xe9;phone :"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="NumeroTeltf">
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel2">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Email : "/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="EmailTf">
+            </Component>
+            <Component class="javax.swing.JButton" name="ParticiperBtn">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Participer"/>
+              </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="ParticiperBtnMouseClicked"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JLabel" name="jLabel1">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Num&#xe9;ro de t&#xe9;l&#xe9;phone :"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="NumeroTeltf">
-        </Component>
-        <Component class="javax.swing.JLabel" name="jLabel2">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Email : "/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="EmailTf">
-        </Component>
-        <Component class="javax.swing.JButton" name="ParticiperBtn">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Participer"/>
-          </Properties>
-          <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="ParticiperBtnMouseClicked"/>
-          </Events>
-        </Component>
       </SubComponents>
     </Container>
+    <Component class="javax.swing.JButton" name="jButton1">
+      <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/assets/Accueil.png"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Accueil"/>
+      </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton1MouseClicked"/>
+      </Events>
+    </Component>
   </SubComponents>
 </Form>

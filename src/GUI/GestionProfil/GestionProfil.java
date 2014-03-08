@@ -61,6 +61,8 @@ public class GestionProfil extends javax.swing.JFrame {
         ModifierBtn = new javax.swing.JButton();
         AnnulerBtn = new javax.swing.JButton();
         sexeTf = new javax.swing.JComboBox();
+        formaDate = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -93,6 +95,7 @@ public class GestionProfil extends javax.swing.JFrame {
 
         jLabel9.setText("Confirmer password");
 
+        EnregistrerBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/Enregistrer.png"))); // NOI18N
         EnregistrerBtn.setText("Enregistrer");
         EnregistrerBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -100,8 +103,15 @@ public class GestionProfil extends javax.swing.JFrame {
             }
         });
 
-        AcceuilBtn.setText("Acceuil");
+        AcceuilBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/quitter.png"))); // NOI18N
+        AcceuilBtn.setText("Quiiter");
+        AcceuilBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                AcceuilBtnMouseClicked(evt);
+            }
+        });
 
+        ModifierBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/modifier.png"))); // NOI18N
         ModifierBtn.setText("Modifier");
         ModifierBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -114,6 +124,7 @@ public class GestionProfil extends javax.swing.JFrame {
             }
         });
 
+        AnnulerBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/Annuler.png"))); // NOI18N
         AnnulerBtn.setText("Annuler");
         AnnulerBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -123,14 +134,28 @@ public class GestionProfil extends javax.swing.JFrame {
 
         sexeTf.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Homme", "Femme" }));
 
+        formaDate.setText("yyyy-mm-dd");
+
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel10.setText("Mon profil ");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
+                        .addComponent(AcceuilBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(ModifierBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
+                        .addGap(7, 7, 7)
+                        .addComponent(EnregistrerBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(AnnulerBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addComponent(jLabel2)
@@ -146,27 +171,27 @@ public class GestionProfil extends javax.swing.JFrame {
                             .addComponent(emailTf)
                             .addComponent(datedenaissanceTf)
                             .addComponent(numtelTf)
-                            .addComponent(adresseTf)
-                            .addComponent(nomTf)
-                            .addComponent(prenomTf)
                             .addComponent(passwordTf)
                             .addComponent(confirmPasswordTf)
-                            .addComponent(sexeTf, 0, 87, Short.MAX_VALUE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(AcceuilBtn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(ModifierBtn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(EnregistrerBtn)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(AnnulerBtn)
-                .addContainerGap(15, Short.MAX_VALUE))
+                            .addComponent(sexeTf, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(nomTf)
+                            .addComponent(prenomTf)
+                            .addComponent(adresseTf, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(34, 34, 34)
+                        .addComponent(formaDate)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(232, 232, 232)
+                .addComponent(jLabel10)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(jLabel10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(nomTf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -185,7 +210,9 @@ public class GestionProfil extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
-                    .addComponent(datedenaissanceTf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(datedenaissanceTf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(formaDate)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6)
@@ -202,12 +229,12 @@ public class GestionProfil extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(confirmPasswordTf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(EnregistrerBtn)
-                    .addComponent(AcceuilBtn)
-                    .addComponent(ModifierBtn)
-                    .addComponent(AnnulerBtn))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(AnnulerBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(AcceuilBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ModifierBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(EnregistrerBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -259,7 +286,7 @@ public class GestionProfil extends javax.swing.JFrame {
         try {
             authentification = DAO.AuthentificationDAO.getInstance().findById(Entity.Session.getInstance().getUser().getIdAuthentification());
 
-            if (authentification.getType() == 'a') {
+            if ((authentification.getType() == 'a') || (authentification.getType() == 's')) {
                 admin = (Administrateur) authentification.getCompte();
                 nomTf.setText(admin.getNom());
                 prenomTf.setText(admin.getPrenom());
@@ -322,6 +349,7 @@ public class GestionProfil extends javax.swing.JFrame {
         setAllDesable();
         AnnulerBtn.setVisible(false);
         EnregistrerBtn.setVisible(false);
+        formaDate.setVisible(false);
 
 
         RemplissageChamps();
@@ -333,7 +361,7 @@ public class GestionProfil extends javax.swing.JFrame {
         ModifierBtn.setVisible(false);
         AnnulerBtn.setVisible(true);
         EnregistrerBtn.setVisible(true);
-
+        formaDate.setVisible(true);
         setAllEnable();
 
     }//GEN-LAST:event_ModifierBtnMouseClicked
@@ -342,8 +370,8 @@ public class GestionProfil extends javax.swing.JFrame {
         ModifierBtn.setVisible(true);
         AnnulerBtn.setVisible(false);
         EnregistrerBtn.setVisible(false);
+        formaDate.setVisible(false);
         RemplissageChamps();
-
         setAllDesable();
 
 
@@ -357,6 +385,7 @@ public class GestionProfil extends javax.swing.JFrame {
         ModifierBtn.setVisible(true);
         AnnulerBtn.setVisible(true);
         EnregistrerBtn.setVisible(false);
+        
         if (verifierChamps()) {
             if (!passwordTf.getText().equals("")) {
                 authentification.setPassword(utils.Functions.ConvertToMd5 (passwordTf.getText()));
@@ -383,12 +412,28 @@ public class GestionProfil extends javax.swing.JFrame {
                 admin.setSexe('F');
         }
         try {
-            DAO.AuthentificationDAO.getInstance().update(authentification);
+                if (DAO.AuthentificationDAO.getInstance().update(authentification))
+                {
+                     JOptionPane.showMessageDialog(null, "La modification de votre profile a été abouti");
+                     formaDate.setVisible(false);
+        
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(null, "La modification n'a pas été abouti");
+                }
+            
         } catch (ProblemeTechniqueException ex) {
             System.out.println("Probléme de mise à jour ");
         }
+        AnnulerBtn.setVisible(false);
+        setAllDesable();
         
     }//GEN-LAST:event_EnregistrerBtnMouseClicked
+
+    private void AcceuilBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AcceuilBtnMouseClicked
+       this.dispose();
+    }//GEN-LAST:event_AcceuilBtnMouseClicked
 
     /**
      * @param args the command line arguments
@@ -433,7 +478,9 @@ public class GestionProfil extends javax.swing.JFrame {
     private javax.swing.JTextField confirmPasswordTf;
     private javax.swing.JTextField datedenaissanceTf;
     private javax.swing.JTextField emailTf;
+    private javax.swing.JLabel formaDate;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

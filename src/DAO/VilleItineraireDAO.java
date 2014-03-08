@@ -227,12 +227,12 @@ public class VilleItineraireDAO implements utils.interfaces.DAO<VilleItineraireD
          public List<Entity.VilleItineraire> FindNewVillesItinerairesByIdConcuteur(int id) throws ProblemeTechniqueException
     {
        
-        Entity.VilleItineraire ville = new Entity.VilleItineraire ();
+        Entity.VilleItineraire ville ;
         List<Entity.VilleItineraire> result = new ArrayList<>();
          try {
                 requete = "select * from villesitineraires \n" +
-                            "where IdItineraires=(select DISTINCT `idItineraires` from villesitineraires \n" +
-                            "where IdItineraires=\n" +
+                            "where IdItineraires in(select DISTINCT `idItineraires` from villesitineraires \n" +
+                            "where IdItineraires in \n" +
                             "(select  itineraires.IdItineraires from itineraires,conducteurs \n" +
                             "where itineraires.idConducteurs=conducteurs.idConducteurs \n" +
                             "and itineraires.idConducteurs=? \n" +
@@ -241,7 +241,7 @@ public class VilleItineraireDAO implements utils.interfaces.DAO<VilleItineraireD
                 pStatement.setInt(1,id);
                 resultRequest = pStatement.executeQuery();
             while (resultRequest.next()) {
-               
+                ville = new Entity.VilleItineraire ();
                 ville.setIdVilleItineraire(resultRequest.getInt("IdVilleItineraire"));
                 try {
                     ville.setIdItineraires(ItineraireDAO.getInstance().getItineraireById(resultRequest.getInt("IdItineraires")));
@@ -265,15 +265,21 @@ public class VilleItineraireDAO implements utils.interfaces.DAO<VilleItineraireD
          public List<Entity.VilleItineraire> FindAncienVillesItinerairesByIdConcuteur(int id) throws ProblemeTechniqueException
     {
        
-        Entity.VilleItineraire ville = new Entity.VilleItineraire ();
+        Entity.VilleItineraire ville ;
         List<Entity.VilleItineraire> result = new ArrayList<>();
          try {
-                requete = "select * from villesitineraires where IdItineraires=(select itineraires.IdItineraires from itineraires,conducteurs where itineraires.idConducteurs=conducteurs.idConducteurs and itineraires.idConducteurs=? and CURDATE() > dateItineraire)";
+               requete = "select * from villesitineraires\n" +
+"                            where IdItineraires in (select DISTINCT `idItineraires` from 		  villesitineraires \n" +
+"                            where IdItineraires in\n" +
+"                            (select  itineraires.IdItineraires from itineraires,conducteurs \n" +
+"                            where itineraires.idConducteurs=conducteurs.idConducteurs \n" +
+"                            and itineraires.idConducteurs=?\n" +
+"                            and CURDATE() > dateItineraire ))and numVille=1";
                 pStatement = DAO.getInstance().getConnection().prepareStatement(requete);
                 pStatement.setInt(1,id);
                 resultRequest = pStatement.executeQuery();
             while (resultRequest.next()) {
-               
+               ville = new Entity.VilleItineraire ();
                 ville.setIdVilleItineraire(resultRequest.getInt("IdVilleItineraire"));
                 try {
                     ville.setIdItineraires(ItineraireDAO.getInstance().getItineraireById(resultRequest.getInt("IdItineraires")));

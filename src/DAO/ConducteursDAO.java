@@ -77,6 +77,45 @@ public class ConducteursDAO implements utils.interfaces.DAO<Conducteurs>{
        
         return result;
     }
+    
+     public Conducteurs getByEmail(String email) throws ProblemeTechniqueException {
+        Conducteurs result = null;
+        try {
+            requete = "SELECT * from conducteurs WHERE email=?";
+
+            pStatement = DAO.getInstance().getConnection().prepareStatement(requete);
+            pStatement.setString(1,email);
+            resultRequest = pStatement.executeQuery();
+            
+            if (resultRequest.next()) {
+                result = new Conducteurs();
+                result.setIdConducteurs(resultRequest.getInt("idConducteurs"));
+                result.setNom(resultRequest.getString("nom"));
+                result.setPrenom(resultRequest.getString("prenom"));
+                result.setDateNaissance(resultRequest.getDate("dateNaissance"));
+                result.setNumeroTel(resultRequest.getString("numeroTel"));
+                result.setAdresse(resultRequest.getString("adresse"));
+                result.setNote(resultRequest.getDouble("note"));
+                result.setPermisApprouver(resultRequest.getBoolean("permisApprouver"));
+                result.setNumTelVerifier(resultRequest.getBoolean("numTelVerifier"));
+                result.setProfileCalcule(resultRequest.getDouble("ProfileCalcule"));
+                try {
+                    result.setIdVoitures(VoitureDAO.getInstance().getVoitureById(resultRequest.getInt("idVoitures")));
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(ConducteursDAO.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (ProblemeTechniqueException ex) {
+                    Logger.getLogger(ConducteursDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                result.setSexe(resultRequest.getString("sexe").charAt(0));
+                result.setEmail(resultRequest.getString("email"));
+            }
+
+        } catch (SQLException ex) {
+            System.out.println("Erreur lors de la récupération d'un user by id.");
+        }
+       
+        return result;
+    }
 
     public List<Conducteurs> getAll() throws ProblemeTechniqueException {
         List<Conducteurs> result = new ArrayList<>();
@@ -126,11 +165,13 @@ public class ConducteursDAO implements utils.interfaces.DAO<Conducteurs>{
     @Override
     public boolean update(Conducteurs conducteur) throws ProblemeTechniqueException {
         try {
-            requete = "UPDATE conducteurs SET nom=? ,prenom=? ,dateNaissance=? ,numeroTel=? ,adresse=? ,note=? ,permisApprouver=? ,numTelVerifier=? ,ProfileCalcule=?  ,sexe=? ,urlImageProfil=? ,urlImagePermis=? , email=? WHERE idConducteurs=? ";
+             requete = "UPDATE conducteurs SET nom=? ,prenom=? ,dateNaissance=? ,numeroTel=? ,"
+                     + "adresse=? ,note=? ,permisApprouver=? ,numTelVerifier=? ,ProfileCalcule=?  ,"
+                     + "sexe=? ,urlImageProfil=? ,urlImagePermis=? , email=? WHERE idConducteurs=? ";
              pStatement = DAO.getInstance().getConnection().prepareStatement(requete);
              pStatement.setString(1,conducteur.getNom());
              pStatement.setString(2,conducteur.getPrenom());
-             pStatement.setDate(3,conducteur.getDateNaissance());
+             pStatement.setDate(3,new java.sql.Date(conducteur.getDateNaissance().getTime()));
              pStatement.setString(4, conducteur.getNumeroTel());
              pStatement.setString(5, conducteur.getAdresse());
              pStatement.setDouble(6, conducteur.getNote());
@@ -179,6 +220,120 @@ public class ConducteursDAO implements utils.interfaces.DAO<Conducteurs>{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-   
+   public double getBeneficeByidConcducteur(int idConducteur, int year) throws ProblemeTechniqueException{
+        requete = "SELECT " +
+                    "case " +
+                    "when (sum(prix) is null) then 0 " +
+                    "else sum(prix) " +
+                    "end as total " +
+                    "FROM `itineraires` WHERE idConducteurs = ? ";
+        
+        //si year = 0, on retourne la somme totale de benefices
+        if (year != 0)
+            requete += " and extract(year from dateItineraire) =? ";
+        
+        try {
+            pStatement = DAO.getInstance().getConnection().prepareStatement(requete);
+            
+            pStatement.setInt(1, idConducteur);
+            if (year != 0)
+                pStatement.setInt(2, year);
+            
+            resultRequest = pStatement.executeQuery();
+            
+            resultRequest.next();
+            return resultRequest.getInt("total");
+            
+        } catch (SQLException ex) {
+            System.out.println("probleme lors getBeneficeByidConcducteur");
+        }
+        return 0;
+    }
+    
+     public double getBeneficeByidConcducteurInMonth(int idConducteur, int year, int month) throws ProblemeTechniqueException{
+        requete = "SELECT " +
+                    "case " +
+                    "when (sum(prix) is null) then 0 " +
+                    "else sum(prix) " +
+                    "end as total " +
+                    "FROM `itineraires` WHERE idConducteurs = ? "+
+                    " and extract(year from dateItineraire) =? "+
+                    " and extract(month from dateItineraire) =? ";
+        
+        try {
+            pStatement = DAO.getInstance().getConnection().prepareStatement(requete);
+            
+            pStatement.setInt(1, idConducteur);
+            pStatement.setInt(2, year);
+            pStatement.setInt(3, month);
+            
+            resultRequest = pStatement.executeQuery();
+            
+            resultRequest.next();
+            return resultRequest.getInt("total");
+            
+        } catch (SQLException ex) {
+            System.out.println("probleme lors getBeneficeByidConcducteur");
+        }
+        return 0;
+    }
+    
+    public double getBeneficeByidConcducteurInYearAndMonth(int idConducteur, int year, int month) throws ProblemeTechniqueException{
+        requete = "SELECT " +
+                    "case " +
+                    "when (sum(prix) is null) then 0 " +
+                    "else sum(prix) " +
+                    "end as total " +
+                    "FROM `itineraires` WHERE idConducteurs = ? "+
+                    "and extract(year from dateItineraire) =? "+
+                    "and extract(month from dateItineraire) =? ";
+        
+        try {
+            pStatement = DAO.getInstance().getConnection().prepareStatement(requete);
+            
+            pStatement.setInt(1, idConducteur);
+            pStatement.setInt(2, year);
+            pStatement.setInt(3, month);
+            
+            resultRequest = pStatement.executeQuery();
+            
+            resultRequest.next();
+            return resultRequest.getInt("total");
+            
+        } catch (SQLException ex) {
+            System.out.println("probleme lors getBeneficeByidConcducteur");
+        }
+        return 0;
+    }
+    
+    public double getBeneficeByidConcducteurInYearAndMonthAndDay(int idConducteur, int year, int month, int day) throws ProblemeTechniqueException{
+        requete = "SELECT " +
+                    "case " +
+                    "when (sum(prix) is null) then 0 " +
+                    "else sum(prix) " +
+                    "end as total " +
+                    "FROM `itineraires` WHERE idConducteurs = ? "+
+                    "and extract(year from dateItineraire) =? "+
+                    "and extract(month from dateItineraire) =? "+
+                    "and extract(day from dateItineraire) =? ";
+        
+        try {
+            pStatement = DAO.getInstance().getConnection().prepareStatement(requete);
+            
+            pStatement.setInt(1, idConducteur);
+            pStatement.setInt(2, year);
+            pStatement.setInt(3, month);
+            pStatement.setInt(4, day);
+            
+            resultRequest = pStatement.executeQuery();
+            
+            resultRequest.next();
+            return resultRequest.getInt("total");
+            
+        } catch (SQLException ex) {
+            System.out.println("probleme lors getBeneficeByidConcducteur");
+        }
+        return 0;
+    }
     
 }

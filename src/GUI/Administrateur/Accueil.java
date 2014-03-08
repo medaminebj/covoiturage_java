@@ -56,6 +56,7 @@ public class Accueil extends javax.swing.JFrame {
         decoBtn.setBounds(906, 0, 118, 115);
 
         ModifierProfileBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/modifierProfile.png"))); // NOI18N
+        ModifierProfileBtn.setToolTipText("profil");
         ModifierProfileBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 ModifierProfileBtnMouseClicked(evt);
@@ -143,31 +144,37 @@ public class Accueil extends javax.swing.JFrame {
     private void GererAdminBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GererAdminBtnActionPerformed
         GUI.SuperAdministrateur.GererAdministrateurs.GerrerAdministrateur gaInterface = new GUI.SuperAdministrateur.GererAdministrateurs.GerrerAdministrateur();
         gaInterface.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_GererAdminBtnActionPerformed
 
     private void ModifierProfileBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ModifierProfileBtnMouseClicked
         GUI.GestionProfil.GestionProfil gaInterface = new GUI.GestionProfil.GestionProfil();
         gaInterface.setVisible(true);
+        
     }//GEN-LAST:event_ModifierProfileBtnMouseClicked
 
     private void GestionReclamationBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GestionReclamationBtnMouseClicked
         GUI.GestionRapports.GestionRapports gaInterface = new GUI.GestionRapports.GestionRapports();
         gaInterface.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_GestionReclamationBtnMouseClicked
 
     private void GestionUsersBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GestionUsersBtnMouseClicked
         GUI.GererUtilisateur.GererUtilisateur gaInterface = new GUI.GererUtilisateur.GererUtilisateur();
         gaInterface.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_GestionUsersBtnMouseClicked
 
     private void StatistiqueBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_StatistiqueBtnMouseClicked
         GUI.Administrateur.Statistiques.Statistiques gaInterface = new GUI.Administrateur.Statistiques.Statistiques();
         gaInterface.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_StatistiqueBtnMouseClicked
 
     private void GenererPdfBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GenererPdfBtnMouseClicked
         GUI.Administrateur.pdf.PDF gaInterface = new GUI.Administrateur.pdf.PDF();
         gaInterface.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_GenererPdfBtnMouseClicked
 
     /**

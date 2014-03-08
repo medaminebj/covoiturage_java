@@ -54,8 +54,10 @@ public class Banissement extends javax.swing.JFrame {
         DateF = new javax.swing.JTextField();
         dateD = new javax.swing.JTextField();
         BannirBtn = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
@@ -79,37 +81,57 @@ public class Banissement extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText("Quitter");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel1.setText("Banissement");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(NomPrenom, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel2)
-                            .addGap(18, 18, 18)
-                            .addComponent(dateD))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel3)
-                            .addGap(35, 35, 35)
-                            .addComponent(DateF, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addGap(43, 43, 43)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(55, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(BannirBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap()
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(BannirBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(NomPrenom, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addGap(43, 43, 43)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel2)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(dateD))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel3)
+                                    .addGap(35, 35, 35)
+                                    .addComponent(DateF, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 45, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(43, 43, 43)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(NomPrenom)
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -123,8 +145,10 @@ public class Banissement extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
-                .addComponent(BannirBtn)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(BannirBtn)
+                    .addComponent(jButton1))
                 .addContainerGap())
         );
 
@@ -139,6 +163,14 @@ public class Banissement extends javax.swing.JFrame {
         if(cause.getText().equals("") || dateD.getText().equals("") || DateF.getText().equals(""))
         {
             JOptionPane.showMessageDialog(null, "Il y a des champs vides");
+        }
+        else if (!utils.Validators.DateValidator(dateD.getText()) )
+        {
+              JOptionPane.showMessageDialog(null, "Vous avez mal saisie la Date de début");
+        }
+        else if (!utils.Validators.DateValidator(DateF.getText()))
+        {
+             JOptionPane.showMessageDialog(null, "Vous avez mal saisie la Date fin");
         }
         else
         {
@@ -158,8 +190,9 @@ public class Banissement extends javax.swing.JFrame {
             try {
                 if(banDAO.create(ban))
                 {
-                    JOptionPane.showMessageDialog(null, "Le conducteur "+conducteur.getNom()+" "+conducteur.getPrenom());
-                    new Banissement().setVisible(false);
+                    JOptionPane.showMessageDialog(null, "Le conducteur "+conducteur.getNom()+" "+conducteur.getPrenom()+" a été Banni");
+                    this.dispose();
+                    
                     
                 }
                 else
@@ -174,6 +207,10 @@ public class Banissement extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_BannirBtnMouseClicked
 
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+      this.dispose();
+    }//GEN-LAST:event_jButton1MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -184,12 +221,12 @@ public class Banissement extends javax.swing.JFrame {
             if (userBan.equals("c"))
             {
                 authentification = AuthentificationDAO.getInstance().getByIdCompte(conducteur.getIdConducteurs());
-                NomPrenom.setText("Le conducteur "+conducteur.getNom()+" "+conducteur.getPrenom());
+                NomPrenom.setText("Le conducteur a bannir :"+" "+conducteur.getNom()+" "+conducteur.getPrenom());
             }
              else
             {
                  authentification = AuthentificationDAO.getInstance().getByIdCompte(passager.getIdPassagers());
-                 NomPrenom.setText("Le passager"+passager.getNom()+" "+passager.getPrenom());
+                 NomPrenom.setText("Le passager a bannir :"+" "+passager.getNom()+" "+passager.getPrenom());
             }
         } catch (ProblemeTechniqueException ex) {
             System.out.println("Problème de récuperation d'une authentification");
@@ -233,6 +270,8 @@ public class Banissement extends javax.swing.JFrame {
     private javax.swing.JLabel NomPrenom;
     private javax.swing.JTextArea cause;
     private javax.swing.JTextField dateD;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

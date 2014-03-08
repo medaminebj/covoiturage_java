@@ -9,6 +9,8 @@ import Entity.Conducteurs;
 import Entity.Passagers;
 import GUI.SuperAdministrateur.GererAdministrateurs.GerrerAdministrateur;
 import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -69,8 +71,10 @@ public class GererConducteur extends javax.swing.JFrame {
         supprimerBtn = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
         EmailTf = new javax.swing.JTextField();
+        PermisAprouverBox = new javax.swing.JCheckBox();
+        NumTelApprouverBox = new javax.swing.JCheckBox();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(680, 800));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
@@ -126,8 +130,15 @@ public class GererConducteur extends javax.swing.JFrame {
 
         ConfirmPasswordLabel.setText("Confirmation du mot de passe :");
 
+        RetourBTN.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/Accueil.png"))); // NOI18N
         RetourBTN.setText("Accueil");
+        RetourBTN.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                RetourBTNMouseClicked(evt);
+            }
+        });
 
+        enregisterBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/Enregistrer.png"))); // NOI18N
         enregisterBtn.setText("Enregistrer");
         enregisterBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -140,6 +151,7 @@ public class GererConducteur extends javax.swing.JFrame {
             }
         });
 
+        modifierBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/modifier.png"))); // NOI18N
         modifierBtn.setText("Modifier");
         modifierBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -152,6 +164,7 @@ public class GererConducteur extends javax.swing.JFrame {
             }
         });
 
+        supprimerBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/supprimer.png"))); // NOI18N
         supprimerBtn.setText("Supprimer");
         supprimerBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -160,6 +173,10 @@ public class GererConducteur extends javax.swing.JFrame {
         });
 
         jLabel11.setText("Email :");
+
+        PermisAprouverBox.setText("  Persmis Approuver");
+
+        NumTelApprouverBox.setText("Numéro de téléphone Vérifier");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -170,14 +187,14 @@ public class GererConducteur extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(RetourBTN)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(enregisterBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(76, 76, 76)
-                        .addComponent(modifierBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(67, 67, 67)
-                        .addComponent(supprimerBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(109, 109, 109))
+                        .addComponent(RetourBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(105, 105, 105)
+                        .addComponent(modifierBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(160, 160, 160)
+                        .addComponent(enregisterBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(183, 183, 183)
+                        .addComponent(supprimerBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(88, 88, 88))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
@@ -201,27 +218,33 @@ public class GererConducteur extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(jLabel9)
-                                                .addComponent(passwordLabel, javax.swing.GroupLayout.Alignment.TRAILING)
-                                                .addComponent(ConfirmPasswordLabel, javax.swing.GroupLayout.Alignment.TRAILING))
-                                            .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING))
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addGroup(layout.createSequentialGroup()
-                                                .addGap(17, 17, 17)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                    .addComponent(loginTF)
-                                                    .addComponent(dateCreationTF, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGap(18, 18, 18)
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(dateDerniereModificationTF, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(passwordTF, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(confirmationPasswordTF, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                        .addGap(18, 18, 18)
+                                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(jLabel9)
+                                                        .addComponent(passwordLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                                                        .addComponent(ConfirmPasswordLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                                                        .addComponent(PermisAprouverBox, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                    .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING)
+                                                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING))
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                    .addGroup(layout.createSequentialGroup()
+                                                        .addGap(17, 17, 17)
+                                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                            .addComponent(loginTF)
+                                                            .addComponent(dateCreationTF, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                    .addGroup(layout.createSequentialGroup()
+                                                        .addGap(18, 18, 18)
+                                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                            .addComponent(dateDerniereModificationTF, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                            .addComponent(passwordTF, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                            .addComponent(confirmationPasswordTF, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                                .addGap(18, 18, 18))
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                .addComponent(NumTelApprouverBox, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(178, 178, 178)))
                                         .addComponent(errLoginLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addContainerGap(179, Short.MAX_VALUE))
+                                        .addContainerGap(20, Short.MAX_VALUE))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(127, 127, 127)
                                         .addComponent(jLabel11)
@@ -238,12 +261,11 @@ public class GererConducteur extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(supprimerBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(RetourBTN)
-                        .addComponent(modifierBtn)
-                        .addComponent(enregisterBtn)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE, false)
+                    .addComponent(RetourBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(modifierBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(enregisterBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(supprimerBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
@@ -279,7 +301,9 @@ public class GererConducteur extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6)
-                            .addComponent(sexeCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(sexeCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(PermisAprouverBox))))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7)
@@ -301,7 +325,9 @@ public class GererConducteur extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(ConfirmPasswordLabel)
                             .addComponent(confirmationPasswordTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(NumTelApprouverBox)
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         pack();
@@ -317,6 +343,10 @@ public class GererConducteur extends javax.swing.JFrame {
         dateCreationTF.setEnabled(etat);
         dateDerniereModificationTF.setEditable(etat);
         EmailTf.setEditable(etat);
+        passwordTF.setEditable(etat);
+        confirmationPasswordTF.setEditable(etat);
+        PermisAprouverBox.setEnabled(etat);;
+        NumTelApprouverBox.setEnabled(etat);
     }
     
     private void viderChamps(){
@@ -330,6 +360,8 @@ public class GererConducteur extends javax.swing.JFrame {
         dateCreationTF.setText(null);
         dateDerniereModificationTF.setText(null);
         EmailTf.setText(null);
+        passwordTF.setText(null);
+        confirmationPasswordTF.setText(null);
     }
     
     private void changerEtatMotDePasse(boolean etat){
@@ -405,7 +437,22 @@ public class GererConducteur extends javax.swing.JFrame {
         adresseTA.setText(conducteur.getAdresse());
         telephoneTF.setText(conducteur.getNumeroTel());
         EmailTf.setText(conducteur.getEmail());
-        
+        if (conducteur.getPermisApprouver())
+        {
+            PermisAprouverBox.setSelected(true);
+        }
+        else
+        {
+           PermisAprouverBox.setSelected(false); 
+        }
+        if (conducteur.getNumTelVerifier())
+        {
+            NumTelApprouverBox.setSelected(true);
+        }
+        else
+        {
+           NumTelApprouverBox.setSelected(false); 
+        }
         if (conducteur.getSexe() == 'M')
             sexeCB.setSelectedIndex(0);
         else
@@ -418,6 +465,7 @@ public class GererConducteur extends javax.swing.JFrame {
             dateDerniereModificationTF.setText(null);
         else
             dateDerniereModificationTF.setText(authentification.getDateDernierModification().toString());
+        
     }
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         enregisterBtn.setVisible(false);
@@ -489,9 +537,12 @@ public class GererConducteur extends javax.swing.JFrame {
                 authentification.setIdAuthentification(((utils.components.jtable.tableModelGererUtilisateur)datagrid.getModel()).getRowEntity(datagrid.getSelectedRow()).getIdAuthentification());
                 authentification.setLogin(loginTF.getText());
                 if (passwordTF.getPassword().length != 0)
-                    authentification.setPassword(utils.Functions.ConvertToMd5(passwordTF.getPassword().toString()));
+                    authentification.setPassword(utils.Functions.ConvertToMd5(String.valueOf(passwordTF.getPassword())));
                 else
                      authentification.setPassword(((utils.components.jtable.tableModelGererUtilisateur)datagrid.getModel()).getRowEntity(datagrid.getSelectedRow()).getPassword());
+                System.out.println(passwordTF.getPassword());
+                System.out.println(utils.Functions.ConvertToMd5(String.valueOf(passwordTF.getPassword())));
+                System.out.println(utils.Functions.ConvertToMd5("sabri"));
                 
                 authentification.setType('c');
                 authentification.setDateCreation(new Date(new java.util.Date().getTime()));
@@ -504,8 +555,29 @@ public class GererConducteur extends javax.swing.JFrame {
                 conducteur.setAdresse(adresseTA.getText());
                 conducteur.setNumeroTel(telephoneTF.getText());
                 conducteur.setEmail(EmailTf.getText());
-              
-                conducteur.setDateNaissance(null);
+                SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+                try {
+                    java.util.Date d = df.parse(dateNaissanceTF.getText());
+                    conducteur.setDateNaissance(new java.sql.Date(d.getTime()));
+                } catch (ParseException ex) {
+                    System.out.println("probleme de date");
+                }
+                if (PermisAprouverBox.isSelected())
+                {
+                    conducteur.setPermisApprouver(true);
+                }
+                else
+                {
+                    conducteur.setPermisApprouver(false);
+                }
+                if (NumTelApprouverBox.isSelected())
+                {
+                    conducteur.setNumTelVerifier(true);
+                }
+                else
+                {
+                    conducteur.setNumTelVerifier(false);
+                }
                 
 
                 if (sexeCB.getSelectedIndex() == 1)
@@ -534,14 +606,21 @@ public class GererConducteur extends javax.swing.JFrame {
                 } catch (ProblemeTechniqueException ex) {
                     System.out.println("problem");
                 }
+                changerEtatInformation(false);
+                modifierBtn.setVisible(true);
+                supprimerBtn.setVisible(true);
+                enregisterBtn.setVisible(false);
             
         }
-        changerEtatInformation(false);
-        modifierBtn.setVisible(true);
-        supprimerBtn.setVisible(true);
-        enregisterBtn.setVisible(false);
+        
         
     }//GEN-LAST:event_enregisterBtnMouseClicked
+
+    private void RetourBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RetourBTNMouseClicked
+         GUI.Administrateur.Accueil gaInterface = new GUI.Administrateur.Accueil();
+         gaInterface.setVisible(true);
+         this.dispose();
+    }//GEN-LAST:event_RetourBTNMouseClicked
 
     /**
      * @param args the command line arguments
@@ -580,6 +659,8 @@ public class GererConducteur extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel ConfirmPasswordLabel;
     private javax.swing.JTextField EmailTf;
+    private javax.swing.JCheckBox NumTelApprouverBox;
+    private javax.swing.JCheckBox PermisAprouverBox;
     private javax.swing.JButton RetourBTN;
     private javax.swing.JTextArea adresseTA;
     private javax.swing.JPasswordField confirmationPasswordTF;

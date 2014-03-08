@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.persistence.Entity;
 import javax.swing.JOptionPane;
 import metier.*;
 import utils.*;
@@ -95,13 +96,13 @@ public class NewItineraireConducteur extends javax.swing.JFrame {
         testcb = new javax.swing.JComboBox();
         RemplacerBtn = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowActivated(java.awt.event.WindowEvent evt) {
-                formWindowActivated(evt);
-            }
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
+            }
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
             }
         });
 
@@ -115,6 +116,11 @@ public class NewItineraireConducteur extends javax.swing.JFrame {
 
         AccueilBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/Retour.png"))); // NOI18N
         AccueilBtn.setText("Accueil");
+        AccueilBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                AccueilBtnMouseClicked(evt);
+            }
+        });
 
         SupprimerBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/supprimer.png"))); // NOI18N
         SupprimerBtn.setText("Supprimer");
@@ -148,6 +154,11 @@ public class NewItineraireConducteur extends javax.swing.JFrame {
         });
 
         ConfirmerBtn.setText("Confirmer");
+        ConfirmerBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ConfirmerBtnMouseClicked(evt);
+            }
+        });
 
         PublicCheckBox.setText("Public");
 
@@ -468,7 +479,7 @@ public class NewItineraireConducteur extends javax.swing.JFrame {
     private int VerifierNbrPlace()
     {
         Conducteurs c = itineraire.getIdConducteur();
-        int nbrPlace = c.getIdVoitures().getNbrplaces();
+        int nbrPlace = c.getIdVoitures().getNbrplaces()-1;
         int nbrPlaceConfirmer = Integer.parseInt( NbrPassagerConfirmerTf.getText());
         int nbrPlaceRestante=nbrPlace-nbrPlaceConfirmer;
         if (nbrPlace==nbrPlaceConfirmer)
@@ -734,7 +745,7 @@ public class NewItineraireConducteur extends javax.swing.JFrame {
         NbrAttenteTf.setText(String.valueOf(nonAccepter));
         DescriptionTf.setText(itineraire.getDescription());
         int nbrPlaceRestante=VerifierNbrPlace();
-        if (nbrPlaceRestante==0 || nonAccepter==0)
+        if (nonAccepter==0)
         {
             ListePassagerBtn.setVisible(false);
         }
@@ -839,7 +850,7 @@ public class NewItineraireConducteur extends javax.swing.JFrame {
             else
             {
                 SupprimerBtn.setVisible(false);
-               ModifierBtn.setVisible(false);
+                ModifierBtn.setVisible(false);
                 ConfirmerCheckBox.setSelected(true);
                 ConfirmerCheckBox.setEnabled(false);
                 ConfirmerBtn.setVisible(false);
@@ -868,6 +879,10 @@ public class NewItineraireConducteur extends javax.swing.JFrame {
     }//GEN-LAST:event_NbrPassagerConfirmerTfActionPerformed
 
     private void AjouterBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AjouterBtnMouseClicked
+       Conducteurs cc = new Conducteurs();
+       cc = (Conducteurs)Session.getInstance().getUser().getCompte();
+       if (cc.getIdVoitures()!=null && cc.getIdVoitures().getIdvoiture()!=0)
+       {
         try {
               
               
@@ -880,6 +895,10 @@ public class NewItineraireConducteur extends javax.swing.JFrame {
                 NbrPAttenteLabel.setVisible(false);
                 NbrPConfirmerLabel.setVisible(false);
                 RemplacerBtn.setVisible(false);
+                ConfirmerCheckBox.setSelected(false);
+                ConfirmerCheckBox.setEnabled(true);
+                PublicCheckBox.setSelected(false);
+                PublicCheckBox.setEnabled(true);
                 ViderAll();
                 EnableAll();
                 AffecterInformationComboBoxGouvernerat();
@@ -889,6 +908,11 @@ public class NewItineraireConducteur extends javax.swing.JFrame {
         } catch (ProblemeTechniqueException ex) {
             Logger.getLogger(NewItineraireConducteur.class.getName()).log(Level.SEVERE, null, ex);
         }
+       }
+       else
+       {
+            JOptionPane.showMessageDialog(null, "il faut completer votre profil .");
+       }
     }//GEN-LAST:event_AjouterBtnMouseClicked
 
     private void GouverneratBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_GouverneratBoxItemStateChanged
@@ -925,9 +949,15 @@ public class NewItineraireConducteur extends javax.swing.JFrame {
 
     private void ConfirmerCheckBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_ConfirmerCheckBoxItemStateChanged
        if (ConfirmerCheckBox.isSelected())
-        ConfirmerBtn.setVisible(true);
+       {
+          if (!RemplacerBtn.isVisible())
+          ConfirmerBtn.setVisible(true);
+        
+       }
        else
+       {
          ConfirmerBtn.setVisible(false);  
+       }
     }//GEN-LAST:event_ConfirmerCheckBoxItemStateChanged
 
     private void SupprimerBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SupprimerBtnMouseClicked
@@ -965,12 +995,15 @@ public class NewItineraireConducteur extends javax.swing.JFrame {
             {
                 i.setEstpublic(false);
             }
-             java.text.SimpleDateFormat df = new java.text.SimpleDateFormat("yyyy-mm-dd");
+            java.text.SimpleDateFormat df = new java.text.SimpleDateFormat("yyyy-MM-dd");
             i.setDateitineraire(df.parse(DateDepartTf.getText()));
             i.setDatepublication(new Date(new java.util.Date().getTime()));
             i.setDistanceitineraire(0);
+            i.setPrix(Double.parseDouble(PrixTf.getText()));
+            i.setDescription(DescriptionTf.getText());
             Conducteurs c = new Conducteurs();
-            c.setIdConducteurs(2);
+            c=(Conducteurs)Session.getInstance().getUser().getCompte();
+            c.setIdConducteurs(c.getIdConducteurs());
             i.setIdConducteur(c);
             try {
                 try {
@@ -1022,6 +1055,7 @@ public class NewItineraireConducteur extends javax.swing.JFrame {
         } catch (ParseException ex) {
             Logger.getLogger(NewItineraireConducteur.class.getName()).log(Level.SEVERE, null, ex);
         }
+        EnregisterBtn.setVisible(false);
     }//GEN-LAST:event_EnregisterBtnMouseClicked
 
     private void ModifierBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ModifierBtnMouseClicked
@@ -1030,12 +1064,108 @@ public class NewItineraireConducteur extends javax.swing.JFrame {
     }//GEN-LAST:event_ModifierBtnMouseClicked
 
     private void RemplacerBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RemplacerBtnMouseClicked
+         Itineraire i = new Itineraire();
+          i=itineraire;
+        try {
+                i.setDescription(DescriptionTf.getText());
+            if (ConfirmerCheckBox.isSelected())
+            {
+                i.setEstconfirmer(true);
+            }
+            else
+            {
+                i.setEstconfirmer(false);
+            }
+             if (PublicCheckBox.isSelected())
+            {
+                i.setEstpublic(true);
+            }
+            else
+            {
+                i.setEstpublic(false);
+            }
+            java.text.SimpleDateFormat df = new java.text.SimpleDateFormat("yyyy-MM-dd");
+            i.setDateitineraire(df.parse(DateDepartTf.getText()));
+            i.setDatepublication(new Date(new java.util.Date().getTime()));
+            i.setDistanceitineraire(0);
+            i.setPrix(Double.parseDouble(PrixTf.getText()));
+            
+            i.setDescription(DescriptionTf.getText());
+            Conducteurs c = new Conducteurs();
+            c=(Conducteurs)Session.getInstance().getUser().getCompte();
+            c.setIdConducteurs(c.getIdConducteurs());
+            i.setIdConducteur(c);
+            if(ItineraireDAO.getInstance().update(i))
+            {
+                JOptionPane.showMessageDialog(null, "La Modification a étè effectué avec succés.");
+            }
+            else
+            {
+              JOptionPane.showMessageDialog(null, "La Modification n'a pas étè effectué. ");
+                
+            }
+        } catch (ProblemeTechniqueException ex) {
+            Logger.getLogger(NewItineraireConducteur.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(NewItineraireConducteur.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(NewItineraireConducteur.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ParseException ex) {
+            Logger.getLogger(NewItineraireConducteur.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        ConfirmerCheckBox.setEnabled(false);
+        ConfirmerBtn.setVisible(false);
+        RemplacerBtn.setVisible(false);
+        if (ConfirmerCheckBox.isSelected())
+        {
+            ModifierBtn.setVisible(false);
+            SupprimerBtn.setVisible(false);
+        }
+        datagrid.setModel(new utils.components.jtable.tableModelNewItineraire());
+        ModifierBtn.setVisible(false);
+        SupprimerBtn.setVisible(false);
+        DisableAll();
+        ViderAll();
+        ViderComboBox();
+        ConfirmerCheckBox.setSelected(false);
+        PublicCheckBox.setSelected(false);
         
     }//GEN-LAST:event_RemplacerBtnMouseClicked
 
     private void testcbItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_testcbItemStateChanged
         // TODO add your handling code here:
     }//GEN-LAST:event_testcbItemStateChanged
+
+    private void AccueilBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AccueilBtnMouseClicked
+         (new GUI.Conductuer.Accueil()).setVisible(true);
+         this.dispose();
+    }//GEN-LAST:event_AccueilBtnMouseClicked
+
+    private void ConfirmerBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ConfirmerBtnMouseClicked
+         //itineraire.setEstconfirmer(true);
+          Itineraire ii = new Itineraire();
+          ii=itineraire;
+          ii.setEstconfirmer(true);
+        try {
+            if(ItineraireDAO.getInstance().update(ii))
+            {
+                JOptionPane.showMessageDialog(null, "La confirmation a étè effectué avec succés.");
+            }
+            else
+            {
+              JOptionPane.showMessageDialog(null, "La confirmation n'a pas étè effectué. ");
+                
+            }
+        } catch (ProblemeTechniqueException ex) {
+            Logger.getLogger(NewItineraireConducteur.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(NewItineraireConducteur.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(NewItineraireConducteur.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        ConfirmerCheckBox.setEnabled(false);
+        ConfirmerBtn.setVisible(false);
+    }//GEN-LAST:event_ConfirmerBtnMouseClicked
 
     /**
      * @param args the command line arguments

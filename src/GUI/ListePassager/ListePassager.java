@@ -74,6 +74,7 @@ public class ListePassager extends javax.swing.JFrame {
              {
                 passagers = PassagersDAO.getInstance().getPassagerById(id);
                 Notetf.setText(String.valueOf(passagers.getNote()));
+                CalculeNote(passagers.getNote());
              }
         } catch (ProblemeTechniqueException ex) {
             Logger.getLogger(ListePassager.class.getName()).log(Level.SEVERE, null, ex);
@@ -95,6 +96,11 @@ public class ListePassager extends javax.swing.JFrame {
         Notetf = new javax.swing.JTextField();
         ConfirmerBtn = new javax.swing.JButton();
         QuitterBtn = new javax.swing.JButton();
+        etoile5 = new javax.swing.JLabel();
+        etoile4 = new javax.swing.JLabel();
+        etoile3 = new javax.swing.JLabel();
+        etoile2 = new javax.swing.JLabel();
+        etoile1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -124,30 +130,56 @@ public class ListePassager extends javax.swing.JFrame {
         });
 
         QuitterBtn.setText("Quitter");
+        QuitterBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                QuitterBtnMouseClicked(evt);
+            }
+        });
+
+        etoile5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/etoile.png"))); // NOI18N
+
+        etoile4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/etoile.png"))); // NOI18N
+
+        etoile3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/etoile.png"))); // NOI18N
+
+        etoile2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/etoile.png"))); // NOI18N
+
+        etoile1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/etoile.png"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(ConfirmerBtn)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(73, 73, 73)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel2)
-                                .addComponent(jLabel3))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(ListePassagerBox, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(Notetf, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(18, 18, 18)
-                .addComponent(QuitterBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(73, 73, 73)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(ListePassagerBox, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(Notetf, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(28, 28, 28)
+                                .addComponent(etoile1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(etoile2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(etoile3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(etoile4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(etoile5)))))
+                .addContainerGap(104, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(QuitterBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(78, 78, 78)
+                .addComponent(ConfirmerBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -159,14 +191,20 @@ public class ListePassager extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(ListePassagerBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(38, 38, 38)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel3)
+                        .addComponent(Notetf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(etoile1)
+                        .addComponent(etoile2)
+                        .addComponent(etoile3)
+                        .addComponent(etoile4)
+                        .addComponent(etoile5)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 122, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(Notetf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 111, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ConfirmerBtn)
-                    .addComponent(QuitterBtn))
-                .addContainerGap())
+                    .addComponent(QuitterBtn)
+                    .addComponent(ConfirmerBtn)))
         );
 
         pack();
@@ -181,11 +219,56 @@ public class ListePassager extends javax.swing.JFrame {
 
     private void ListePassagerBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_ListePassagerBoxItemStateChanged
       int index = ListePassagerBox.getSelectedIndex();
-  
-      GetNotePassager();
+        setEtoilsInvisible();
+        GetNotePassager();
         
     }//GEN-LAST:event_ListePassagerBoxItemStateChanged
-
+    private void CalculeNote(double note)
+    {
+        
+        etoile1.setVisible(false);
+        etoile2.setVisible(false);
+        etoile3.setVisible(false);
+        etoile4.setVisible(false);
+        etoile5.setVisible(false);
+        if ((0<note) && (note<=2))
+             etoile1.setVisible(true);
+        else if ((2<note) && (note<=4))
+        {
+             etoile1.setVisible(true);
+             etoile2.setVisible(true);
+        }
+        else if ((4<note) && (note<=6))
+        {
+             etoile1.setVisible(true);
+             etoile2.setVisible(true);
+             etoile3.setVisible(true);
+        }
+        else if ((6<note) && (note<=8))
+        {
+             etoile1.setVisible(true);
+             etoile2.setVisible(true);
+             etoile3.setVisible(true);
+             etoile4.setVisible(true);
+        }
+        else if ((8<note) && (note<=10))
+        {
+             etoile1.setVisible(true);
+             etoile2.setVisible(true);
+             etoile3.setVisible(true);
+             etoile4.setVisible(true);
+             etoile5.setVisible(true);
+        }
+        
+    }
+    private void setEtoilsInvisible()
+    {
+             etoile1.setVisible(false);
+             etoile2.setVisible(false);
+             etoile3.setVisible(false);
+             etoile4.setVisible(false);
+             etoile5.setVisible(false);
+    }
     private void ConfirmerBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ConfirmerBtnMouseClicked
         String GetNomPrenomBox = ListePassagerBox.getSelectedItem().toString();
        int id=0 ;
@@ -210,11 +293,12 @@ public class ListePassager extends javax.swing.JFrame {
                     boolean verif = participereventsDAO.getInstance().updateAcceptationPassager(passagers, itineraire);
                     if (verif)
                     {
-                        JOptionPane.showMessageDialog(null, "la Confirmation à été rétablie avec succé");
+                        JOptionPane.showMessageDialog(null, "la Confirmation a été établi avec succés");
+                        this.dispose();
                     }
                     else
                     {
-                         JOptionPane.showMessageDialog(null, "la Confirmation n'a été abouti");
+                         JOptionPane.showMessageDialog(null, "la Confirmation n'a pas abouti");
                     }
                  } catch (ClassNotFoundException ex) {
                      Logger.getLogger(ListePassager.class.getName()).log(Level.SEVERE, null, ex);
@@ -226,6 +310,10 @@ public class ListePassager extends javax.swing.JFrame {
             Logger.getLogger(ListePassager.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_ConfirmerBtnMouseClicked
+
+    private void QuitterBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QuitterBtnMouseClicked
+       this.dispose();
+    }//GEN-LAST:event_QuitterBtnMouseClicked
 
     /**
      * @param args the command line arguments
@@ -266,6 +354,11 @@ public class ListePassager extends javax.swing.JFrame {
     private javax.swing.JComboBox ListePassagerBox;
     private javax.swing.JTextField Notetf;
     private javax.swing.JButton QuitterBtn;
+    private javax.swing.JLabel etoile1;
+    private javax.swing.JLabel etoile2;
+    private javax.swing.JLabel etoile3;
+    private javax.swing.JLabel etoile4;
+    private javax.swing.JLabel etoile5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

@@ -17,6 +17,8 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import utils.Exceptions.ProblemeTechniqueException;
 
 /*
@@ -32,36 +34,22 @@ public class test {
     
     public static void main(String args[]) throws ProblemeTechniqueException {
      
-            Itineraire i= new Itineraire();
-            List <Entity.VilleItineraire> v = new ArrayList<>();
-            Entity.VilleItineraire vv = new VilleItineraire();
-            Entity.gouvernorats g = new gouvernorats();
-            Entity.delegations d = new delegations();
-            Entity.localites l = new localites();
-        try {
-                l = DAO.localitesDAO.getInstance().GetLocalitesById(6087);
-               
-                /*g = DAO.gouvernoratsDAO.getInstance().GetGouverneratById(49);
-                d = DAO.delegationsDAO.getInstance().GetDelegationByIdGouvernerat(g.getIdGouvernorats());
-                l = DAO.localitesDAO.getInstance().GetLocalitesByIdDelegation(d.getIdDelegations());*/
-                System.out.println(l.getIdDelegations().getIdGouvernorats().getNomGouvernorat());
+                 String matche = "2000/10/10";
+		//Pattern p2=Pattern.compile("^(29/02/((19|20)(0[48]|[2468][048]|[13579][26])|2000))|" +
+		//"(((0[1-9]|1\\d|2[0-8])/(0[1-9]|1[0-2])/)|((29|30)/(0[13-9]|1[0-2])/)|(31/(0[13578]|1[02]))/((19|20)\\d\\d))$");
                 
-                /* vv = VilleItineraireDAO.getInstance().FindVilleDepart(3);
-                int id = vv.getIdLocalites().getIdLocalites();
-                int idd = DAO.delegationsDAO.getInstance.;*/
                 
-                 /*for(int j=0;j<v.size();j++)
-                 {
-                   // i = ItineraireDAO.getInstance().getItineraireById(v.get(j).getIdItineraires().getIditineraire());
-                     System.out.println(v.get(j).getIdLocalites().getNomLocalite());
-                 }*/
-                 
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(test.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(test.class.getName()).log(Level.SEVERE, null, ex);
-        }
-       
+                Pattern p=Pattern.compile("^(29/02/((19|20)(0[48]|[2468][048]|[13579][26])|2000))|(31/(0[13578]|1[02])/(19|20)\\d\\d)|((29|30)/(0[13-9]|1[0-2])/(19|20)\\d\\d)|((0[1-9]|1\\d|2[0-8])/(0[1-9]|1[0-2])/(19|20)\\d\\d)$");
+                
+                
+                
+		Matcher m=p.matcher(matche);
+                if (m.matches()){
+			                 System.out.println("Date correct");
+		}
+		else {
+			System.out.println("Date incorrect");
+		}
         
     
     
